@@ -1,11 +1,26 @@
 import '../App.css';
-import React from 'react'
+import React, {useEffect, useState}  from 'react'
 import Home from './Home'
 import Voting from './Voting'
 import NavBar from './NavBar'
 import {Route,Switch} from 'react-router-dom'
 
 function App() {
+
+  const [books,setBooks]=useState([])
+
+    useEffect(()=>{
+      fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:potter&orderBy=relevance`)
+      .then(r=>r.json())
+      .then(data=>{
+        setBooks(data.items.filter((book)=>(book.volumeInfo.ratingsCount>10) && (book.volumeInfo.language==="en")).sort((a,b)=>b.volumeInfo.ratingsCount - a.volumeInfo.ratingsCount))
+      })
+  
+      
+     
+    },[])
+  
+    console.log(books)
 
   return <div>
     <NavBar />
@@ -14,7 +29,7 @@ function App() {
         <Voting />
       </Route>
       <Route path="/">
-        <Home />
+        <Home books={books}/>
       </Route>
     </Switch>
     

@@ -1,3 +1,33 @@
 :root{
-  background-color: rgba(34, 34, 110, 0.402)
+  background-color: rgba(255, 235, 182, 0.402)
+}
+
+.Navbar {
+  
+  color:white;
+  font-size:20px;
+  text-align:center;
+  height:30px;
+  width:100%;
+  padding:50px;
+}
+
+.navOption{
+  width:40px;
+  height:30px;
+  padding:20px;
+  text-align:center;
+  margin-top:20px;
+}
+
+.bookContainer{
+  width:100%;
+  display:inline-block;
+}
+
+.bookPreview{
+  width:50px;
+  display:inline-block;
+  margin-left:120px;
+
 }
