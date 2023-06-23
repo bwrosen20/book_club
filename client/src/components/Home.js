@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Home({books}){
+function Home({books, handleClick}){
 
     
     
@@ -8,7 +8,7 @@ function Home({books}){
       <div className="bookContainer">
         {books.map((book)=>(
           <div className="bookPreview">
-          <img src={book.volumeInfo.imageLinks.thumbnail}></img>
+          <img src={book.volumeInfo.imageLinks.thumbnail} onClick={handleClick} alt={book.volumeInfo.title}></img>
           {/* <h1>{book.volumeInfo.title}</h1> */}
           </div>
         ))}
