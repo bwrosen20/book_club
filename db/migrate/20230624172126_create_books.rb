@@ -7,6 +7,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.integer :votes
       t.string :genres
       t.string :thumbnail
+      t.boolean :finished
 
       t.timestamps
     end
