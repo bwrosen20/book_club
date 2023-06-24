@@ -6,10 +6,15 @@ function DisplayBook({books}){
     const {title}=useParams()
     const book=books.find((e)=>title===e.volumeInfo.title)
 
-    return <div>
-        <img src={book.volumeInfo.imageLinks.thumbnail}></img>
-        <h1>{book.volumeInfo.title}</h1>
-        <h2>{book.volumeInfo.author}</h2>
+    return <div className="BookDisplay">
+        <span className="BookInfo">
+        <img src={book.volumeInfo.imageLinks.thumbnail} className="LargerImg"></img>
+        </span>
+        <span className="BookInfo">
+        <h2>{book.volumeInfo.title}</h2>
+        <h5>By {book.volumeInfo.authors}</h5>
+        <p>{book.volumeInfo.description}</p>
+        </span>
     </div>
 }
 

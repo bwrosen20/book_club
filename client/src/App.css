@@ -35,3 +35,24 @@ img{
   margin-left:120px;
 
 }
+
+
+.BookDisplay{
+  display: grid; 
+  margin:auto;
+  grid-template-columns: 1fr 1fr; 
+  grid-gap: 10px; 
+  width: 100%; 
+ 
+}
+
+.BookInfo{
+  margin: 10px; 
+  text-align:center;
+  height:500px;
+}
+
+.LargerImg{
+  height:100%;
+}
+

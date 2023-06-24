@@ -9,7 +9,6 @@ function Home({books, handleClick}){
         {books.map((book)=>(
           <div className="bookPreview">
           <img src={book.volumeInfo.imageLinks.thumbnail} onClick={handleClick} alt={book.volumeInfo.title}></img>
-          {/* <h1>{book.volumeInfo.title}</h1> */}
           </div>
         ))}
         
