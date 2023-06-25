@@ -1,17 +1,21 @@
 import React from 'react'
+import Filters from './Filters'
 
-function Home({books, handleClick}){
+function Home({books, handleClick, filterData, handleChange}){
 
     
     
     return (
+      <div>
+        <Filters filterData={filterData} handleChange={handleChange}/>
       <div className="bookContainer">
         {books.map((book)=>(
           <div className="bookPreview">
-          <img src={book.volumeInfo.imageLinks.thumbnail} onClick={handleClick} alt={book.volumeInfo.title}></img>
+          <img src={book.thumbnail} onClick={handleClick} alt={book.title}></img>
           </div>
         ))}
         
+      </div>
       </div>
     );
 }

@@ -4,17 +4,17 @@ import {useParams} from 'react-router-dom'
 function DisplayBook({books}){
 
     const {title}=useParams()
-    const book=books.find((e)=>title===e.volumeInfo.title)
+    const book=books.find((e)=>title===e.title)
 
     return <div className="BookDisplay">
-        <span className="BookInfo">
-        <img src={book.volumeInfo.imageLinks.thumbnail} className="LargerImg"></img>
-        </span>
-        <span className="BookInfo">
-        <h2>{book.volumeInfo.title}</h2>
-        <h5>By {book.volumeInfo.authors}</h5>
-        <p>{book.volumeInfo.description}</p>
-        </span>
+        <div className="BookPicture">
+        <img src={book.thumbnail} className="PictureDisplay"></img>
+        </div>
+        <div className="BookInfo">
+        <h1>{book.title}</h1>
+        <h4>By {book.author}</h4>
+        <font size="4">{book.description}</font>
+        </div>
     </div>
 }
 

@@ -9,25 +9,56 @@ import {Route,Switch, useHistory} from 'react-router-dom'
 function App() {
 
   const [books,setBooks]=useState([])
+  const [filterData,setFilterData]=useState({
+    input:"",
+    filter:"Sort By"
+  })
   const history=useHistory()
 
-    useEffect(()=>{
-      fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:potter&orderBy=relevance`)
-      .then(r=>r.json())
-      .then(data=>{
-        setBooks(data.items.filter((book)=>(book.volumeInfo.ratingsCount>10) && (book.volumeInfo.language==="en")).sort((a,b)=>b.volumeInfo.ratingsCount - a.volumeInfo.ratingsCount))
-      })
-  
-      
-     
-    },[])
+  useEffect(()=>{
+        fetch(`/books`)
+        .then(r=>r.json())
+        .then(data=>{
+          setBooks(data)
+        })
+    
+        
+       
+      },[])
+
+    function handleChange(event){
+      setFilterData({...filterData,[event.target.name]:event.target.value})
+    }
+
+      let booksToDisplay=(books.filter((book)=>(((book.title).toLowerCase().includes((filterData.input).toLowerCase()))||((book.author).toLowerCase().includes((filterData.input).toLowerCase())))))
+
+        if (filterData.filter=="Author"){
+            booksToDisplay=booksToDisplay.sort((a,b)=>(authorsLastName(a.author) > authorsLastName(b.author) ? 1 : -1))
+        }
+        else{
+            booksToDisplay=booksToDisplay.sort((a,b)=>(removeArticles(a.title) > removeArticles(b.title) ? 1: -1))
+        }
+        
+    function removeArticles(str){
+        const words=str.split(" ")
+        if (words.length<=1) return str
+        else if (words[0].toLowerCase()==='a' || words[0].toLowerCase()==='an' || words[0].toLowerCase()==='the')
+          return words.splice(1).join(" ")
+        else return str
+    }
+
+    function authorsLastName(str){
+      console.log(str)
+      const nameArray = str.split(" ")
+      console.log(nameArray)
+      return nameArray.splice(-1)
+    }
+    
 
     function handleClick(event){
-      console.log("clicked")
       history.push(`/books/${event.target.alt}`)
     }
   
-    console.log(books)
 
   return <div>
     <NavBar />
@@ -39,7 +70,7 @@ function App() {
         <DisplayBook books={books}/>
       </Route>
       <Route path="/">
-        <Home books={books} handleClick={handleClick}/>
+        <Home books={booksToDisplay} handleClick={handleClick} handleChange={handleChange} filterData={filterData}/>
       </Route>
     </Switch>
     
