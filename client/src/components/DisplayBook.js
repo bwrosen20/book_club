@@ -1,4 +1,5 @@
 import React from 'react'
+import Reviews from './Reviews'
 import {useParams} from 'react-router-dom'
 
 function DisplayBook({books}){
@@ -15,6 +16,7 @@ function DisplayBook({books}){
         <h4>By {book.author}</h4>
         <font size="4">{book.description}</font>
         </div>
+        {book.finished ? <Reviews book={book}/> : null}
     </div>
 }
 

@@ -6,6 +6,11 @@ img{
   cursor:pointer;
 }
 
+h1{
+  text-align:center;
+  margin-top:100px;
+}
+
 .Navbar {
   
   color:white;
@@ -52,7 +57,7 @@ img{
   text-align:center;
   width:50%;
   padding:20px;
-  background-color:rgb(207, 205, 191);
+  background-color:rgb(233, 231, 218);
 }
 
 .PictureDisplay{
@@ -67,4 +72,33 @@ img{
 .filterInput{
   padding:10px;
   margin:20px;
+}
+
+.ReviewContainer{
+  text-align:center;
+}
+
+.Review{
+  display:grid;
+  grid-template-columns: 1fr 7fr;
+  grid-gap:1px;
+  border:1px solid black;
+  margin-top:50px;
+  width:100%;
+  height:auto;
+}
+
+.User{
+  width:20%;
+  margin-left:25px;
+  margin-top:20px;
+}
+
+.UserPicture{
+  width:100px;
+  height:100px;
+}
+
+.ReviewBody{
+  margin-top:5%
 }
