@@ -37,6 +37,7 @@ h4{
   margin:auto;
   display:grid;
   grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows:auto;
   grid-gap:35px;
 }
 
@@ -47,6 +48,7 @@ h4{
 .homeImg{
   height:200px;
   width:130px;
+  object-position:top;
 }
 
 
@@ -114,3 +116,39 @@ h4{
 .ReviewBody{
   margin-top:5%
 }
+
+.login{
+  position:absolute;
+  color:black;
+  top:10px;
+  right:10%;
+}
+
+.loginScreen{
+  margin:auto;
+  text-align:center;
+  width:50%;
+  padding:20px;
+}
+
+.loginOption{
+  margin-left:20px;
+  display:inline-block;
+}
+
+.loginButton{
+  width:25%;
+  margin-top:10px;
+  text-align:center;
+}
+
+.signupButton{
+  width:50%;
+  margin-top:10px;
+  text-align:center;
+}
+
+.signupOption{
+  margin-top:10px;
+}
+

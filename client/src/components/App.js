@@ -6,6 +6,7 @@ import NavBar from './NavBar'
 import DisplayBook from './DisplayBook'
 import Users from './Users'
 import CurrentBook from './CurrentBook'
+import Login from './Login'
 import {Route,Switch, useHistory} from 'react-router-dom'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     input:"",
     filter:"Sort By"
   })
+  const [user,setUser]=useState(null)
   const history=useHistory()
 
   useEffect(()=>{
@@ -23,7 +25,16 @@ function App() {
         .then(data=>{
           setBooks(data)
         })
+
+        fetch(`/me`)
+        .then(r=>{
+          if (r.ok){
+            r.json().then((user)=>setUser(user))
+          }
+        })
       },[])
+
+      console.log(user)
 
       const finishedBooks=(books.filter((book)=>{return(book.finished && !book.current_book)}))
 
@@ -64,6 +75,7 @@ function App() {
       history.push(`/books/${event.target.alt}`)
     }
   
+    if (!user) return <Login onLogin={setUser}/>
 
   return <div>
     <NavBar />

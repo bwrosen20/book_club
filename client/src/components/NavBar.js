@@ -49,6 +49,10 @@ function NavBar(){
                 Current Book   
             </NavLink>
 
+            <div className="login">
+                <button>Logout</button>
+            </div>
+
 
     </div>
 }

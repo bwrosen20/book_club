@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :users, only: :index
+  post '/signup', to: 'users#create'
+  get '/users', to: 'users#index'
+  get '/me', to: 'users#show'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
   resources :books, only: :index
   
   # Routing logic: fallback requests for React Router.
