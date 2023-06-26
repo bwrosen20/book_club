@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 function Voting(){
+
+    const [users,setUsers]=useState([])
 
     // useEffect(()=>{
     //     fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:potter&orderBy=relevance`)
@@ -8,10 +10,13 @@ function Voting(){
     //     .then(data=>{
     //       setBooks(data.items.filter((book)=>(book.volumeInfo.ratingsCount>10) && (book.volumeInfo.language==="en")).sort((a,b)=>b.volumeInfo.ratingsCount - a.volumeInfo.ratingsCount))
     //     })
-    
-        
-       
     //   },[])
+
+    useEffect(()=>{
+        fetch('/users')
+        .then(r=>r.json())
+        .then(data=>setUsers(data))
+    })
 
 
     return <div>
