@@ -5,7 +5,7 @@ function CurrentBook({currentBook}){
 
     return <div className="BookDisplay">
         <div className="BookPicture">
-        <img src={currentBook.thumbnail} className="PictureDisplay"></img>
+        <img src={currentBook.thumbnail} className="PictureDisplay" alt={currentBook.thumbnail}></img>
         </div>
         <div className="BookInfo">
         <h1>{currentBook.title}</h1>

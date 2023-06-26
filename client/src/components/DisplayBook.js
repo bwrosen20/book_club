@@ -5,7 +5,8 @@ import {useParams} from 'react-router-dom'
 function DisplayBook({books}){
 
     const {title}=useParams()
-    const book=books.find((e)=>title===e.title)
+
+    const book = (typeof(books)=="object" ? books : books.find((e)=>title===e.title))
 
     return <div className="BookDisplay">
         <div className="BookPicture">
@@ -16,7 +17,7 @@ function DisplayBook({books}){
         <h4>By {book.author}</h4>
         <font size="4">{book.description}</font>
         </div>
-        {book.reviews.length>0 ? <Reviews book={book}/> : null}
+        {book.reviews ? <Reviews book={book}/> : null}
     </div>
 }
 

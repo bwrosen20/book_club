@@ -41,14 +41,11 @@ function App() {
             setUser(null)
           }
         })
-
       }
-
-      console.log(user)
 
       const finishedBooks=(books.filter((book)=>{return(book.finished && !book.current_book)}))
 
-      const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book)))
+      const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book && book.genres)))
 
       const currentBook=(books.find((book)=>(book.current_book)))
   
@@ -58,7 +55,7 @@ function App() {
 
       let booksToDisplay=(finishedBooks.filter((book)=>(((book.title).toLowerCase().includes((filterData.input).toLowerCase()))||((book.author).toLowerCase().includes((filterData.input).toLowerCase())))))
 
-        if (filterData.filter=="Author"){
+        if (filterData.filter==="Author"){
             booksToDisplay=booksToDisplay.sort((a,b)=>(authorsLastName(a.author) > authorsLastName(b.author) ? 1 : -1))
         }
         else{

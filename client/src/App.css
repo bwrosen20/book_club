@@ -34,11 +34,11 @@ h4{
 }
 
 .bookContainer{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:auto;
   width:50%;
   margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows:auto;
   grid-gap:35px;
 }
 
@@ -157,5 +157,11 @@ h4{
 .signupOption{
   width:55%;
   margin-top:10px;
+}
+
+.searchContainer{
+  margin-top:100px;
+  margin-bottom:25px;
+  text-align:center;
 }
 
