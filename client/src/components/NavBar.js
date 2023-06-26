@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-function NavBar(){
+function NavBar({name, onLogout}){
 
     return <div className="Navbar">
         <NavLink
@@ -49,8 +49,10 @@ function NavBar(){
                 Current Book   
             </NavLink>
 
+            <p className="welcome">Welcome {name}!</p>
+
             <div className="login">
-                <button>Logout</button>
+                <button onClick={onLogout}>Logout</button>
             </div>
 
 

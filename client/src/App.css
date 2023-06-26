@@ -22,6 +22,7 @@ h4{
   color:white;
   font-size:20px;
   margin:auto;
+  margin-top:20px;
   text-align:center;
   height:30px;
   width:50%;
@@ -120,35 +121,41 @@ h4{
 .login{
   position:absolute;
   color:black;
-  top:10px;
-  right:10%;
+  top:20px;
+  right:6%;
+}
+
+.welcome{
+  position:absolute;
+  color:black;
+  top:0px;
+  left:5%;
 }
 
 .loginScreen{
   margin:auto;
   text-align:center;
-  width:50%;
+  width:60%;
   padding:20px;
 }
 
 .loginOption{
-  margin-left:20px;
-  display:inline-block;
+  width:55%;
+  margin-top:10px;
 }
 
 .loginButton{
-  width:25%;
-  margin-top:10px;
-  text-align:center;
+ width:55%;
+ margin-top:10px;
 }
 
 .signupButton{
-  width:50%;
+  width:55%;
   margin-top:10px;
-  text-align:center;
 }
 
 .signupOption{
+  width:55%;
   margin-top:10px;
 }
 

@@ -34,6 +34,16 @@ function App() {
         })
       },[])
 
+      function onLogout(){
+        console.log("I'm here")
+        fetch('/logout',{method:"DELETE"}).then((r)=>{
+          if (r.ok){
+            setUser(null)
+          }
+        })
+
+      }
+
       console.log(user)
 
       const finishedBooks=(books.filter((book)=>{return(book.finished && !book.current_book)}))
@@ -78,13 +88,16 @@ function App() {
     if (!user) return <Login onLogin={setUser}/>
 
   return <div>
-    <NavBar />
+    <NavBar name={user.name} onLogout={onLogout}/>
     <Switch>
       <Route exact path="/voting">
         <Voting books={voteBooks} handleClick={handleClick}/>
       </Route>
       <Route exact path="/users">
         <Users/>
+      </Route>
+      <Route exact path="/login">
+        <Login onLogin={setUser}/>
       </Route>
       <Route exact path="/books/:title">
         <DisplayBook books={books}/>

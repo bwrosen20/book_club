@@ -46,6 +46,7 @@ function Signup({ onLogin }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        <br></br>
         <input
           type="password"
           id="password"
@@ -55,6 +56,7 @@ function Signup({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
         />
+        
         <input
           type="password"
           id="password_confirmation"

@@ -51,7 +51,7 @@ function Login({onLogin}){
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button variant="fill" color="primary" type="submit" className="loginButton">
+            <button variant="fill" color="primary" type="submit" className="loginButton">
           {isLoading ? "Loading..." : "Login"}
         </button>
         {errors.map((err) => (
