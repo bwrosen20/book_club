@@ -51,11 +51,11 @@ function Login({onLogin}){
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-            <button variant="fill" color="primary" type="submit" className="loginButton">
+            <button className="loginButton">
           {isLoading ? "Loading..." : "Login"}
         </button>
         {errors.map((err) => (
-          <error key={err}>{err}</error>
+          <h4 key={err}>{err}</h4>
         ))}
     </form>}
     <button className="loginButton" onClick={()=>setShowSignup(!showSignup)}>{showSignup ? "Back to Login" : "Signup"}</button>

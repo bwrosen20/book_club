@@ -12,6 +12,7 @@ import {Route,Switch, useHistory} from 'react-router-dom'
 function App() {
 
   const [books,setBooks]=useState([])
+  const [isLoading,setIsLoading]=useState(false)
   const [filterData,setFilterData]=useState({
     input:"",
     filter:"Sort By"
@@ -20,19 +21,23 @@ function App() {
   const history=useHistory()
 
   useEffect(()=>{
+    
         fetch(`/books`)
         .then(r=>r.json())
         .then(data=>{
           setBooks(data)
         })
-
+        setIsLoading(true)
         fetch(`/me`)
         .then(r=>{
           if (r.ok){
+            setIsLoading(false)
             r.json().then((user)=>setUser(user))
           }
         })
       },[])
+      
+
 
       function onLogout(){
         console.log("I'm here")
@@ -83,8 +88,11 @@ function App() {
     }
   
     if (!user) return <Login onLogin={setUser}/>
-
+    
   return <div>
+    {isLoading?
+    <h1>Loading...</h1> :
+  <div>
     <NavBar name={user.name} onLogout={onLogout}/>
     <Switch>
       <Route exact path="/voting">
@@ -107,6 +115,7 @@ function App() {
       </Route>
     </Switch>
     
+  </div>}
   </div>
   
 }

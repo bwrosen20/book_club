@@ -47,7 +47,7 @@ function Voting({books, handleClick}){
 
     function handleSearch(event){
         event.preventDefault()
-        fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchValue}&orderBy=relevance&maxResults=6`)
+        fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchValue}&orderBy=relevance&maxResults=10`)
         .then(r=>r.json())
         .then(data=>{
           setNewBooks(data.items.filter((book)=>(book.volumeInfo.language==="en")).sort((a,b)=>b.volumeInfo.ratingsCount - a.volumeInfo.ratingsCount))
@@ -55,6 +55,10 @@ function Voting({books, handleClick}){
 
         
         setSearchValue("")
+    }
+
+    function returnToVoting(){
+        setShowBook(!showBook)
     }
 
 
@@ -67,6 +71,7 @@ function Voting({books, handleClick}){
                                 <div className="bookPreview">
                                     <img src={book.thumbnail} className="homeImg" onClick={handleClick} alt={book.title}></img>
                                     <h3>Votes:{book.votes}</h3>
+                                    <button>Vote</button>
                                 </div>
                             ))}
                     </div>
@@ -86,12 +91,13 @@ function Voting({books, handleClick}){
                     <div className="bookContainer">
                             {newBooks.map((book)=>(
                                 <div className="bookPreview">
-                                    <img src={book.volumeInfo.imageLinks.thumbnail} onClick={setCurrentBook} alt={book.id} className="homeImg"></img>
+                                    {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} onClick={setCurrentBook} alt={book.id} className="homeImg"></img> :
+                                    <p>{book.volumeInfo.title}</p>}
                                 </div>
                             ))}
                     </div>
                 </div> : 
-                <DisplayBook books={searchBook}/>}
+                <DisplayBook books={searchBook} returnToVoting={returnToVoting}/>}
             </div>
 
             
