@@ -64,7 +64,7 @@ function App() {
     <NavBar />
     <Switch>
       <Route exact path="/voting">
-        <Voting />
+        <Voting books={books}/>
       </Route>
       <Route exact path="/books/:title">
         <DisplayBook books={books}/>

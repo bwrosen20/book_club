@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react'
 
-function Voting(){
+function Voting({books}){
 
-    const [users,setUsers]=useState([])
+
+    useEffect(()=>{
+
+    })
 
     // useEffect(()=>{
     //     fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:potter&orderBy=relevance`)
@@ -12,16 +15,15 @@ function Voting(){
     //     })
     //   },[])
 
-    useEffect(()=>{
-        fetch('/users')
-        .then(r=>r.json())
-        .then(data=>setUsers(data))
-    })
+    // useEffect(()=>{
+    //     fetch('/users')
+    //     .then(r=>r.json())
+    //     .then(data=>setUsers(data))
+    // },[])
 
 
     return <div>
-        
-           </div>
+            </div>
 }
 
 export default Voting
