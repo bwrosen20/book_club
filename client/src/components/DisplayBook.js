@@ -16,7 +16,7 @@ function DisplayBook({books}){
         <h4>By {book.author}</h4>
         <font size="4">{book.description}</font>
         </div>
-        {book.finished ? <Reviews book={book}/> : null}
+        {book.reviews.length>0 ? <Reviews book={book}/> : null}
     </div>
 }
 

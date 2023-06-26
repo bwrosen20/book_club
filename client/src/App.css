@@ -4,11 +4,17 @@
 
 img{
   cursor:pointer;
+  object-fit: cover;
+  object-position:center;
 }
 
 h1{
   text-align:center;
   margin-top:100px;
+}
+
+h4{
+  text-align:center;
 }
 
 .Navbar {
@@ -81,7 +87,7 @@ h1{
 .Review{
   display:grid;
   grid-template-columns: 1fr 7fr;
-  grid-gap:1px;
+  grid-gap:10px;
   border:1px solid black;
   margin-top:50px;
   width:100%;
@@ -89,14 +95,15 @@ h1{
 }
 
 .User{
-  width:20%;
   margin-left:25px;
   margin-top:20px;
+  text-align:center;
 }
 
 .UserPicture{
   width:100px;
   height:100px;
+  cursor:default;
 }
 
 .ReviewBody{

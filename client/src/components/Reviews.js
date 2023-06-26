@@ -2,10 +2,15 @@ import React from 'react'
 
 function Reviews({book}){
 
-    console.log(book)
+    console.log(book.updated_at.split(""))
+    const bookSplit=book.updated_at.split("")
+    const finishedArray=[bookSplit[5],bookSplit[6],"-",bookSplit[8],bookSplit[9],"-",bookSplit[0],bookSplit[1],bookSplit[2],bookSplit[3]]
+    const finishedDate=finishedArray.join("")
+
 
     return <div>
         <h1>Club Reviews</h1>
+        {book.finished ? <h4>The club finished {book.title} on {finishedDate}</h4> : null}
 
             <div className="ReviewContainer">
                 {book.reviews.map((review)=>(
