@@ -24,8 +24,31 @@ function NavBar(){
             }}
             className="navOption"
             >
-                Next Book   
+                Voting   
             </NavLink>
+            <NavLink
+            to="/users"
+            exact
+           
+            activeStyle={{
+                color:"black",
+            }}
+            className="navOption"
+            >
+                Users   
+            </NavLink>
+            <NavLink
+            to="/current-book"
+            exact
+           
+            activeStyle={{
+                color:"black",
+            }}
+            className="navOption"
+            >
+                Current Book   
+            </NavLink>
+
 
     </div>
 }

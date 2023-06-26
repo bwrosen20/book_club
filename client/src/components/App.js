@@ -4,6 +4,8 @@ import Home from './Home'
 import Voting from './Voting'
 import NavBar from './NavBar'
 import DisplayBook from './DisplayBook'
+import Users from './Users'
+import CurrentBook from './CurrentBook'
 import {Route,Switch, useHistory} from 'react-router-dom'
 
 function App() {
@@ -21,16 +23,17 @@ function App() {
         .then(data=>{
           setBooks(data)
         })
-    
-        
-       
       },[])
 
+      const finishedBooks=(books.filter((book)=>{return(book.finished && !book.current_book)}))
+
+      const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book)))
+  
     function handleChange(event){
       setFilterData({...filterData,[event.target.name]:event.target.value})
     }
 
-      let booksToDisplay=(books.filter((book)=>(((book.title).toLowerCase().includes((filterData.input).toLowerCase()))||((book.author).toLowerCase().includes((filterData.input).toLowerCase())))))
+      let booksToDisplay=(finishedBooks.filter((book)=>(((book.title).toLowerCase().includes((filterData.input).toLowerCase()))||((book.author).toLowerCase().includes((filterData.input).toLowerCase())))))
 
         if (filterData.filter=="Author"){
             booksToDisplay=booksToDisplay.sort((a,b)=>(authorsLastName(a.author) > authorsLastName(b.author) ? 1 : -1))
@@ -64,10 +67,16 @@ function App() {
     <NavBar />
     <Switch>
       <Route exact path="/voting">
-        <Voting books={books}/>
+        <Voting books={voteBooks}/>
+      </Route>
+      <Route exact path="/users">
+        <Users/>
       </Route>
       <Route exact path="/books/:title">
         <DisplayBook books={books}/>
+      </Route>
+      <Route exact path="/current-book">
+        <CurrentBook/>
       </Route>
       <Route path="/">
         <Home books={booksToDisplay} handleClick={handleClick} handleChange={handleChange} filterData={filterData}/>

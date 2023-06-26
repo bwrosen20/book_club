@@ -24,7 +24,7 @@ h4{
   margin:auto;
   text-align:center;
   height:30px;
-  width:25%;
+  width:50%;
   margin-bottom:40px;
 }
 
@@ -33,16 +33,20 @@ h4{
 }
 
 .bookContainer{
-  width:70%;
-  text-align:center;
-  display:inline-block;
+  width:50%;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+  grid-gap:35px;
 }
 
 .bookPreview{
-  width:50px;
-  display:inline-block;
-  margin-left:120px;
+  text-align:center;
+}
 
+.homeImg{
+  height:200px;
+  width:130px;
 }
 
 

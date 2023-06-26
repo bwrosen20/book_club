@@ -1,11 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 
 function Voting({books}){
-
-
-    useEffect(()=>{
-        
-    })
+    
 
     // useEffect(()=>{
     //     fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:potter&orderBy=relevance`)
@@ -23,6 +19,15 @@ function Voting({books}){
 
 
     return <div>
+                <h1>Vote for the next book!</h1>
+                <div className="bookContainer">
+                        {books.map((book)=>(
+                            <div className="bookPreview">
+                                <img src={book.thumbnail} className="homeImg"></img>
+                                <h3>Votes:{book.votes}</h3>
+                            </div>
+                        ))}
+                </div>
             </div>
 }
 
