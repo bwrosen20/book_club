@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Voting({books}){
+function Voting({books, handleClick}){
     
 
     // useEffect(()=>{
@@ -23,7 +23,7 @@ function Voting({books}){
                 <div className="bookContainer">
                         {books.map((book)=>(
                             <div className="bookPreview">
-                                <img src={book.thumbnail} className="homeImg"></img>
+                                <img src={book.thumbnail} className="homeImg" onClick={handleClick} alt={book.title}></img>
                                 <h3>Votes:{book.votes}</h3>
                             </div>
                         ))}

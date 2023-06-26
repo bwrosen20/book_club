@@ -28,6 +28,8 @@ function App() {
       const finishedBooks=(books.filter((book)=>{return(book.finished && !book.current_book)}))
 
       const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book)))
+
+      const currentBook=(books.find((book)=>(book.current_book)))
   
     function handleChange(event){
       setFilterData({...filterData,[event.target.name]:event.target.value})
@@ -67,7 +69,7 @@ function App() {
     <NavBar />
     <Switch>
       <Route exact path="/voting">
-        <Voting books={voteBooks}/>
+        <Voting books={voteBooks} handleClick={handleClick}/>
       </Route>
       <Route exact path="/users">
         <Users/>
@@ -76,7 +78,7 @@ function App() {
         <DisplayBook books={books}/>
       </Route>
       <Route exact path="/current-book">
-        <CurrentBook/>
+        <CurrentBook currentBook={currentBook}/>
       </Route>
       <Route path="/">
         <Home books={booksToDisplay} handleClick={handleClick} handleChange={handleChange} filterData={filterData}/>

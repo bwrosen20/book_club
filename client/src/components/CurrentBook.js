@@ -1,9 +1,18 @@
 import React from 'react'
+import Reviews from './Reviews'
 
-function CurrentBook(){
+function CurrentBook({currentBook}){
 
-    return <div>
-        <h1>It's the currentBook Page</h1>
+    return <div className="BookDisplay">
+        <div className="BookPicture">
+        <img src={currentBook.thumbnail} className="PictureDisplay"></img>
+        </div>
+        <div className="BookInfo">
+        <h1>{currentBook.title}</h1>
+        <h4>By {currentBook.author}</h4>
+        <font size="4">{currentBook.description}</font>
+        </div>
+        {currentBook.reviews>0 ? <Reviews book={currentBook}/> : null}
     </div>
 }
 

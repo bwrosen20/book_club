@@ -1,12 +1,7 @@
-import React, {useEffect,useState} from 'react'
+import React from 'react'
 import Filters from './Filters'
 
 function Home({books, handleClick, filterData, handleChange}){
-
-    
-
-
-    
 
     return (
       <div>
