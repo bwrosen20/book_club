@@ -4,7 +4,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     skip_before_action :authorized, only: :index
 
     def index
-        books = Book.all
+        books = Book.all.order(:created_at)
         render json: books
     end
 
@@ -32,7 +32,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         lowerVotes=otherBook.votes-1
         book.update!({votes:higherVotes})
         otherBook.update!({votes:lowerVotes})
-        books = Book.all
+        books = Book.all.order(:created_at)
         render json: books
     end
 

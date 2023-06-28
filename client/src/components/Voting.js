@@ -3,7 +3,7 @@ import DisplayBook from './DisplayBook'
 
 function Voting({user, books, handleClick, handlePutBookForVote, onVoteButton}){
     
-   
+    const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book)))
 
     const [searchValue,setSearchValue]=useState("")
     const [newBooks,setNewBooks]=useState([])
@@ -71,7 +71,7 @@ function Voting({user, books, handleClick, handlePutBookForVote, onVoteButton}){
             <div>
                     <h1>Vote for the next book!</h1>
                     <div className="bookContainer">
-                            {books.map((book)=>(
+                            {voteBooks.map((book)=>(
                                 <div className="bookPreview">
                                     <img src={book.thumbnail} className="homeImg" onClick={handleClick} alt={book.title}></img>
                                     <h3>Votes:{book.votes}</h3>

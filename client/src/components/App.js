@@ -34,6 +34,7 @@ function App() {
             r.json().then((user)=>setUser(user))
           }
         })
+        
         setIsLoading(false)
       },[])
       
@@ -87,9 +88,8 @@ function App() {
           //add vote and change user vote to event.target.value
         //else (user already has vote for something else)
           //patch new vote, patch old vote away, change user.current_vote
-        console.log(user.current_vote)
-        console.log(parseInt(event.target.value))
-        if ((user.current_vote != event.target.value)&&(user.current_vote)){
+        console.log(user)
+        if ((user.current_vote != event.target.value)&&(user.current_vote>0)){
           // setIsLoading(true)
           fetch('/books/vote',{
             method:"PATCH",
@@ -97,15 +97,29 @@ function App() {
               "Content-type":"application/json"
             },
             body:JSON.stringify({
+              user:user.id,
               voteBook:parseInt(event.target.value),
               otherBook:user.current_vote
             })
           })
             .then(r=>r.json())
             .then(data=>{
-              // setIsLoading(false)
-              setUser({...user,current_vote:(parseInt(event.target.value))})
               setBooks(data)
+              fetch(`/users/${user.id}`,{
+                method:"PATCH",
+                headers:{
+                  "Content-type":'application/json'
+                },
+                body:JSON.stringify({
+                  current_vote:parseInt(event.target.value)
+                })
+              })
+              .then(r=>r.json())
+              .then(data=>{
+                console.log(data)
+                setUser(data)
+                // setIsLoading(false)
+              })
             })
       
         }
@@ -138,12 +152,6 @@ function App() {
     }
 
       
-
-      const currentBook=(books.find((book)=>(book.current_book)))
-
-      const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book)))
-
-      
   
     if (!user && !isLoading) return <Login onLogin={setUser}/>
     
@@ -154,7 +162,7 @@ function App() {
     <NavBar name={user.name} onLogout={onLogout}/>
     <Switch>
       <Route exact path="/voting">
-        <Voting user={user.current_vote} books={voteBooks} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} onVoteButton={onVoteButton}/>
+        <Voting user={user.current_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} onVoteButton={onVoteButton}/>
       </Route>
       <Route exact path="/users">
         <Users/>
@@ -166,7 +174,7 @@ function App() {
         <DisplayBook books={books}/>
       </Route>
       <Route exact path="/current-book">
-        <CurrentBook currentBook={currentBook}/>
+        <CurrentBook books={books}/>
       </Route>
       <Route path="/">
         <Home books={books} handleClick={handleClick} handleChange={handleChange} filterData={filterData}/>

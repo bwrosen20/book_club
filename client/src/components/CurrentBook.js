@@ -1,7 +1,9 @@
 import React from 'react'
 import Reviews from './Reviews'
 
-function CurrentBook({currentBook}){
+function CurrentBook({books}){
+    
+    const currentBook=(books.find((book)=>(book.current_book)))
 
     return <div className="BookDisplay">
         <div className="BookPicture">
