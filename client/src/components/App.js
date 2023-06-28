@@ -88,8 +88,6 @@ function App() {
           //add vote and change user vote to event.target.value
         //else (user already has vote for something else)
           //patch new vote, patch old vote away, change user.current_vote
-        console.log(user)
-        if ((user.current_vote != event.target.value)&&(user.current_vote>0)){
           // setIsLoading(true)
           fetch('/books/vote',{
             method:"PATCH",
@@ -99,7 +97,7 @@ function App() {
             body:JSON.stringify({
               user:user.id,
               voteBook:parseInt(event.target.value),
-              otherBook:user.current_vote
+              currentBook:user.current_vote
             })
           })
             .then(r=>r.json())
@@ -116,22 +114,13 @@ function App() {
               })
               .then(r=>r.json())
               .then(data=>{
-                console.log(data)
                 setUser(data)
                 // setIsLoading(false)
               })
             })
-      
         }
-        else{
-          console.log("Didn't work")
-        }
-        }
-       
-
 
       function onLogout(){
-        console.log("I'm here")
         fetch('/logout',{method:"DELETE"}).then((r)=>{
           if (r.ok){
             setUser(null)

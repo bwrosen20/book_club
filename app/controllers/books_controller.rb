@@ -27,11 +27,15 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def vote
         book = Book.find(params[:voteBook])
-        otherBook = Book.find(params[:otherBook])
         higherVotes=book.votes+1
-        lowerVotes=otherBook.votes-1
         book.update!({votes:higherVotes})
-        otherBook.update!({votes:lowerVotes})
+
+        if params[:currentBook]>0
+        currentBook = Book.find(params[:currentBook])
+        lowerVotes=currentBook.votes-1
+        currentBook.update!({votes:lowerVotes})
+        end
+        
         books = Book.all.order(:created_at)
         render json: books
     end
