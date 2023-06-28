@@ -120,6 +120,22 @@ function App() {
             })
         }
 
+        function onFinishBook(event){
+
+          fetch (`books/finish`,{
+            method:"PATCH",
+            headers:{
+              "Content-type":"application/json"
+            },
+            body:JSON.stringify({
+              finishedBook:parseInt(event.target.value)
+            })
+          })
+          .then(r=>r.json())
+          .then(data=>setBooks(data))
+
+        }
+
       function onLogout(){
         fetch('/logout',{method:"DELETE"}).then((r)=>{
           if (r.ok){
@@ -163,7 +179,7 @@ function App() {
         <DisplayBook books={books}/>
       </Route>
       <Route exact path="/current-book">
-        <CurrentBook books={books}/>
+        <CurrentBook books={books} onFinishBook={onFinishBook}/>
       </Route>
       <Route path="/">
         <Home books={books} handleClick={handleClick} handleChange={handleChange} filterData={filterData}/>

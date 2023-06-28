@@ -40,6 +40,18 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         render json: books
     end
 
+    def finish
+
+        if params[:finishedBook]>0
+        book=Book.find(params[:finishedBook])
+        book.update!({finished:true,current_book:false})
+        end
+        next_book=Book.where("finished=false").order(:created_at).first
+        next_book.update!({current_book:true})
+        books = Book.all
+        render json: books
+    end
+
 
     private
 
