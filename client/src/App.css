@@ -62,16 +62,15 @@ h4{
 }
 
 .BookInfo{
-  text-align:center;
+  margin:auto;
   height:auto;
 }
 
 .BookPicture{
   margin:auto;
   text-align:center;
-  width:50%;
+  width:90%;
   padding:20px;
-  background-color:rgb(233, 231, 218);
 }
 
 .PictureDisplay{
@@ -140,22 +139,7 @@ h4{
   padding:20px;
 }
 
-.loginOption{
-  width:55%;
-  margin-top:10px;
-}
-
-.loginButton{
- width:55%;
- margin-top:10px;
-}
-
-.signupButton{
-  width:55%;
-  margin-top:10px;
-}
-
-.signupOption{
+.loginOption, .loginButton, .signupButton, .signupOption{
   width:55%;
   margin-top:10px;
 }
@@ -171,5 +155,9 @@ h4{
  margin:auto;
  margin-top:30px;
  text-align:center;
+}
+
+.description{
+  text-align:left;
 }
 

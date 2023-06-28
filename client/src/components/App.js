@@ -21,22 +21,99 @@ function App() {
   const history=useHistory()
 
   useEffect(()=>{
-    
+    setIsLoading(true)
         fetch(`/books`)
         .then(r=>r.json())
         .then(data=>{
           setBooks(data)
         })
-        setIsLoading(true)
+       
         fetch(`/me`)
         .then(r=>{
           if (r.ok){
-            setIsLoading(false)
             r.json().then((user)=>setUser(user))
           }
         })
+        setIsLoading(false)
       },[])
       
+      function handlePutBookForVote(newBook){
+        setIsLoading(true)
+        const bool=user.book_for_vote
+        if (user.book_for_vote>0){
+          fetch(`/books/${user.book_for_vote}`,{
+            method:"PATCH",
+            headers:{
+              "Content-type":"application/json"
+            },
+            body:JSON.stringify({
+              ...newBook,
+            votes:0,
+            current_book:false,
+            finished:false
+            })
+          })
+          .then(r=>r.json())
+          .then(data=>{
+            setBooks(books.map((book)=>(book.id===bool ? data : book)))})
+            setIsLoading(false)
+        }
+        else{
+        fetch('/books',{
+          method:"POST",
+          headers:{
+            "Content-type": "application/json"
+          },
+          body:JSON.stringify({
+            ...newBook,
+            votes:0,
+            current_book:false,
+            finished:false
+          })
+        })
+        .then(r=>r.json())
+        .then(data=>{
+          setBooks([...books,data])
+          setUser({...user,book_for_vote:data.id})
+        })
+      }
+      }
+
+      function onVoteButton(event){
+
+        //if user.current_vote==event.target.value
+          //=====> do nothing
+        //if user.current_vote doesn't exist
+          //add vote and change user vote to event.target.value
+        //else (user already has vote for something else)
+          //patch new vote, patch old vote away, change user.current_vote
+        console.log(user.current_vote)
+        console.log(parseInt(event.target.value))
+        if ((user.current_vote != event.target.value)&&(user.current_vote)){
+          // setIsLoading(true)
+          fetch('/books/vote',{
+            method:"PATCH",
+            headers:{
+              "Content-type":"application/json"
+            },
+            body:JSON.stringify({
+              voteBook:parseInt(event.target.value),
+              otherBook:user.current_vote
+            })
+          })
+            .then(r=>r.json())
+            .then(data=>{
+              // setIsLoading(false)
+              setUser({...user,current_vote:(parseInt(event.target.value))})
+              setBooks(data)
+            })
+      
+        }
+        else{
+          console.log("Didn't work")
+        }
+        }
+       
 
 
       function onLogout(){
@@ -48,46 +125,27 @@ function App() {
         })
       }
 
-      const finishedBooks=(books.filter((book)=>{return(book.finished && !book.current_book)}))
-
-      const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book && book.genres)))
-
-      const currentBook=(books.find((book)=>(book.current_book)))
+      
   
     function handleChange(event){
       setFilterData({...filterData,[event.target.name]:event.target.value})
     }
-
-      let booksToDisplay=(finishedBooks.filter((book)=>(((book.title).toLowerCase().includes((filterData.input).toLowerCase()))||((book.author).toLowerCase().includes((filterData.input).toLowerCase())))))
-
-        if (filterData.filter==="Author"){
-            booksToDisplay=booksToDisplay.sort((a,b)=>(authorsLastName(a.author) > authorsLastName(b.author) ? 1 : -1))
-        }
-        else{
-            booksToDisplay=booksToDisplay.sort((a,b)=>(removeArticles(a.title) > removeArticles(b.title) ? 1: -1))
-        }
-        
-    function removeArticles(str){
-        const words=str.split(" ")
-        if (words.length<=1) return str
-        else if (words[0].toLowerCase()==='a' || words[0].toLowerCase()==='an' || words[0].toLowerCase()==='the')
-          return words.splice(1).join(" ")
-        else return str
-    }
-
-    function authorsLastName(str){
-      console.log(str)
-      const nameArray = str.split(" ")
-      console.log(nameArray)
-      return nameArray.splice(-1)
-    }
+    
     
 
     function handleClick(event){
       history.push(`/books/${event.target.alt}`)
     }
+
+      
+
+      const currentBook=(books.find((book)=>(book.current_book)))
+
+      const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book)))
+
+      
   
-    if (!user) return <Login onLogin={setUser}/>
+    if (!user && !isLoading) return <Login onLogin={setUser}/>
     
   return <div>
     {isLoading?
@@ -96,7 +154,7 @@ function App() {
     <NavBar name={user.name} onLogout={onLogout}/>
     <Switch>
       <Route exact path="/voting">
-        <Voting books={voteBooks} handleClick={handleClick}/>
+        <Voting user={user.current_vote} books={voteBooks} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} onVoteButton={onVoteButton}/>
       </Route>
       <Route exact path="/users">
         <Users/>
@@ -111,7 +169,7 @@ function App() {
         <CurrentBook currentBook={currentBook}/>
       </Route>
       <Route path="/">
-        <Home books={booksToDisplay} handleClick={handleClick} handleChange={handleChange} filterData={filterData}/>
+        <Home books={books} handleClick={handleClick} handleChange={handleChange} filterData={filterData}/>
       </Route>
     </Switch>
     

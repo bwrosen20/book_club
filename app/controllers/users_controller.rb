@@ -22,11 +22,13 @@ class UsersController < ApplicationController
         render json: {error: "Please signup or login"}, status: :unauthorized
     end
 
+    
+
 
     private
 
     def user_params
-        params.permit(:name, :password, :password_confirmation, :image_url, :favorite_book, :bio)
+        params.permit(:name, :password, :password_confirmation, :image_url, :favorite_book, :bio, :current_vote)
     end
 
 end

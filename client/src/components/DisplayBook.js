@@ -1,14 +1,10 @@
 import React from 'react'
 import Reviews from './Reviews'
-import {useParams, useHistory} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 
-function DisplayBook({books, returnToVoting}){
+function DisplayBook({books, returnToVoting, bookForVote}){
 
     const {title}=useParams()
-    const history=useHistory()
-
-   
-
     const book = (books.length ? books.find((e)=>title===e.title) : books)
 
     return <div>
@@ -19,14 +15,18 @@ function DisplayBook({books, returnToVoting}){
                     <div className="BookInfo">
                     <h1>{book.title}</h1>
                     <h4>By {book.author}</h4>
-                    <font size="4">{book.description}</font>
+                    <font size="4" className="description">{book.description}</font>
                     </div>
                     
-                    {book.reviews ? <Reviews book={book}/> : null}
+                    {book.reviews && (book.finished)? <Reviews book={book}/> : null}
                 </div>
                 <div className="ReturnButton">
-                {typeof(book.id)==="integer" ? 
-                        null:<button onClick={returnToVoting}>Return</button>}
+                {book.votes >=0 ? 
+                        null:
+                        <div className="loginScreen">
+                            <button onClick={returnToVoting} className="loginButton">Return</button>
+                            <button onClick={bookForVote} className="loginButton">Put up for vote</button>
+                        </div>}
                 </div>
         </div>
 }
