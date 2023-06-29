@@ -29,7 +29,6 @@ function ReviewForm({book, user, writeReview}){
     }
 
     return <div>
-        <h1>Howdy</h1>
 
         <form onSubmit={onReviewSubmit}>
             <input

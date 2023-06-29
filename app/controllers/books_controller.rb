@@ -63,8 +63,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     def editReview
         review = Review.find(params[:review_id])
         review.update!(review_params)
-        book=review.book
-        render json: book
+        render json: review
     end
 
     def deleteReview

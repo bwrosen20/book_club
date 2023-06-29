@@ -40,6 +40,7 @@ function EditReview({review,onEditReview}){
                         <form onSubmit={onFormSubmit}>
                             <input 
                             name="rating"
+                            className="loginOption"
                             value={formData.rating}
                             type="text"
                             onChange={onUpdateForm}
@@ -47,13 +48,14 @@ function EditReview({review,onEditReview}){
 
                             <textarea 
                             name="body"
+                            className="loginOption"
                             value={formData.body}
                             type="text"
                             rows="5"
                             onChange={onUpdateForm}
                             />
 
-                            <button>{isLoading ? "Loading..." : "Submit"}</button>
+                            <button className="ReviewButton">{isLoading ? "Loading..." : "Submit"}</button>
                             </form>
                     </div>
                     

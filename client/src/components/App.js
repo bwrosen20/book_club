@@ -171,7 +171,9 @@ function App() {
         }
 
         function handleEditReview(reviewedBook){
-          setBooks(books.map((book)=>(book.id===reviewedBook.id ? reviewedBook : book)))
+          setBooks(books.map((book)=>{
+              return {...book,reviews:book.reviews.map((review)=>(review.id===reviewedBook.id ? reviewedBook : review))}
+          }))
         }
 
         function handleReview(update){
@@ -216,7 +218,7 @@ function App() {
         <DisplayBook books={books} handleDeleteReview={handleDeleteReview} handleEditReview={handleEditReview} user={user.id} handleReview={handleReview}/>
       </Route>
       <Route exact path="/current-book">
-        <CurrentBook books={books} onFinishBook={onFinishBook}/>
+        <CurrentBook books={books} onFinishBook={onFinishBook} user={user.id} handleReview={handleReview} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/>
       </Route>
       <Route path="/">
         <Home books={books} handleClick={handleClick}/>

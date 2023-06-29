@@ -145,6 +145,17 @@ h4{
   margin-top:10px;
 }
 
+.ReviewOption{
+  width:55%;
+  margin-top:10px;
+  margin:auto;
+}
+
+.ReviewButton{
+  width:55%;
+  margin:auto;
+}
+
 .searchContainer{
   margin-top:100px;
   margin-bottom:25px;
@@ -155,6 +166,7 @@ h4{
  width:30%;
  margin:auto;
  margin-top:30px;
+ margin-bottom:20px;
  text-align:center;
 }
 
