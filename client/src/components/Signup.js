@@ -5,6 +5,7 @@ function Signup({ onLogin }) {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [favoriteBook,setFavoriteBook]=useState("")
   const [bio, setBio] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +24,9 @@ function Signup({ onLogin }) {
         password,
         password_confirmation: passwordConfirmation,
         image_url: imageUrl,
+        favorite_book:favoriteBook,
         bio,
+        current_vote:0
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -73,6 +76,14 @@ function Signup({ onLogin }) {
           className="signupOption"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
+        />
+        <input
+          type="text"
+          id="favoriteBook"
+          placeholder="FavoriteBook"
+          className="signupOption"
+          value={favoriteBook}
+          onChange={(e) => setFavoriteBook(e.target.value)}
         />
         <textarea
           rows="3"

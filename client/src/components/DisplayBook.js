@@ -34,12 +34,13 @@ function DisplayBook({books, returnToVoting, bookForVote, user, handleReview}){
                             <button onClick={returnToVoting} className="loginButton">Return</button>
                             <button onClick={bookForVote} className="loginButton">Put up for vote</button>
                         </div>}
+                        {book.id?
                         <div>
                             {review?
                             <ReviewForm book={book} user={user} writeReview={writeReview}/> :
                             <button onClick={writeReview}>Write a review</button>
                             }
-                            </div>
+                            </div> : null}
                 </div>
         </div>
 }

@@ -20,6 +20,12 @@ class UsersController < ApplicationController
         user.update!(update_params)
         render json: user
     end
+
+    def finish
+        user = User.find_by(id:params[:book_owner])
+        user.update!({book_for_vote:0})
+        render json: user
+    end
     
     def show
         current_user = User.find(session[:user_id])

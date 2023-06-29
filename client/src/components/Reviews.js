@@ -14,14 +14,15 @@ function Reviews({book}){
             <div className="ReviewContainer">
                 {book.reviews.map((review)=>(
                     <div className="Review">
-                        <span className="User">
+                        <div className="User">
                             <img src={review.user.image_url} className="UserPicture"></img>
                             <h3>{review.user.name}</h3>
-                        </span>
-                        <span className="ReviewBody">
+                        </div>
+                        <div className="ReviewBody">
                             <font size="7">{review.rating}</font>
                             <p>{review.body}</p>
-                        </span>
+                        </div>
+                        <button className="delete">X</button>
                     </div>
                 ))}
 

@@ -1,8 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Filters from './Filters'
 
-function Home({books, handleClick, filterData, handleChange}){
+function Home({books, handleClick, handleChange}){
 
+
+  const [filterData,setFilterData]=useState({
+    input:"",
+    filter:"Sort By"
+  })
+
+  function handleChange(event){
+    setFilterData({...filterData,[event.target.name]:event.target.value})
+  }
 
   const finishedBooks=(books.filter((book)=>{return(book.finished && !book.current_book)}))
 
@@ -11,9 +20,28 @@ function Home({books, handleClick, filterData, handleChange}){
         if (filterData.filter==="Author"){
             booksToDisplay=booksToDisplay.sort((a,b)=>(authorsLastName(a.author) > authorsLastName(b.author) ? 1 : -1))
         }
-        else{
+        else if (filterData.filter==="Title"){
             booksToDisplay=booksToDisplay.sort((a,b)=>(removeArticles(a.title) > removeArticles(b.title) ? 1: -1))
         }
+        else if (filterData.filter==="Newest"){
+            booksToDisplay=booksToDisplay.sort((a,b)=>(a.created_at > b.created_at ? -1 : 1))
+        }
+        else {
+          booksToDisplay.forEach((book)=>{
+            book.ratings=[]
+            if (book.reviews.length>0){
+              book.reviews.forEach((review)=>{
+                book.ratings.push(review.rating)
+              })
+              book.rating=book.ratings.reduce((a,b)=>a+b)
+            }
+            else 
+              book.rating=0
+          })
+          booksToDisplay=booksToDisplay.sort((a,b)=>b.rating - a.rating)
+
+        }
+
 
         function removeArticles(str){
           const words=str.split(" ")

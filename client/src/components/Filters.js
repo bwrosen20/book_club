@@ -27,6 +27,7 @@ function Filters({filterData,handleChange}){
                 <option>Title</option>
                 <option>Author</option>
                 <option>Rating</option>
+                <option>Newest</option>
             </select>
 
     </div>

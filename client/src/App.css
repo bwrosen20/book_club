@@ -93,6 +93,7 @@ h4{
 }
 
 .Review{
+  position:relative;
   display:grid;
   grid-template-columns: 1fr 7fr;
   grid-gap:10px;
@@ -115,7 +116,7 @@ h4{
 }
 
 .ReviewBody{
-  margin-top:5%
+  margin-top:5%;
 }
 
 .login{
@@ -170,5 +171,11 @@ h4{
 .reviewButton, .reviewOption{
   width:100%;
   margin-top:10px;
+}
+
+.delete{
+  position:absolute;
+  top:0;
+  right:0;
 }
 

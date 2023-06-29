@@ -13,10 +13,6 @@ function App() {
 
   const [books,setBooks]=useState([])
   const [isLoading,setIsLoading]=useState(false)
-  const [filterData,setFilterData]=useState({
-    input:"",
-    filter:"Sort By"
-  })
   const [user,setUser]=useState(null)
   const history=useHistory()
 
@@ -88,7 +84,7 @@ function App() {
           //add vote and change user vote to event.target.value
         //else (user already has vote for something else)
           //patch new vote, patch old vote away, change user.current_vote
-          // setIsLoading(true)
+          setIsLoading(true)
           fetch('/books/vote',{
             method:"PATCH",
             headers:{
@@ -115,7 +111,7 @@ function App() {
               .then(r=>r.json())
               .then(data=>{
                 setUser(data)
-                // setIsLoading(false)
+                setIsLoading(false)
               })
             })
         }
@@ -132,7 +128,22 @@ function App() {
             })
           })
           .then(r=>r.json())
-          .then(data=>setBooks(data))
+          .then(data=>{
+            setBooks(data)
+            fetch(`users/finish`,{
+              method:"PATCH",
+              headers:{
+                "Content-type":"application/json"
+              },
+              body:JSON.stringify({
+                book_owner:user.id
+              })
+            })
+            .then(r=>r.json())
+            .then(data=>setUser(data))
+          
+          
+          })
 
         }
 
@@ -149,12 +160,6 @@ function App() {
           }
         })
       }
-
-      
-  
-    function handleChange(event){
-      setFilterData({...filterData,[event.target.name]:event.target.value})
-    }
     
     
 
@@ -188,7 +193,7 @@ function App() {
         <CurrentBook books={books} onFinishBook={onFinishBook}/>
       </Route>
       <Route path="/">
-        <Home books={books} handleClick={handleClick} handleChange={handleChange} filterData={filterData}/>
+        <Home books={books} handleClick={handleClick}/>
       </Route>
     </Switch>
     

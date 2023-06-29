@@ -16,7 +16,7 @@ function CurrentBook({books,onFinishBook}){
         </div>
         <div className="ReturnButton">
         {currentBook.reviews>0 ? <Reviews book={currentBook}/> : null}
-        <button className="LoginButton" onClick={onFinishBook} value={currentBook?currentBook.id:"0"}>Mark book as finished</button>
+        <button className="LoginButton" onClick={onFinishBook} value={currentBook?currentBook.id:"0"}>Begin Next Book</button>
         </div>
     </div>
 }
