@@ -8,7 +8,7 @@ function Reviews({book}){
 
 
     return <div>
-        <h1>Club Reviews</h1>
+        {book.reviews.length>0 ? <h1>Club Reviews</h1> :null}
         {book.finished ? <h4>The club finished {book.title} on {finishedDate}</h4> : null}
 
             <div className="ReviewContainer">

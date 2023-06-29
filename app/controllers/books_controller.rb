@@ -32,8 +32,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
         if params[:currentBook]>0
         currentBook = Book.find(params[:currentBook])
+        if currentBook.votes>0
         lowerVotes=currentBook.votes-1
         currentBook.update!({votes:lowerVotes})
+        end
         end
         
         books = Book.all.order(:created_at)
@@ -46,10 +48,17 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         book=Book.find(params[:finishedBook])
         book.update!({finished:true,current_book:false})
         end
-        next_book=Book.where("finished=false").order(:created_at).first
+        next_book=Book.where("finished=false").order(votes: :desc).first
         next_book.update!({current_book:true})
-        books = Book.all
+        books = Book.all.order(:created_at)
         render json: books
+    end
+
+    def review
+        book = Book.find(params[:book_id])
+        book.reviews.create!(review_params)
+        render json: book
+
     end
 
 
@@ -57,6 +66,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def book_params
         params.permit(:title,:author,:description,:thumbnail,:current_book,:votes,:finished)
+    end
+    
+    def review_params
+        params.permit(:user_id,:body,:rating)
     end
 
     def render_unprocessable_entity_error(invalid)

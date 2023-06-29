@@ -1,11 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Reviews from './Reviews'
+import ReviewForm from './ReviewForm'
 import {useParams} from 'react-router-dom'
 
-function DisplayBook({books, returnToVoting, bookForVote}){
+function DisplayBook({books, returnToVoting, bookForVote, user, handleReview}){
 
     const {title}=useParams()
+    const [review,setReview]=useState(false)
     const book = (books.length ? books.find((e)=>title===e.title) : books)
+
+    function writeReview(update){
+        setReview(!review)
+        handleReview(update)
+    }
 
     return <div>
                 <div className="BookDisplay">
@@ -18,7 +25,7 @@ function DisplayBook({books, returnToVoting, bookForVote}){
                     <font size="4" className="description">{book.description}</font>
                     </div>
                     
-                    {book.reviews && (book.finished)? <Reviews book={book}/> : null}
+                    {book.reviews ? <Reviews book={book}/> : null}
                 </div>
                 <div className="ReturnButton">
                 {book.votes >=0 ? 
@@ -27,6 +34,12 @@ function DisplayBook({books, returnToVoting, bookForVote}){
                             <button onClick={returnToVoting} className="loginButton">Return</button>
                             <button onClick={bookForVote} className="loginButton">Put up for vote</button>
                         </div>}
+                        <div>
+                            {review?
+                            <ReviewForm book={book} user={user} writeReview={writeReview}/> :
+                            <button onClick={writeReview}>Write a review</button>
+                            }
+                            </div>
                 </div>
         </div>
 }

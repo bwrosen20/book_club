@@ -136,6 +136,12 @@ function App() {
 
         }
 
+        function handleReview(update){
+          setBooks(books.map((book)=>(book.id===update.id ? update : book)))
+
+          console.log(update)
+        }
+
       function onLogout(){
         fetch('/logout',{method:"DELETE"}).then((r)=>{
           if (r.ok){
@@ -176,7 +182,7 @@ function App() {
         <Login onLogin={setUser}/>
       </Route>
       <Route exact path="/books/:title">
-        <DisplayBook books={books}/>
+        <DisplayBook books={books} user={user.id} handleReview={handleReview}/>
       </Route>
       <Route exact path="/current-book">
         <CurrentBook books={books} onFinishBook={onFinishBook}/>

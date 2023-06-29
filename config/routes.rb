@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   patch '/books/vote', to: 'books#vote'
   patch '/books/finish',to: 'books#finish'
+  post '/books/review',to: 'books#review'
   resources :books, only: [:index,:update,:create, :destroy]
   
   

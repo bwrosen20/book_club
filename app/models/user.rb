@@ -8,8 +8,5 @@ class User < ApplicationRecord
      # validates :password, length: {minimum: 8}
      validates :image_url, presence: :true
 
-   def vote_book
-        puts "Hey Hello What's Up"
-   end
 end
 
