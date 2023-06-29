@@ -58,7 +58,13 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         book = Book.find(params[:book_id])
         book.reviews.create!(review_params)
         render json: book
+    end
 
+    def deleteReview
+        book = Book.find(params[:book_id])
+        review = Review.find(params[:review_id])
+        review.destroy
+        render json: book
     end
 
 

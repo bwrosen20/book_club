@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Reviews({book}){
+function Reviews({book, handleDeleteReview, user}){
     
     const bookSplit=book.updated_at.split("")
     const finishedArray=[bookSplit[5],bookSplit[6],"-",bookSplit[8],bookSplit[9],"-",bookSplit[0],bookSplit[1],bookSplit[2],bookSplit[3]]
@@ -13,6 +13,7 @@ function Reviews({book}){
 
             <div className="ReviewContainer">
                 {book.reviews.map((review)=>(
+                    
                     <div className="Review">
                         <div className="User">
                             <img src={review.user.image_url} className="UserPicture"></img>
@@ -22,7 +23,7 @@ function Reviews({book}){
                             <font size="7">{review.rating}</font>
                             <p>{review.body}</p>
                         </div>
-                        <button className="delete">X</button>
+                        {user==review.user.id ? <button className="delete" onClick={handleDeleteReview} value={book.id} id={review.id}>X</button> : null}
                     </div>
                 ))}
 

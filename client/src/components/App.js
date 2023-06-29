@@ -147,6 +147,29 @@ function App() {
 
         }
 
+        function handleDeleteReview(event){
+          fetch('/books/deleteReview',{
+            method:"DELETE",
+            headers:{
+              "Content-type":"application/json"
+            },
+            body:JSON.stringify({
+              book_id:parseInt(event.target.value),
+              review_id:parseInt(event.target.id)
+            })
+          
+          })
+            .then(setBooks(books.map((book)=>{
+              if (book.id==event.target.value){
+                return {...book,reviews:book.reviews.filter((review)=>review.id!=event.target.id)}
+                
+              }
+              else{
+                return book
+              }
+            })))
+        }
+
         function handleReview(update){
           setBooks(books.map((book)=>(book.id===update.id ? update : book)))
 
@@ -187,7 +210,7 @@ function App() {
         <Login onLogin={setUser}/>
       </Route>
       <Route exact path="/books/:title">
-        <DisplayBook books={books} user={user.id} handleReview={handleReview}/>
+        <DisplayBook books={books} handleDeleteReview={handleDeleteReview} user={user.id} handleReview={handleReview}/>
       </Route>
       <Route exact path="/current-book">
         <CurrentBook books={books} onFinishBook={onFinishBook}/>

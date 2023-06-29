@@ -177,5 +177,7 @@ h4{
   position:absolute;
   top:0;
   right:0;
+  background-color:rgba(255, 0, 0, 0.301);
+  cursor:pointer;
 }
 

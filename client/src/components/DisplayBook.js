@@ -3,7 +3,7 @@ import Reviews from './Reviews'
 import ReviewForm from './ReviewForm'
 import {useParams} from 'react-router-dom'
 
-function DisplayBook({books, returnToVoting, bookForVote, user, handleReview}){
+function DisplayBook({books, returnToVoting, bookForVote, user, handleReview, handleDeleteReview}){
 
     const {title}=useParams()
     const [review,setReview]=useState(false)
@@ -25,7 +25,7 @@ function DisplayBook({books, returnToVoting, bookForVote, user, handleReview}){
                     <font size="4" className="description">{book.description}</font>
                     </div>
                     
-                    {book.reviews ? <Reviews book={book}/> : null}
+                    {book.reviews ? <Reviews book={book} user={user} handleDeleteReview={handleDeleteReview}/> : null}
                 </div>
                 <div className="ReturnButton">
                 {book.votes >=0 ? 

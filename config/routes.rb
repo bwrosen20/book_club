@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   post '/signup', to: 'users#create'
   get '/users', to: 'users#index'
+  delete '/books/deleteReview', to: 'books#deleteReview'
   patch '/users/finish',to: 'users#finish'
   patch '/users/:id', to: 'users#update'
   get '/me', to: 'users#show'
