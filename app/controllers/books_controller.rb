@@ -60,6 +60,13 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         render json: book
     end
 
+    def editReview
+        review = Review.find(params[:review_id])
+        review.update!(review_params)
+        book=review.book
+        render json: book
+    end
+
     def deleteReview
         book = Book.find(params[:book_id])
         review = Review.find(params[:review_id])

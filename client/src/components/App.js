@@ -170,6 +170,10 @@ function App() {
             })))
         }
 
+        function handleEditReview(reviewedBook){
+          setBooks(books.map((book)=>(book.id===reviewedBook.id ? reviewedBook : book)))
+        }
+
         function handleReview(update){
           setBooks(books.map((book)=>(book.id===update.id ? update : book)))
 
@@ -195,13 +199,12 @@ function App() {
     if (!user && !isLoading) return <Login onLogin={setUser}/>
     
   return <div>
-    {isLoading?
-    <h1>Loading...</h1> :
+   
   <div>
     <NavBar name={user.name} onLogout={onLogout}/>
     <Switch>
       <Route exact path="/voting">
-        <Voting user={user.current_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} onVoteButton={onVoteButton}/>
+        <Voting user={user.current_vote} isLoading={isLoading} userBook={user.book_for_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} onVoteButton={onVoteButton}/>
       </Route>
       <Route exact path="/users">
         <Users/>
@@ -210,7 +213,7 @@ function App() {
         <Login onLogin={setUser}/>
       </Route>
       <Route exact path="/books/:title">
-        <DisplayBook books={books} handleDeleteReview={handleDeleteReview} user={user.id} handleReview={handleReview}/>
+        <DisplayBook books={books} handleDeleteReview={handleDeleteReview} handleEditReview={handleEditReview} user={user.id} handleReview={handleReview}/>
       </Route>
       <Route exact path="/current-book">
         <CurrentBook books={books} onFinishBook={onFinishBook}/>
@@ -220,7 +223,7 @@ function App() {
       </Route>
     </Switch>
     
-  </div>}
+  </div>
   </div>
   
 }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import DisplayBook from './DisplayBook'
 
-function Voting({user, books, handleClick, handlePutBookForVote, onVoteButton}){
+function Voting({user,userBook, books, handleClick, handlePutBookForVote, onVoteButton, isLoading}){
     
     const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book)))
 
@@ -75,11 +75,13 @@ function Voting({user, books, handleClick, handlePutBookForVote, onVoteButton}){
                                 <div className="bookPreview">
                                     <img src={book.thumbnail} className="homeImg" onClick={handleClick} alt={book.title}></img>
                                     <h3>Votes:{book.votes}</h3>
-                                    {user===book.id ? null : <button onClick={onVoteButton} value={book.id}>Vote</button>
+                                    {((user===book.id)||(userBook===book.id)) ? null : <button onClick={onVoteButton} value={book.id}>Vote</button>
                                     }
                                 </div>
                             ))}
+                           
                     </div>
+                    {isLoading ? <h3 className="ReturnButton">Loading...</h3> : null}
                     <div className="searchContainer">
                         <h2>Search for the club's next book</h2>
                         <form onSubmit={handleSearch}>
