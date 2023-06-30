@@ -37,9 +37,12 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         currentBook.update!({votes:lowerVotes})
         end
         end
+
+        user = User.find(params[:user_id])
+        user.update!({current_vote:params[:voteBook]})
         
-        books = Book.all.order(:created_at)
-        render json: books
+        
+        render json: ([book,currentBook,user])
     end
 
     def finish

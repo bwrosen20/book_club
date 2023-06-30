@@ -93,26 +93,26 @@ function App() {
             body:JSON.stringify({
               user:user.id,
               voteBook:parseInt(event.target.value),
-              currentBook:user.current_vote
+              currentBook:user.current_vote,
+              user_id:user.id
             })
           })
             .then(r=>r.json())
             .then(data=>{
-              setBooks(data)
-              fetch(`/users/${user.id}`,{
-                method:"PATCH",
-                headers:{
-                  "Content-type":'application/json'
-                },
-                body:JSON.stringify({
-                  current_vote:parseInt(event.target.value)
-                })
-              })
-              .then(r=>r.json())
-              .then(data=>{
-                setUser(data)
-                setIsLoading(false)
-              })
+              setBooks(books.map((book)=>{
+                if (book.id===user.current_vote){
+                  return data[1]
+                }
+                else if (book.id===parseInt(event.target.value)){
+                  return data[0]
+                }
+                else{
+                  return book
+                }
+              }))
+              setUser(data[2])
+              setIsLoading(false)
+              
             })
         }
 
@@ -148,18 +148,7 @@ function App() {
         }
 
         function handleDeleteReview(event){
-          fetch('/books/deleteReview',{
-            method:"DELETE",
-            headers:{
-              "Content-type":"application/json"
-            },
-            body:JSON.stringify({
-              book_id:parseInt(event.target.value),
-              review_id:parseInt(event.target.id)
-            })
-          
-          })
-            .then(setBooks(books.map((book)=>{
+         setBooks(books.map((book)=>{
               if (book.id==event.target.value){
                 return {...book,reviews:book.reviews.filter((review)=>review.id!=event.target.id)}
                 
@@ -167,7 +156,7 @@ function App() {
               else{
                 return book
               }
-            })))
+            }))
         }
 
         function handleEditReview(reviewedBook){
