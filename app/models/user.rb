@@ -5,7 +5,8 @@ class User < ApplicationRecord
 
      validates :name, presence: :true
      validates :name, uniqueness: :true
-     # validates :password, length: {minimum: 8}
+     validates :password, presence: :true, confirmation: true, on: :create
+     validates :password, length: {minimum: 8}, confirmation: true, on: :create
      validates :image_url, presence: :true
 
 end
