@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import ReviewContainer from './ReviewContainer'
 import ReviewForm from './ReviewForm'
 import {useParams} from 'react-router-dom'
@@ -8,6 +8,20 @@ function DisplayBook({books, returnToVoting, bookForVote, user, handleReview, ha
     const {title}=useParams()
     const [review,setReview]=useState(false)
     const book = (books.length ? books.find((e)=>title===e.title) : books)
+    const [writeReviewButton, setWriteReviewButton]=useState(true)
+
+
+    useEffect(()=>{
+       setWriteReviewButton(true)
+        if (book.reviews.length>0){
+             book.reviews.forEach((review)=>{
+            if (user===review.user.id){
+                setWriteReviewButton(false)
+            }
+
+        })
+    }
+    },[book])
 
     function writeReview(update){
         setReview(!review)
@@ -38,8 +52,14 @@ function DisplayBook({books, returnToVoting, bookForVote, user, handleReview, ha
                             <div>
                                 {review?
                                 <ReviewForm book={book} user={user} writeReview={writeReview}/> :
-                                <button onClick={writeReview}>Write a review</button>
+                               
+                               <div>
+                                {writeReviewButton ?
+                                <button onClick={writeReview}>Write a review</button>: null}
+                                </div>
+
                                 }
+
                             </div> : null}
                 </div>
         </div>

@@ -9,6 +9,21 @@ function Review({review, handleDeleteReview, user, book, handleEditReview}){
         setShowEditReview(!showEditReview)
     }
 
+    function onDeleteReview(event){
+        fetch('/books/deleteReview',{
+            method:"DELETE",
+            headers:{
+              "Content-type":"application/json"
+            },
+            body:JSON.stringify({
+              book_id:parseInt(event.target.value),
+              review_id:parseInt(event.target.id)
+            })
+          
+          })
+            .then(handleDeleteReview(event))
+    }
+
     function onEditReview(reviewedBook){
         setShowEditReview(!showEditReview)
         handleEditReview(reviewedBook)
@@ -26,7 +41,7 @@ function Review({review, handleDeleteReview, user, book, handleEditReview}){
                         <font size="7">{review.rating}</font>
                         <p>{review.body}</p>
                     </div>
-                    {user==review.user.id ? <button className="delete" onClick={handleDeleteReview} value={book.id} id={review.id}>X</button> : null}
+                    {user==review.user.id ? <button className="delete" onClick={onDeleteReview} value={book.id} id={review.id}>X</button> : null}
                     
                 </div>
                 {user===review.user.id ? <button className="EditReview" onClick={onEditReviewClick}>Edit Review</button> : null}

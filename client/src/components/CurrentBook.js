@@ -1,10 +1,26 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import ReviewContainer from './ReviewContainer'
 import ReviewForm from './ReviewForm'
 
 function CurrentBook({books,onFinishBook, user, handleReview, handleEditReview, handleDeleteReview}){
 
     const currentBook=(books.find((book)=>(book.current_book)))
+    const [writeReviewButton, setWriteReviewButton]=useState(true)
+
+
+    useEffect(()=>{
+       setWriteReviewButton(true)
+        if (currentBook.reviews.length>0){
+             currentBook.reviews.forEach((review)=>{
+            if (user===review.user.id){
+                setWriteReviewButton(false)
+            }
+
+        })
+    }
+
+    },[currentBook])
+
     const [review,setReview]=useState(false)
 
     function writeReview(update){
@@ -31,8 +47,12 @@ function CurrentBook({books,onFinishBook, user, handleReview, handleEditReview, 
                 <div>
                     {review?
                     <ReviewForm book={currentBook} user={user} writeReview={writeReview}/> :
-                    <button onClick={writeReview} className="loginOption">Write a review</button>
+                    <div>
+                    {writeReviewButton ? <button onClick={writeReview} className="loginOption">Write a review</button> : null
                     }
+                    </div>
+                    }
+                    
                     <button onClick={onFinishBook} className="loginOption" value={currentBook?currentBook.id:"0"}>Begin Next Book</button>
 
                 </div>
