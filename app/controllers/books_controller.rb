@@ -46,15 +46,23 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
 
     def finish
+        next_book=Book.where(["finished=false and current_book=false"]).order(votes: :desc).first
+        if next_book
+            if params[:finishedBook]>0
+                book=Book.find(params[:finishedBook])
+                book.update!({finished:true,current_book:false})
+            end
+        
+                user = User.find_by(id:params[:book_owner])
+                user.update!({book_for_vote:0})
 
-        if params[:finishedBook]>0
-        book=Book.find(params[:finishedBook])
-        book.update!({finished:true,current_book:false})
+                next_book.update!({current_book:true})
+
+                render json: ([book,next_book,user])
+        else
+            render json: {error: "No book found"}
         end
-        next_book=Book.where("finished=false").order(votes: :desc).first
-        next_book.update!({current_book:true})
-        books = Book.all.order(:created_at)
-        render json: books
+    
     end
 
     def review

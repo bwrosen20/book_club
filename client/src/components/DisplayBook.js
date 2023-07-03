@@ -13,7 +13,7 @@ function DisplayBook({books, returnToVoting, bookForVote, user, handleReview, ha
 
     useEffect(()=>{
        setWriteReviewButton(true)
-        if (book.reviews.length>0){
+        if (book.reviews){
              book.reviews.forEach((review)=>{
             if (user===review.user.id){
                 setWriteReviewButton(false)

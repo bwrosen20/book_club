@@ -6,6 +6,7 @@ function ReviewForm({book, user, writeReview}){
         rating:"",
         body:""
     })
+    const [errors,setErrors]=useState([])
 
     function onReviewSubmit(event){
         event.preventDefault()
@@ -20,8 +21,12 @@ function ReviewForm({book, user, writeReview}){
                 user_id:user
             })
         })
-        .then(r=>r.json())
-        .then(data=>writeReview(data))
+        .then(r=> {
+            if (r.ok){
+                r.json().then(data=>writeReview(data))}
+            else{
+                r.json().then(err=>setErrors(err))
+            }})
     }
 
     function onReviewInput(event){
@@ -50,7 +55,9 @@ function ReviewForm({book, user, writeReview}){
             />
 
             <button className="reviewButton">Submit</button>
-
+            {errors.map((err)=>(
+                <h3>{err}</h3>
+            ))}
 
 
         </form>

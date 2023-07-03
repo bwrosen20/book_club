@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react'
 import ReviewContainer from './ReviewContainer'
 import ReviewForm from './ReviewForm'
 
-function CurrentBook({books,onFinishBook, user, handleReview, handleEditReview, handleDeleteReview}){
+function CurrentBook({books,handleFinishBook, user, handleReview, handleEditReview, handleDeleteReview}){
 
     const currentBook=(books.find((book)=>(book.current_book)))
+    const [review,setReview]=useState(false)
     const [writeReviewButton, setWriteReviewButton]=useState(true)
 
 
@@ -21,7 +22,24 @@ function CurrentBook({books,onFinishBook, user, handleReview, handleEditReview, 
 
     },[currentBook])
 
-    const [review,setReview]=useState(false)
+    function onFinishBook(event){
+
+        fetch (`books/finish`,{
+          method:"PATCH",
+          headers:{
+            "Content-type":"application/json"
+          },
+          body:JSON.stringify({
+            finishedBook:parseInt(event.target.value),
+            book_owner:user
+          })
+        })
+        .then(r=>r.json())
+        .then(data=>console.log(data))
+
+      }
+
+    
 
     function writeReview(update){
         setReview(!review)

@@ -116,36 +116,21 @@ function App() {
             })
         }
 
-        function onFinishBook(event){
-
-          fetch (`books/finish`,{
-            method:"PATCH",
-            headers:{
-              "Content-type":"application/json"
-            },
-            body:JSON.stringify({
-              finishedBook:parseInt(event.target.value)
-            })
-          })
-          .then(r=>r.json())
-          .then(data=>{
-            setBooks(data)
-            fetch(`users/finish`,{
-              method:"PATCH",
-              headers:{
-                "Content-type":"application/json"
-              },
-              body:JSON.stringify({
-                book_owner:user.id
-              })
-            })
-            .then(r=>r.json())
-            .then(data=>setUser(data))
-          
-          
-          })
-
-        }
+       function handleFinishBook(data){
+        setBooks(books.map((book)=>{
+          if (book.id===data[0].id){
+            return data[0]
+          }
+          else if (book.id===data[1].id){
+            return data[1]
+          }
+          else{
+            return book
+          }
+        }))
+       
+        setUser(data[2])
+       }
 
         function handleDeleteReview(event){
          setBooks(books.map((book)=>{
@@ -207,7 +192,7 @@ function App() {
         <DisplayBook books={books} handleDeleteReview={handleDeleteReview} handleEditReview={handleEditReview} user={user.id} handleReview={handleReview}/>
       </Route>
       <Route exact path="/current-book">
-        <CurrentBook books={books} onFinishBook={onFinishBook} user={user.id} handleReview={handleReview} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/>
+        <CurrentBook books={books} handleFinishBook={handleFinishBook} user={user.id} handleReview={handleReview} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/>
       </Route>
       <Route path="/">
         <Home books={books} handleClick={handleClick}/>

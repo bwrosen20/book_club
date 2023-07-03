@@ -15,6 +15,8 @@ function Voting({user,userBook, books, handleClick, handlePutBookForVote, onVote
         thumbnail:""
     })
 
+    const [onLoading,setOnLoading]=useState(false)
+
     function handleSetSearch(event){
         setSearchValue(event.target.value)
     }
@@ -45,11 +47,13 @@ function Voting({user,userBook, books, handleClick, handlePutBookForVote, onVote
     // },[])
 
     function handleSearch(event){
+        setOnLoading(true)
         event.preventDefault()
         fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchValue}&orderBy=relevance&maxResults=10`)
         .then(r=>r.json())
         .then(data=>{
           setNewBooks(data.items.filter((book)=>((book.volumeInfo.language==="en")&&(book.volumeInfo.imageLinks))).sort((a,b)=>b.volumeInfo.ratingsCount - a.volumeInfo.ratingsCount))
+          setOnLoading(false)
         })
 
         
@@ -92,7 +96,7 @@ function Voting({user,userBook, books, handleClick, handlePutBookForVote, onVote
                         value={searchValue}
                         onChange={handleSetSearch}
                         />
-                        <button>Search</button>
+                        <button>{onLoading ? "Loading..." : "Search"}</button>
                         </form>
                     </div>
                     <div className="bookContainer">
