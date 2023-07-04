@@ -27,7 +27,7 @@ function NavBar({name, onLogout}){
                 Voting   
             </NavLink>
             <NavLink
-            to="/users"
+            to="/members"
             exact
            
             activeStyle={{
@@ -35,7 +35,7 @@ function NavBar({name, onLogout}){
             }}
             className="navOption"
             >
-                Users   
+                Members   
             </NavLink>
             <NavLink
             to="/current-book"

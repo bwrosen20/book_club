@@ -77,7 +77,7 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
                     </div>
                     }
                     {errors.map((error=>(
-                        <h3 className="error" key={error}>{error}</h3>
+                        <error className="error" key={error}>{error}</error>
                     )))
                         }
                     <button onClick={onFinishBook} className="loginOption" value={currentBook?currentBook.id:"0"}>Begin Next Book</button>

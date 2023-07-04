@@ -4,7 +4,7 @@ import Home from './Home'
 import Voting from './Voting'
 import NavBar from './NavBar'
 import DisplayBook from './DisplayBook'
-import Users from './Users'
+import Members from './Members'
 import CurrentBook from './CurrentBook'
 import Login from './Login'
 import {Route,Switch, useHistory} from 'react-router-dom'
@@ -184,8 +184,8 @@ function App() {
       <Route exact path="/voting">
         <Voting user={user.current_vote} isLoading={isLoading} userBook={user.book_for_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} onVoteButton={onVoteButton}/>
       </Route>
-      <Route exact path="/users">
-        <Users/>
+      <Route exact path="/members">
+        <Members/>
       </Route>
       <Route exact path="/login">
         <Login onLogin={setUser}/>
