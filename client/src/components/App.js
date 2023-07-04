@@ -174,7 +174,7 @@ function App() {
 
       
   
-    if (!user && !isLoading) return <Login onLogin={setUser}/>
+    if (!user) return <Login onLogin={setUser}/>
     
   return <div>
    

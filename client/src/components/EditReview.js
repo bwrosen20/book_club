@@ -7,6 +7,7 @@ function EditReview({review,onEditReview}){
         rating:review.rating
     })
     const [isLoading,setIsLoading]=useState(false)
+    const [errors,setErrors]=useState([])
 
     function onUpdateForm(event){
         setFormData({...formData,[event.target.name]:event.target.value})
@@ -24,10 +25,18 @@ function EditReview({review,onEditReview}){
             body:JSON.stringify({...formData,
             review_id:review.id})
         })
-        .then(r=>r.json())
-        .then(data=>{
+        .then(r=>{
+            
+            if (r.ok){
+                r.json().then(data=>{
             onEditReview(data)
             setIsLoading(false)})
+                }
+            else{
+                r.json().then((err)=>setErrors(err.errors))
+                setIsLoading(false)
+            }
+        })
     }
 
     return <div>
@@ -56,6 +65,9 @@ function EditReview({review,onEditReview}){
                             />
 
                             <button className="ReviewButton">{isLoading ? "Loading..." : "Submit"}</button>
+                            {errors.map((error)=>(
+                                <h4 className="error" key={error}>{error}</h4>
+                            ))}
                             </form>
                     </div>
                     

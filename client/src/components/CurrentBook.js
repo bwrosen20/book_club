@@ -7,6 +7,7 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
     const currentBook=(books.find((book)=>(book.current_book)))
     const [review,setReview]=useState(false)
     const [writeReviewButton, setWriteReviewButton]=useState(true)
+    const [errors,setErrors]=useState([])
 
 
     useEffect(()=>{
@@ -34,9 +35,14 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
             book_owner:user
           })
         })
-        .then(r=>r.json())
-        .then(data=>handleFinishBook(data))
-
+        .then(r=>{
+            if (r.ok){
+                r.json().then(data=>handleFinishBook(data))
+            }
+            else{
+                r.json().then(err=>setErrors(err.errors))
+            }
+    })
       }
 
     
@@ -70,9 +76,12 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
                     }
                     </div>
                     }
-                    
+                    {errors.map((error=>(
+                        <h3 className="error" key={error}>{error}</h3>
+                    )))
+                        }
                     <button onClick={onFinishBook} className="loginOption" value={currentBook?currentBook.id:"0"}>Begin Next Book</button>
-
+                    
                 </div>
     </div>
 </div>

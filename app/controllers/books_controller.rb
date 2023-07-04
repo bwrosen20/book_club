@@ -64,7 +64,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
                 render json: ([book,next_book,user])
         else
-            render json: {error: "No book found"}
+            render json: {errors: ["Must have book up for vote"]}, status: :not_found
         end
     
     end
