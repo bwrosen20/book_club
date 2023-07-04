@@ -35,7 +35,7 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
           })
         })
         .then(r=>r.json())
-        .then(data=>console.log(data))
+        .then(data=>handleFinishBook(data))
 
       }
 

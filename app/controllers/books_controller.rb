@@ -10,7 +10,11 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
         book = Book.create!(book_params)
-        render json: book, status: :created
+
+        user=User.find(params[:user_id])
+        user.update!({book_for_vote:book.id})
+
+        render json: [book,user], status: :created
     end
 
     def destroy

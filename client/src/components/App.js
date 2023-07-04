@@ -65,13 +65,15 @@ function App() {
             ...newBook,
             votes:0,
             current_book:false,
-            finished:false
+            finished:false,
+            user_id:user.id
           })
         })
         .then(r=>r.json())
         .then(data=>{
-          setBooks([...books,data])
-          setUser({...user,book_for_vote:data.id})
+          setBooks([...books,data[0]])
+          setUser(data[1])
+          setIsLoading(false)
         })
       }
       }
