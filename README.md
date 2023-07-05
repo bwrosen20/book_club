@@ -14,9 +14,10 @@ Inside the book's display page (using The Martian as an example) the user is abl
 <img width="944" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/1bb148e7-c1f5-40d0-b41b-536357bda274">
 
 The voting screen has 2 features.
+ 1. The user can vote on books that other club members have nominated
 <img width="947" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/2569e442-4eb1-45b9-861e-4bcee4d722fd">
-  1. The user can vote on books that other club members have nominated
   2. The user can search for a book to nominate using the google books api
+
      <img width="779" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/2c8eef0a-b8b2-4c2f-8c98-f96d11981cf6">
       2a. Upon clicking a thumbnail, the user will have the opportunity to nominate the selected book. If they already have a nomination up, this         will replace their existing nomination
 
