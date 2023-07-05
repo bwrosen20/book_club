@@ -18,7 +18,8 @@ The voting screen has 2 features.
 <img width="947" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/2569e442-4eb1-45b9-861e-4bcee4d722fd">
   2. The user can search for a book to nominate using the google books api
      <img width="779" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/2c8eef0a-b8b2-4c2f-8c98-f96d11981cf6">
-2a. Upon clicking a thumbnail, the user will have the opportunity to nominate the selected book. If they already have a nomination up, this      will replace their existing nomination
+     
+  2a. Upon clicking a thumbnail, the user will have the opportunity to nominate the selected book. If they already have a nomination up, this      will replace their existing nomination
 
 The current book page is a display page for the club's current book. It contains the added option to "begin next book" which will move the current book to the home page and move the book with the highest votes (tiebreaker is first to be added) to the current book page
 <img width="949" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/fab74151-511a-4b2e-8a34-b18706f90f8a">
