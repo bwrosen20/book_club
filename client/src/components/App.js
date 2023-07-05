@@ -33,6 +33,8 @@ function App() {
         
         setIsLoading(false)
       },[])
+
+      if (!user) return <Login onLogin={setUser}/>
       
       function handlePutBookForVote(data){
         console.log(data)
@@ -123,10 +125,10 @@ function App() {
 
       
   
-    if (!user) return <Login onLogin={setUser}/>
+    
     
   return <div>
-   
+   {isLoading? <h3>Loading...</h3>:
   <div>
     <NavBar name={user.name} onLogout={onLogout}/>
     <Switch>
@@ -150,7 +152,7 @@ function App() {
       </Route>
     </Switch>
     
-  </div>
+  </div>}
   </div>
   
 }

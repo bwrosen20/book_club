@@ -8,6 +8,7 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
     const [review,setReview]=useState(false)
     const [writeReviewButton, setWriteReviewButton]=useState(true)
     const [errors,setErrors]=useState([])
+    const [isLoading, setIsLoading]=useState(false)
 
 
     useEffect(()=>{
@@ -24,6 +25,8 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
     },[currentBook])
 
     function onFinishBook(event){
+        setIsLoading(true)
+        window.scrollTo(0, document.body.scrollHeight)
 
         fetch (`books/finish`,{
           method:"PATCH",
@@ -42,6 +45,7 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
             else{
                 r.json().then(err=>setErrors(err.errors))
             }
+            setIsLoading(false)
     })
       }
 
@@ -76,13 +80,14 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
                     }
                     </div>
                     }
-                    {errors.map((error=>(
+                    
+                    <button onClick={onFinishBook} className="loginOption" value={currentBook?currentBook.id:"0"}>{isLoading ? "Loading..." : "Begin Next Book"}</button>
+                    
+                </div>
+                {errors.map((error=>(
                         <error className="error" key={error}>{error}</error>
                     )))
                         }
-                    <button onClick={onFinishBook} className="loginOption" value={currentBook?currentBook.id:"0"}>Begin Next Book</button>
-                    
-                </div>
     </div>
 </div>
 }
