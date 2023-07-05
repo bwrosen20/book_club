@@ -6,12 +6,13 @@ function Members(){
     const [isLoading,setIsLoading]=useState(false)
 
     useEffect(()=>{
+        if (users.length===0){
         setIsLoading(true)
     fetch('/users')
     .then(r=>r.json())
     .then(data=>{
         setUsers(data)
-        setIsLoading(false)})
+        setIsLoading(false)})}
     },[])
 
 
