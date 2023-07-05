@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import DisplayBook from './DisplayBook'
 
-function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote, onVoteButton}){
+function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote, handleVoteButton}){
     
     const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book)))
 
@@ -31,6 +31,27 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
             "thumbnail":bookData.volumeInfo.imageLinks.thumbnail
         })
         setShowBook(!showBook)
+    }
+
+    function onVoteButton(event){
+        setIsLoading(true)
+          fetch('/books/vote',{
+            method:"PATCH",
+            headers:{
+              "Content-type":"application/json"
+            },
+            body:JSON.stringify({
+              voteBook:parseInt(event.target.value),
+              currentBook:user,
+              user_id:userId
+            })
+          })
+            .then(r=>r.json())
+            .then(data=>{
+              handleVoteButton(data,event)
+              setIsLoading(false)
+              
+            })
     }
 
     function bookForVote(){

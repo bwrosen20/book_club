@@ -45,7 +45,7 @@ function App() {
         }
       }
 
-      function onVoteButton(event){
+      function handleVoteButton(data,event){
 
         //if user.current_vote==event.target.value
           //=====> do nothing
@@ -53,36 +53,18 @@ function App() {
           //add vote and change user vote to event.target.value
         //else (user already has vote for something else)
           //patch new vote, patch old vote away, change user.current_vote
-          setIsLoading(true)
-          fetch('/books/vote',{
-            method:"PATCH",
-            headers:{
-              "Content-type":"application/json"
-            },
-            body:JSON.stringify({
-              user:user.id,
-              voteBook:parseInt(event.target.value),
-              currentBook:user.current_vote,
-              user_id:user.id
-            })
-          })
-            .then(r=>r.json())
-            .then(data=>{
-              setBooks(books.map((book)=>{
-                if (book.id===user.current_vote){
-                  return data[1]
-                }
-                else if (book.id===parseInt(event.target.value)){
-                  return data[0]
-                }
-                else{
-                  return book
-                }
-              }))
-              setUser(data[2])
-              setIsLoading(false)
-              
-            })
+          setBooks(books.map((book)=>{
+            if (book.id===user.current_vote){
+              return data[1]
+            }
+            else if (book.id===parseInt(event.target.value)){
+              return data[0]
+            }
+            else{
+              return book
+            }
+          }))
+          setUser(data[2])
         }
 
        function handleFinishBook(data){
@@ -149,7 +131,7 @@ function App() {
     <NavBar name={user.name} onLogout={onLogout}/>
     <Switch>
       <Route exact path="/voting">
-        <Voting user={user.current_vote} userId={user.id} isLoading={isLoading} userBook={user.book_for_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} onVoteButton={onVoteButton}/>
+        <Voting user={user.current_vote} userId={user.id} isLoading={isLoading} userBook={user.book_for_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} handleVoteButton={handleVoteButton}/>
       </Route>
       <Route exact path="/members">
         <Members/>
