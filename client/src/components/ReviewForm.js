@@ -25,7 +25,7 @@ function ReviewForm({book, user, writeReview}){
             if (r.ok){
                 r.json().then(data=>writeReview(data))}
             else{
-                r.json().then(err=>setErrors(err))
+                r.json().then(err=>setErrors(err.errors))
             }})
     }
 
@@ -56,7 +56,7 @@ function ReviewForm({book, user, writeReview}){
 
             <button className="reviewButton">Submit</button>
             {errors.map((err)=>(
-                <h3>{err}</h3>
+                <h4 className="error" key={err}>{err}</h4>
             ))}
 
 

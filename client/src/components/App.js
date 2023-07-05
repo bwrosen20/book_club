@@ -34,48 +34,15 @@ function App() {
         setIsLoading(false)
       },[])
       
-      function handlePutBookForVote(newBook){
-        setIsLoading(true)
-        const bool=user.book_for_vote
-        if (user.book_for_vote>0){
-          fetch(`/books/${user.book_for_vote}`,{
-            method:"PATCH",
-            headers:{
-              "Content-type":"application/json"
-            },
-            body:JSON.stringify({
-              ...newBook,
-            votes:0,
-            current_book:false,
-            finished:false
-            })
-          })
-          .then(r=>r.json())
-          .then(data=>{
-            setBooks(books.map((book)=>(book.id===bool ? data : book)))})
-            setIsLoading(false)
-        }
-        else{
-        fetch('/books',{
-          method:"POST",
-          headers:{
-            "Content-type": "application/json"
-          },
-          body:JSON.stringify({
-            ...newBook,
-            votes:0,
-            current_book:false,
-            finished:false,
-            user_id:user.id
-          })
-        })
-        .then(r=>r.json())
-        .then(data=>{
+      function handlePutBookForVote(data){
+        console.log(data)
+        if (data.length>1){
           setBooks([...books,data[0]])
           setUser(data[1])
-          setIsLoading(false)
-        })
-      }
+          }
+        else{
+          setBooks(books.map((book)=>(book.id===data.id ? data : book)))
+        }
       }
 
       function onVoteButton(event){
@@ -182,7 +149,7 @@ function App() {
     <NavBar name={user.name} onLogout={onLogout}/>
     <Switch>
       <Route exact path="/voting">
-        <Voting user={user.current_vote} isLoading={isLoading} userBook={user.book_for_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} onVoteButton={onVoteButton}/>
+        <Voting user={user.current_vote} userId={user.id} isLoading={isLoading} userBook={user.book_for_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} onVoteButton={onVoteButton}/>
       </Route>
       <Route exact path="/members">
         <Members/>

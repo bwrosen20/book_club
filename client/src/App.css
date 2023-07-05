@@ -44,7 +44,7 @@ h4{
 
 .bookPreview{
   text-align:center;
-  margin:center;
+  margin:auto;
 }
 
 .homeImg{
@@ -117,6 +117,7 @@ h4{
 
 .ReviewBody{
   margin-top:5%;
+  word-wrap: break-word;
 }
 
 .login{
