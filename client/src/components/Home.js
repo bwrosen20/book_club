@@ -23,23 +23,22 @@ function Home({books, handleClick, handleChange}){
         else if (filterData.filter==="Title"){
             booksToDisplay=booksToDisplay.sort((a,b)=>(removeArticles(a.title) > removeArticles(b.title) ? 1: -1))
         }
-        else if (filterData.filter==="Newest"){
-            booksToDisplay=booksToDisplay.sort((a,b)=>(a.created_at > b.created_at ? -1 : 1))
-        }
-        else {
+        else if (filterData.filter==="Rating"){
           booksToDisplay.forEach((book)=>{
             book.ratings=[]
             if (book.reviews.length>0){
               book.reviews.forEach((review)=>{
                 book.ratings.push(review.rating)
               })
-              book.rating=book.ratings.reduce((a,b)=>a+b)
+              book.rating=(book.ratings.reduce((a,b)=>a+b))/(book.ratings.length)
             }
             else 
               book.rating=0
           })
           booksToDisplay=booksToDisplay.sort((a,b)=>b.rating - a.rating)
-
+        }
+        else {
+          booksToDisplay=booksToDisplay.sort((a,b)=>(a.created_at > b.created_at ? -1 : 1))
         }
 
 
@@ -52,9 +51,7 @@ function Home({books, handleClick, handleChange}){
       }
   
       function authorsLastName(str){
-        console.log(str)
         const nameArray = str.split(" ")
-        console.log(nameArray)
         return nameArray.splice(-1)
       }
 
