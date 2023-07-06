@@ -1,213 +1,436 @@
-:root{
-  background-color: rgba(255, 235, 182, 0.402)
-}
+@media (min-width:320px){
 
-img{
-  cursor:pointer;
-  object-fit: cover;
-  object-position:center;
-}
-
-h1{
-  text-align:center;
-  margin-top:50px;
-}
-
-h4{
-  text-align:center;
-}
-
-.Navbar {
+  :root{
+    background-color: rgba(255, 235, 182, 0.402)
+  }
   
-  color:white;
-  font-size:20px;
-  margin:auto;
-  margin-top:20px;
-  text-align:center;
-  height:30px;
-  width:50%;
-  margin-bottom:40px;
+  img{
+    cursor:pointer;
+    object-fit: cover;
+    object-position:center;
+  }
+  
+  h1{
+    text-align:center;
+    margin-top:50px;
+  }
+  
+  h4{
+    text-align:center;
+  }
+  
+  .Navbar {
+    
+    color:white;
+    font-size:20px;
+    margin:auto;
+    margin-top:20px;
+    text-align:center;
+    height:30px;
+    width:50%;
+    margin-bottom:40px;
+  }
+  
+  .navOption{
+    padding:20px;
+  }
+  
+  .bookContainer{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto;
+    width:100%;
+    margin:auto;
+    grid-gap:10px;
+  }
+  
+  .bookPreview{
+    text-align:center;
+    margin:auto;
+  }
+  
+  .homeImg{
+    height:200px;
+    width:130px;
+    object-position:top;
+  }
+  
+  
+  .BookDisplay{
+    margin:auto;
+    margin-top:10px;
+    width: 100%; 
+   
+  }
+  
+  .BookInfo{
+    margin:auto;
+    height:auto;
+  }
+  
+  .BookPicture{
+    margin:auto;
+    text-align:center;
+    width:90%;
+    padding:20px;
+  }
+  
+  .PictureDisplay{
+    margin:auto;
+    cursor:default;
+  }
+  
+  .filterContainer{
+    text-align:center;
+  }
+  
+  .filterInput{
+    padding:10px;
+    margin:20px;
+  }
+  
+  .ReviewContainer{
+    text-align:center;
+  }
+  
+  .Review{
+    position:relative;
+    display:grid;
+    grid-template-columns: 1fr 7fr;
+    grid-gap:10px;
+    border:1px solid black;
+    margin-top:50px;
+    width:100%;
+    height:auto;
+  }
+  
+  .User{
+    margin-left:25px;
+    margin-top:20px;
+    text-align:center;
+  }
+  
+  .UserPicture{
+    width:100px;
+    height:100px;
+    cursor:default;
+  }
+  
+  .ReviewBody{
+    margin-top:5%;
+    word-wrap: break-word;
+  }
+  
+  .login{
+    position:absolute;
+    color:black;
+    top:18px;
+    right:6%;
+    padding:8px;
+    background-color:rgb(227, 235, 237);
+  }
+  
+  .welcome{
+    position:absolute;
+    color:black;
+    top:0px;
+    left:5%;
+  }
+  
+  .loginScreen{
+    margin:auto;
+    text-align:center;
+    width:80%;
+    padding:20px;
+  }
+  
+  .loginOption, .loginButton, .signupOption, .signupButton{
+    width:100%;
+    margin-top:10px;
+  }
+  
+  .ReviewOption{
+    width:55%;
+    margin-top:10px;
+    margin:auto;
+  }
+  
+  .ReviewButton{
+    width:55%;
+    margin:auto;
+  }
+  
+  .searchContainer{
+    margin-top:100px;
+    margin-bottom:25px;
+    text-align:center;
+  }
+  
+  .ReturnButton{
+   width:30%;
+   margin:auto;
+   margin-top:30px;
+   margin-bottom:20px;
+   text-align:center;
+  }
+  
+  .description{
+    text-align:left;
+  }
+  
+  .FinishButton{
+    width:30%;
+    text-align:center;
+  }
+  
+  
+  .reviewButton, .reviewOption{
+    width:100%;
+    margin-top:10px;
+  }
+  
+  .delete{
+    position:absolute;
+    top:0;
+    right:0;
+    background-color:rgba(255, 0, 0, 0.301);
+    cursor:pointer;
+  }
+  
+  .EditReview{
+    margin:center;
+    margin-top:10px;
+    width:40%;
+  }
+  
+  .error{
+    color:red;
+    margin-top:5px;
+  }
+  
+  .MemberContainer{
+    text-align:center;
+    width:100%;
+    margin:auto;
+  }
+  
+  
 }
 
-.navOption{
-  padding:20px;
-}
+    @media (min-width:801px){
 
-.bookContainer{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows:auto;
-  width:75%;
-  margin:auto;
-  grid-gap:10px;
-}
+    :root{
+      background-color: rgba(255, 235, 182, 0.402)
+    }
 
-.bookPreview{
-  text-align:center;
-  margin:auto;
-}
+    img{
+      cursor:pointer;
+      object-fit: cover;
+      object-position:center;
+    }
 
-.homeImg{
-  height:200px;
-  width:130px;
-  object-position:top;
-}
+    h1{
+      text-align:center;
+      margin-top:50px;
+    }
 
+    h4{
+      text-align:center;
+    }
 
-.BookDisplay{
-  margin:auto;
-  margin-top:20px;
-  width: 50%; 
- 
-}
+    .Navbar {
+      
+      color:white;
+      font-size:20px;
+      margin:auto;
+      margin-top:20px;
+      text-align:center;
+      height:30px;
+      width:50%;
+      margin-bottom:40px;
+    }
 
-.BookInfo{
-  margin:auto;
-  height:auto;
-}
+    .navOption{
+      padding:20px;
+    }
 
-.BookPicture{
-  margin:auto;
-  text-align:center;
-  width:90%;
-  padding:20px;
-}
+    .bookContainer{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows:auto;
+      width:75%;
+      margin:auto;
+      grid-gap:10px;
+    }
 
-.PictureDisplay{
-  margin:auto;
-  cursor:default;
-}
+    .bookPreview{
+      text-align:center;
+      margin:auto;
+    }
 
-.filterContainer{
-  text-align:center;
-  margin-bottom:40px;
-}
-
-.filterInput{
-  padding:10px;
-  margin:20px;
-}
-
-.ReviewContainer{
-  text-align:center;
-}
-
-.Review{
-  position:relative;
-  display:grid;
-  grid-template-columns: 1fr 7fr;
-  grid-gap:10px;
-  border:1px solid black;
-  margin-top:50px;
-  width:100%;
-  height:auto;
-}
-
-.User{
-  margin-left:25px;
-  margin-top:20px;
-  text-align:center;
-}
-
-.UserPicture{
-  width:100px;
-  height:100px;
-  cursor:default;
-}
-
-.ReviewBody{
-  margin-top:5%;
-  word-wrap: break-word;
-}
-
-.login{
-  position:absolute;
-  color:black;
-  top:20px;
-  right:6%;
-}
-
-.welcome{
-  position:absolute;
-  color:black;
-  top:0px;
-  left:5%;
-}
-
-.loginScreen{
-  margin:auto;
-  text-align:center;
-  width:60%;
-  padding:20px;
-}
-
-.loginOption, .loginButton, .signupOption, .signupButton{
-  width:55%;
-  margin-top:10px;
-}
-
-.ReviewOption{
-  width:55%;
-  margin-top:10px;
-  margin:auto;
-}
-
-.ReviewButton{
-  width:55%;
-  margin:auto;
-}
-
-.searchContainer{
-  margin-top:100px;
-  margin-bottom:25px;
-  text-align:center;
-}
-
-.ReturnButton{
- width:30%;
- margin:auto;
- margin-top:30px;
- margin-bottom:20px;
- text-align:center;
-}
-
-.description{
-  text-align:left;
-}
-
-.FinishButton{
-  width:30%;
-  text-align:center;
-}
+    .homeImg{
+      height:200px;
+      width:130px;
+      object-position:top;
+    }
 
 
-.reviewButton, .reviewOption{
-  width:100%;
-  margin-top:10px;
-}
+    .BookDisplay{
+      margin:auto;
+      margin-top:20px;
+      width: 50%; 
+    
+    }
 
-.delete{
-  position:absolute;
-  top:0;
-  right:0;
-  background-color:rgba(255, 0, 0, 0.301);
-  cursor:pointer;
-}
+    .BookInfo{
+      margin:auto;
+      height:auto;
+    }
 
-.EditReview{
-  margin:center;
-  margin-top:10px;
-  width:40%;
-}
+    .BookPicture{
+      margin:auto;
+      text-align:center;
+      width:90%;
+      padding:20px;
+    }
 
-.error{
-  color:red;
-  margin-top:5px;
-}
+    .PictureDisplay{
+      margin:auto;
+      cursor:default;
+    }
 
-.MemberContainer{
-  text-align:center;
-  width:60%;
-  margin:auto;
-}
+    .filterContainer{
+      text-align:center;
+      margin-bottom:40px;
+    }
 
+    .filterInput{
+      padding:10px;
+      margin:20px;
+    }
+
+    .ReviewContainer{
+      text-align:center;
+    }
+
+    .Review{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1fr 7fr;
+      grid-gap:10px;
+      border:1px solid black;
+      margin-top:50px;
+      width:100%;
+      height:auto;
+    }
+
+    .User{
+      margin-left:25px;
+      margin-top:20px;
+      text-align:center;
+    }
+
+    .UserPicture{
+      width:100px;
+      height:100px;
+      cursor:default;
+    }
+
+    .ReviewBody{
+      margin-top:5%;
+      word-wrap: break-word;
+    }
+
+    .login{
+      position:absolute;
+      color:black;
+      top:18px;
+      right:6%;
+      padding:8px;
+    }
+
+    .welcome{
+      position:absolute;
+      color:black;
+      top:0px;
+      left:5%;
+    }
+
+    .loginScreen{
+      margin:auto;
+      text-align:center;
+      width:60%;
+      padding:20px;
+    }
+
+    .loginOption, .loginButton, .signupOption, .signupButton{
+      width:55%;
+      margin-top:10px;
+    }
+
+    .ReviewOption{
+      width:55%;
+      margin-top:10px;
+      margin:auto;
+    }
+
+    .ReviewButton{
+      width:55%;
+      margin:auto;
+    }
+
+    .searchContainer{
+      margin-top:100px;
+      margin-bottom:25px;
+      text-align:center;
+    }
+
+    .ReturnButton{
+    width:30%;
+    margin:auto;
+    margin-top:30px;
+    margin-bottom:20px;
+    text-align:center;
+    }
+
+    .description{
+      text-align:left;
+    }
+
+    .FinishButton{
+      width:30%;
+      text-align:center;
+    }
+
+
+    .reviewButton, .reviewOption{
+      width:100%;
+      margin-top:10px;
+    }
+
+    .delete{
+      position:absolute;
+      top:0;
+      right:0;
+      background-color:rgba(255, 0, 0, 0.301);
+      cursor:pointer;
+    }
+
+    .EditReview{
+      margin:center;
+      margin-top:10px;
+      width:40%;
+    }
+
+    .error{
+      color:red;
+      margin-top:5px;
+    }
+
+    .MemberContainer{
+      text-align:center;
+      width:60%;
+      margin:auto;
+    }
+
+    }

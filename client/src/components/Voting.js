@@ -119,7 +119,7 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
         .then(data=>{
           setNewBooks(data.items.filter((book)=>((book.volumeInfo.language==="en")&&(book.volumeInfo.imageLinks))).sort((a,b)=>b.volumeInfo.ratingsCount - a.volumeInfo.ratingsCount))
           setOnLoading(false)
-          window.scrollTo(0, document.body.scrollHeight)
+          document.getElementById('bookContainer').scrollIntoView();
         })
 
         
@@ -129,7 +129,7 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
 
     function returnToVoting(){
         setShowBook(!showBook)
-        window.scrollTo(0, document.body.scrollHeight)
+        window.scrollTo(10, document.body.scrollHeight)
     }
 
 
@@ -151,7 +151,7 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
                            
                     </div>
                     {isLoading ? <h3 className="ReturnButton">Loading...</h3> : null}
-                    <div className="searchContainer">
+                    <div className="searchContainer" id="searchContainer">
                         <h2>Search for the club's next book</h2>
                         <form onSubmit={handleSearch}>
                         <input
@@ -164,7 +164,7 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
                         <button>{onLoading ? "Loading..." : "Search"}</button>
                         </form>
                     </div>
-                    <div className="bookContainer">
+                    <div className="bookContainer" id="bookContainer">
                             {newBooks.map((book)=>(
                                 <div className="bookPreview">
                                     <img src={book.volumeInfo.imageLinks.thumbnail} onClick={setCurrentBook} alt={book.id} className="homeImg"></img>

@@ -34,7 +34,12 @@ function App() {
         setIsLoading(false)
       },[])
 
-  if (!user) return <Login onLogin={setUser}/>
+  if (!user) return <Login onLogin={handleLogin}/>
+
+    function handleLogin(user){
+      setUser(user)
+      history.push(`/home`)
+    }
       
     function handlePutBookForVote(data){
       console.log(data)
@@ -105,18 +110,24 @@ function App() {
       setBooks(books.map((book)=>(book.id===update.id ? update : book)))
     }
 
-  function onLogout(){
-    fetch('/logout',{method:"DELETE"}).then((r)=>{
-      if (r.ok){
-        setUser(null)
-      }
-    })
-  }
     
   function handleClick(event){
     history.push(`/books/${event.target.alt}`)
   }
 
+  const onNavClick=(event)=>{
+    if (event.target.value==="logout"){
+      fetch('/logout',{method:"DELETE"}).then((r)=>{
+        if (r.ok){
+          setUser(null)
+        }
+      })
+    }
+    else{
+      history.push(`/${event.target.value}`)
+    }
+    
+  }
       
   
     
@@ -124,7 +135,7 @@ function App() {
   return <div>
     {isLoading? <h3>Loading...</h3>:
       <div>
-        <NavBar name={user.name} onLogout={onLogout}/>
+        <NavBar name={user.name} onNavClick={onNavClick}/>
         <Switch>
           <Route exact path="/voting">
             <Voting user={user.current_vote} userId={user.id} isLoading={isLoading} userBook={user.book_for_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} handleVoteButton={handleVoteButton}/>
@@ -133,7 +144,7 @@ function App() {
             <Members/>
           </Route>
           <Route exact path="/login">
-            <Login onLogin={setUser}/>
+            <Login onLogin={handleLogin}/>
           </Route>
           <Route exact path="/books/:title">
             <DisplayBook books={books} handleDeleteReview={handleDeleteReview} handleEditReview={handleEditReview} user={user.id} handleReview={handleReview}/>

@@ -1,10 +1,38 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
 
-function NavBar({name, onLogout}){
+function NavBar({name, onNavClick}){
 
     return <div className="Navbar">
-        <NavLink
+            <select className="login" onChange={onNavClick}>
+                <option 
+                defaultValue disabled>
+                    Navigate
+                </option>
+                <option
+                value=""
+                >Home</option>
+                <option
+                value="voting"
+                >Voting</option>
+                <option
+                value="members"
+                >Members</option>
+                <option
+                value="current-book"
+                >Current Book</option>
+                <option
+                value="logout"
+                >Logout</option>
+            </select>
+        <p className="welcome">Welcome {name}!</p>
+    </div>
+}
+
+export default NavBar
+
+
+
+{/* <NavLink
             to="/"
             exact
             
@@ -49,14 +77,9 @@ function NavBar({name, onLogout}){
                 Current Book   
             </NavLink>
 
-            <p className="welcome">Welcome {name}!</p>
+            
 
             <div className="login">
-                <button onClick={onLogout}>Logout</button>
-            </div>
+                <button onChange={onLogout}>Logout</button>
+            </div> */}
 
-
-    </div>
-}
-
-export default NavBar

@@ -14,7 +14,7 @@ function ReviewContainer({book, handleDeleteReview, user, handleEditReview}){
 
             <div className="ReviewContainer">
                 {book.reviews.map((review)=>(
-                   <Review review={review} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview} user={user} book={book}/>
+                   <Review key={review.body} review={review} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview} user={user} book={book}/>
                 ))}
                
 

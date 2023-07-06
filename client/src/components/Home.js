@@ -60,7 +60,7 @@ function Home({books, handleClick, handleChange}){
         <Filters filterData={filterData} handleChange={handleChange}/>
       <div className="bookContainer">
         {booksToDisplay.map((book)=>(
-          <div className="bookPreview">
+          <div className="bookPreview" key={book.title}>
           <img src={book.thumbnail} onClick={handleClick} alt={book.title} className="homeImg"></img>
           </div>
         ))}

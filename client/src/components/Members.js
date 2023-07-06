@@ -21,7 +21,7 @@ function Members(){
             {isLoading? <h3 className="bookPreview">Loading... </h3> : <div className="MemberContainer">
                 
                 {users.map((user)=>(
-                    <div className="Review">
+                    <div className="Review" key={user.name}>
                     <div className="User">
                         <img src={user.image_url} className="UserPicture"></img>
                         <h3>{user.name}</h3>
