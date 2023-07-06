@@ -15,18 +15,16 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
        setWriteReviewButton(true)
         if (currentBook.reviews.length>0){
              currentBook.reviews.forEach((review)=>{
-            if (user===review.user.id){
-                setWriteReviewButton(false)
-            }
-
-        })
-    }
-
+                if (user===review.user.id){
+                    setWriteReviewButton(false)
+                }
+            })
+        }
     },[currentBook])
 
     function onFinishBook(event){
         setIsLoading(true)
-        window.scrollTo(0, document.body.scrollHeight)
+        
 
         fetch (`books/finish`,{
           method:"PATCH",
@@ -46,6 +44,7 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
                 r.json().then(err=>setErrors(err.errors))
             }
             setIsLoading(false)
+            window.scrollTo(0, document.body.scrollHeight)
     })
       }
 
@@ -57,39 +56,35 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
     }
 
     return <div>
-    <div className="BookDisplay">
-        <div className="BookPicture">
-            <img src={currentBook.thumbnail} className="PictureDisplay"></img>
-        </div>
-        <div className="BookInfo">
-            <h1>{currentBook.title}</h1>
-            <h4>By {currentBook.author}</h4>
-            <font size="4" className="description">{currentBook.description}</font>
-        </div>
-        
-            {currentBook.reviews ? <ReviewContainer book={currentBook} user={user} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
-    </div>
-    <div className="ReturnButton">
-        
-                    
-                <div>
-                    {review?
-                    <ReviewForm book={currentBook} user={user} writeReview={writeReview}/> :
-                    <div>
-                    {writeReviewButton ? <button onClick={writeReview} className="loginOption">Write a review</button> : null
-                    }
+                <div className="BookDisplay">
+                    <div className="BookPicture">
+                        <img src={currentBook.thumbnail} className="PictureDisplay"></img>
                     </div>
-                    }
+                    <div className="BookInfo">
+                        <h1>{currentBook.title}</h1>
+                        <h4>By {currentBook.author}</h4>
+                        <font size="4" className="description">{currentBook.description}</font>
+                    </div>
                     
-                    <button onClick={onFinishBook} className="loginOption" value={currentBook?currentBook.id:"0"}>{isLoading ? "Loading..." : "Begin Next Book"}</button>
-                    
+                        {currentBook.reviews ? <ReviewContainer book={currentBook} user={user} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
                 </div>
-                {errors.map((error=>(
-                        <error className="error" key={error}>{error}</error>
-                    )))
-                        }
-    </div>
-</div>
+                <div className="ReturnButton">
+                    
+                                
+                            <div>
+                                {review?
+                                <ReviewForm book={currentBook} user={user} writeReview={writeReview}/> :
+                                <div>
+                                    {writeReviewButton ? <button onClick={writeReview} className="loginOption">Write a review</button> : null}
+                                </div>
+                                }
+                                <button onClick={onFinishBook} className="loginOption" value={currentBook?currentBook.id:"0"}>{isLoading ? "Loading..." : "Begin Next Book"}</button>                           
+                            </div>
+                            {errors.map((error=>(
+                                    <error className="error" key={error}>{error}</error>
+                            )))}
+                </div>
+            </div>
 }
 
 export default CurrentBook

@@ -119,14 +119,17 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
         .then(data=>{
           setNewBooks(data.items.filter((book)=>((book.volumeInfo.language==="en")&&(book.volumeInfo.imageLinks))).sort((a,b)=>b.volumeInfo.ratingsCount - a.volumeInfo.ratingsCount))
           setOnLoading(false)
+          window.scrollTo(0, document.body.scrollHeight)
         })
 
         
         setSearchValue("")
+        
     }
 
     function returnToVoting(){
         setShowBook(!showBook)
+        window.scrollTo(0, document.body.scrollHeight)
     }
 
 

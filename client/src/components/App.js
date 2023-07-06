@@ -34,127 +34,123 @@ function App() {
         setIsLoading(false)
       },[])
 
-      if (!user) return <Login onLogin={setUser}/>
+  if (!user) return <Login onLogin={setUser}/>
       
-      function handlePutBookForVote(data){
-        console.log(data)
-        if (data.length>1){
-          setBooks([...books,data[0]])
-          setUser(data[1])
-          }
-        else{
-          setBooks(books.map((book)=>(book.id===data.id ? data : book)))
+    function handlePutBookForVote(data){
+      console.log(data)
+      if (data.length>1){
+        setBooks([...books,data[0]])
+        setUser(data[1])
         }
+      else{
+        setBooks(books.map((book)=>(book.id===data.id ? data : book)))
       }
+    }
 
-      function handleVoteButton(data,event){
+    function handleVoteButton(data,event){
 
-        //if user.current_vote==event.target.value
-          //=====> do nothing
-        //if user.current_vote doesn't exist
-          //add vote and change user vote to event.target.value
-        //else (user already has vote for something else)
-          //patch new vote, patch old vote away, change user.current_vote
-          setBooks(books.map((book)=>{
-            if (book.id===user.current_vote){
-              return data[1]
-            }
-            else if (book.id===parseInt(event.target.value)){
-              return data[0]
-            }
-            else{
-              return book
-            }
-          }))
-          setUser(data[2])
-        }
-
-       function handleFinishBook(data){
+      //if user.current_vote==event.target.value
+        //=====> do nothing
+      //if user.current_vote doesn't exist
+        //add vote and change user vote to event.target.value
+      //else (user already has vote for something else)
+        //patch new vote, patch old vote away, change user.current_vote
         setBooks(books.map((book)=>{
-          if (book.id===data[0].id){
-            return data[0]
-          }
-          else if (book.id===data[1].id){
+          if (book.id===user.current_vote){
             return data[1]
+          }
+          else if (book.id===parseInt(event.target.value)){
+            return data[0]
           }
           else{
             return book
           }
-        }))
-       
-        setUser(data[2])
-       }
-
-        function handleDeleteReview(event){
-         setBooks(books.map((book)=>{
-              if (book.id==event.target.value){
-                return {...book,reviews:book.reviews.filter((review)=>review.id!=event.target.id)}
-                
-              }
-              else{
-                return book
-              }
-            }))
-        }
-
-        function handleEditReview(reviewedBook){
-          setBooks(books.map((book)=>{
-              return {...book,reviews:book.reviews.map((review)=>(review.id===reviewedBook.id ? reviewedBook : review))}
           }))
-        }
-
-        function handleReview(update){
-          setBooks(books.map((book)=>(book.id===update.id ? update : book)))
-
-          console.log(update)
-        }
-
-      function onLogout(){
-        fetch('/logout',{method:"DELETE"}).then((r)=>{
-          if (r.ok){
-            setUser(null)
-          }
-        })
+          setUser(data[2])
       }
-    
-    
 
-    function handleClick(event){
-      history.push(`/books/${event.target.alt}`)
+    function handleFinishBook(data){
+      setBooks(books.map((book)=>{
+        if (book.id===data[0].id){
+          return data[0]
+        }
+        else if (book.id===data[1].id){
+          return data[1]
+        }
+        else{
+          return book
+        }
+        }))
+      setUser(data[2])
     }
+
+    function handleDeleteReview(event){
+      setBooks(books.map((book)=>{
+          if (book.id==event.target.value){
+            return {...book,reviews:book.reviews.filter((review)=>review.id!=event.target.id)}
+          }
+          else{
+            return book
+          }
+          }))
+    }
+
+    function handleEditReview(reviewedBook){
+      setBooks(books.map((book)=>{
+          return {...book,reviews:book.reviews.map((review)=>(review.id===reviewedBook.id ? reviewedBook : review))}
+      }))
+    }
+
+    function handleReview(update){
+      setBooks(books.map((book)=>(book.id===update.id ? update : book)))
+    }
+
+  function onLogout(){
+    fetch('/logout',{method:"DELETE"}).then((r)=>{
+      if (r.ok){
+        setUser(null)
+      }
+    })
+  }
+    
+  function handleClick(event){
+    history.push(`/books/${event.target.alt}`)
+  }
 
       
   
     
     
   return <div>
-   {isLoading? <h3>Loading...</h3>:
-  <div>
-    <NavBar name={user.name} onLogout={onLogout}/>
-    <Switch>
-      <Route exact path="/voting">
-        <Voting user={user.current_vote} userId={user.id} isLoading={isLoading} userBook={user.book_for_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} handleVoteButton={handleVoteButton}/>
-      </Route>
-      <Route exact path="/members">
-        <Members/>
-      </Route>
-      <Route exact path="/login">
-        <Login onLogin={setUser}/>
-      </Route>
-      <Route exact path="/books/:title">
-        <DisplayBook books={books} handleDeleteReview={handleDeleteReview} handleEditReview={handleEditReview} user={user.id} handleReview={handleReview}/>
-      </Route>
-      <Route exact path="/current-book">
-        <CurrentBook books={books} handleFinishBook={handleFinishBook} user={user.id} handleReview={handleReview} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/>
-      </Route>
-      <Route path="/">
-        <Home books={books} handleClick={handleClick}/>
-      </Route>
-    </Switch>
-    
-  </div>}
+    {isLoading? <h3>Loading...</h3>:
+      <div>
+        <NavBar name={user.name} onLogout={onLogout}/>
+        <Switch>
+          <Route exact path="/voting">
+            <Voting user={user.current_vote} userId={user.id} isLoading={isLoading} userBook={user.book_for_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} handleVoteButton={handleVoteButton}/>
+          </Route>
+          <Route exact path="/members">
+            <Members/>
+          </Route>
+          <Route exact path="/login">
+            <Login onLogin={setUser}/>
+          </Route>
+          <Route exact path="/books/:title">
+            <DisplayBook books={books} handleDeleteReview={handleDeleteReview} handleEditReview={handleEditReview} user={user.id} handleReview={handleReview}/>
+          </Route>
+          <Route exact path="/current-book">
+            <CurrentBook books={books} handleFinishBook={handleFinishBook} user={user.id} handleReview={handleReview} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/>
+          </Route>
+          <Route path="/">
+            <Home books={books} handleClick={handleClick}/>
+          </Route>
+        </Switch>
+        
+      </div>
+    }
   </div>
   
+
 }
 
 export default App;
