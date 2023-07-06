@@ -96,7 +96,7 @@
   .Review{
     position:relative;
     display:grid;
-    grid-template-columns: 1fr 7fr;
+    grid-template-columns: 1fr 5fr;
     grid-gap:10px;
     border:1px solid black;
     margin-top:50px;
@@ -118,6 +118,7 @@
   
   .ReviewBody{
     margin-top:5%;
+    width:90%;
     word-wrap: break-word;
   }
   

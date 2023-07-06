@@ -129,7 +129,6 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
 
     function returnToVoting(){
         setShowBook(!showBook)
-        window.scrollTo(10, document.body.scrollHeight)
     }
 
 
