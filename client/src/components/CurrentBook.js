@@ -33,7 +33,6 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
           },
           body:JSON.stringify({
             finishedBook:parseInt(event.target.value),
-            book_owner:user
           })
         })
         .then(r=>{
@@ -58,7 +57,7 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
     return <div>
                 <div className="BookDisplay">
                     <div className="BookPicture">
-                        <img src={currentBook.thumbnail} className="PictureDisplay"></img>
+                        <img src={currentBook.thumbnail} alt={currentBook.thumbnail} className="PictureDisplay"></img>
                     </div>
                     <div className="BookInfo">
                         <h1>{currentBook.title}</h1>
@@ -68,17 +67,17 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
                     
                         {currentBook.reviews ? <ReviewContainer book={currentBook} user={user} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
                 </div>
-                <div className="ReturnButton">
+                <div className="CurrentBookButtons">
                     
                                 
                             <div>
                                 {review?
                                 <ReviewForm book={currentBook} user={user} writeReview={writeReview}/> :
                                 <div>
-                                    {writeReviewButton ? <button onClick={writeReview} className="loginOption">Write a review</button> : null}
+                                    {writeReviewButton ? <button onClick={writeReview} className="currentBookOption">Write a review</button> : null}
                                 </div>
                                 }
-                                <button onClick={onFinishBook} className="loginOption" value={currentBook?currentBook.id:"0"}>{isLoading ? "Loading..." : "Begin Next Book"}</button>                           
+                                <button onClick={onFinishBook} className="currentBookOption" value={currentBook?currentBook.id:"0"}>{isLoading ? "Loading..." : "Begin Next Book"}</button>                           
                             </div>
                             {errors.map((error=>(
                                     <error className="error" key={error}>{error}</error>
@@ -89,33 +88,3 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
 
 export default CurrentBook
 
-
-{/* <div>
-                <div className="BookDisplay">
-                    <div className="BookPicture">
-                        <img src={book.thumbnail} className="PictureDisplay"></img>
-                    </div>
-                    <div className="BookInfo">
-                        <h1>{book.title}</h1>
-                        <h4>By {book.author}</h4>
-                        <font size="4" className="description">{book.description}</font>
-                    </div>
-                    
-                        {book.reviews ? <ReviewContainer book={book} user={user} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
-                </div>
-                <div className="ReturnButton">
-                    {book.votes >=0 ? 
-                        null:
-                            <div className="loginScreen">
-                                <button onClick={returnToVoting} className="loginButton">Return</button>
-                                <button onClick={bookForVote} className="loginButton">Put up for vote</button>
-                            </div>}
-                                {book.id && book.finished?
-                            <div>
-                                {review?
-                                <ReviewForm book={book} user={user} writeReview={writeReview}/> :
-                                <button onClick={writeReview}>Write a review</button>
-                                }
-                            </div> : null}
-                </div>
-        </div> */}

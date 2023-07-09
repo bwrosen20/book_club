@@ -23,6 +23,7 @@ function App() {
         .then(data=>{
           setBooks(data)
         })
+
        
         fetch(`/me`)
         .then(r=>{
@@ -45,11 +46,13 @@ function App() {
       console.log(data)
       if (data.length>1){
         setBooks([...books,data[0]])
+        console.log(data[1])
         setUser(data[1])
         }
       else{
         setBooks(books.map((book)=>(book.id===data.id ? data : book)))
       }
+      
     }
 
     function handleVoteButton(data,event){
@@ -86,13 +89,15 @@ function App() {
           return book
         }
         }))
-      setUser(data[2])
+        if (user.id===data[2].id){
+          setUser(data[2])
+        }
     }
 
     function handleDeleteReview(event){
       setBooks(books.map((book)=>{
-          if (book.id==event.target.value){
-            return {...book,reviews:book.reviews.filter((review)=>review.id!=event.target.id)}
+          if (book.id===parseInt(event.target.value)){
+            return {...book,reviews:book.reviews.filter((review)=>review.id!==parseInt(event.target.id))}
           }
           else{
             return book
@@ -129,7 +134,6 @@ function App() {
     
   }
       
-  
     
     
   return <div>

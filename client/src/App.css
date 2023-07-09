@@ -121,6 +121,11 @@
     width:90%;
     word-wrap: break-word;
   }
+
+  .smallerReviewBody{
+    width:70%;
+    margin-left:10%;
+  }
   
   .login{
     position:absolute;
@@ -149,15 +154,26 @@
     width:100%;
     margin-top:10px;
   }
+
+  .passwordOption{
+    width:100%;
+    margin-top:10px;
+    position:relative;
+  }
+
+  .currentBookOption{
+    width:60%;
+    margin-top:10px;
+  }
   
   .ReviewOption{
-    width:55%;
+    width:100%;
     margin-top:10px;
     margin:auto;
   }
   
   .ReviewButton{
-    width:55%;
+    width:80%;
     margin:auto;
   }
   
@@ -168,12 +184,20 @@
   }
   
   .ReturnButton{
-   width:30%;
+   width:80%;
    margin:auto;
    margin-top:30px;
    margin-bottom:20px;
    text-align:center;
   }
+
+  .CurrentBookButtons{
+    width:100%;
+    margin:auto;
+    margin-top:30px;
+    margin-bottom:20px;
+    text-align:center;
+    }
   
   .description{
     text-align:left;
@@ -213,6 +237,26 @@
     text-align:center;
     width:100%;
     margin:auto;
+  }
+
+  .profileImage{
+    text-align:left;
+  }
+
+  .heading{
+    text-align:center;
+    margin:auto;
+    margin-bottom:50px;
+  }
+
+  #togglePassword{
+    position:absolute;
+    right:0px;
+    top:44px;
+  }
+
+  .loginForm{
+    position:relative;
   }
   
   
@@ -338,8 +382,12 @@
     }
 
     .ReviewBody{
-      margin-top:5%;
       word-wrap: break-word;
+    }
+
+    .smallerReviewBody{
+      width:70%;
+      margin-left:10%;
     }
 
     .login{
@@ -360,23 +408,28 @@
     .loginScreen{
       margin:auto;
       text-align:center;
-      width:60%;
-      padding:20px;
+      width:40%;
     }
 
     .loginOption, .loginButton, .signupOption, .signupButton{
-      width:55%;
+      width:100%;
       margin-top:10px;
     }
 
+    .passwordOption{
+      width:100%;
+      margin-top:10px;
+      position:relative;
+    }
+
     .ReviewOption{
-      width:55%;
+      width:100%;
       margin-top:10px;
       margin:auto;
     }
 
     .ReviewButton{
-      width:55%;
+      width:100%;
       margin:auto;
     }
 
@@ -387,7 +440,15 @@
     }
 
     .ReturnButton{
-    width:30%;
+    width:50%;
+    margin:auto;
+    margin-top:30px;
+    margin-bottom:20px;
+    text-align:center;
+    }
+
+  .CurrentBookButtons{
+    width:20%;
     margin:auto;
     margin-top:30px;
     margin-bottom:20px;
@@ -432,6 +493,27 @@
       text-align:center;
       width:60%;
       margin:auto;
+    }
+
+    .profileImage{
+      width:60%;
+      text-align:left;
+    }
+
+    .heading{
+      text-align:center;
+      margin:auto;
+      margin-bottom:50px;
+    }
+
+    #togglePassword{
+      position:absolute;
+      right:0px;
+      top:42px;
+    }
+
+    .loginForm{
+      position:relative;
     }
 
     }

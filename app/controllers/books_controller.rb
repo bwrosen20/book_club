@@ -5,7 +5,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
         books = Book.all.order(:created_at)
-        render json: books
+        render json: books, include: ['reviews', 'reviews.user']
     end
 
     def create
@@ -14,7 +14,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         user=User.find(params[:user_id])
         user.update!({book_for_vote:book.id})
 
-        render json: [book,user], status: :created
+        render json: ([book,user]), status: :created
     end
 
     def destroy
@@ -57,7 +57,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
                 book.update!({finished:true,current_book:false})
             end
         
-                user = User.find_by(id:params[:book_owner])
+                user = User.find_by({book_for_vote:next_book.id})
                 user.update!({book_for_vote:0})
 
                 next_book.update!({current_book:true})
@@ -72,7 +72,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     def review
         book = Book.find(params[:book_id])
         book.reviews.create!(review_params)
-        render json: book
+        render json: book, include: ['reviews','reviews.user']
     end
 
     def editReview

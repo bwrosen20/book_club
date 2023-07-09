@@ -28,11 +28,20 @@ function Login({onLogin}){
     });
   }
 
+  function togglePassword(){
+
+    const password = document.querySelector('#id_password')
+
+    const type = password.getAttribute('type')=== 'password' ? 'text' : 'password'
+
+    password.setAttribute('type',type)
+  }
+
   return (<div className="loginScreen">
         <div><h1>Welcome To Brian's Book Club!</h1></div>
     {showSignup ?
     <Signup onLogin={onLogin}/>:
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="loginForm">
         <input
           type="text"
           id="username"
@@ -44,12 +53,18 @@ function Login({onLogin}){
         />
         <input
           type="password"
-          id="password"
+          id="id_password"
+          name="password"
           placeholder="Password"
           autoComplete="current-password"
-          className="loginOption"
+          className="passwordOption"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+        />
+        <i
+          className="far fa-eye"
+          id="togglePassword"
+          onClick={togglePassword}
         />
             <button className="loginButton">
           {isLoading ? "Loading..." : "Login"}

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: :create
+    skip_before_action :authorized, only: [:create, :index]
     def index
         users = User.all
         render json: users
@@ -21,12 +21,7 @@ class UsersController < ApplicationController
         render json: user
     end
 
-    def finish
-        user = User.find_by(id:params[:book_owner])
-        user.update!({book_for_vote:0})
-        render json: user
-    end
-    
+   
     def show
         current_user = User.find(session[:user_id])
         render json: current_user, status: :ok
@@ -40,7 +35,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:name, :password, :password_confirmation, :image_url, :favorite_book, :bio, :current_vote)
+        params.permit(:name, :password, :password_confirmation,  :favorite_book, :bio, :current_vote, :profile_image,)
     end
 
     def update_params

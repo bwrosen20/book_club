@@ -34,14 +34,14 @@ function Review({review, handleDeleteReview, user, book, handleEditReview}){
                 <div>
                 <div className="Review">
                     <div className="User">
-                        <img src={review.user.image_url} className="UserPicture"></img>
+                        <img src={review.user.profile_image} alt={review.user.profile_image} className="UserPicture"></img>
                         <h3>{review.user.name}</h3>
                     </div>
                     <div className="ReviewBody">
                         <font size="7">{review.rating.toFixed(1)}</font>
                         <p>{review.body}</p>
                     </div>
-                    {user==review.user.id ? <button className="delete" onClick={onDeleteReview} value={book.id} id={review.id}>X</button> : null}
+                    {user===review.user.id ? <button className="delete" onClick={onDeleteReview} value={book.id} id={review.id}>X</button> : null}
                     
                 </div>
                 {user===review.user.id ? <button className="EditReview" onClick={onEditReviewClick}>Edit Review</button> : null}

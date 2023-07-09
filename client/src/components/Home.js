@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Filters from './Filters'
 
-function Home({books, handleClick, handleChange}){
+function Home({books, handleClick}){
 
 
   const [filterData,setFilterData]=useState({
@@ -58,6 +58,7 @@ function Home({books, handleClick, handleChange}){
     return (
       <div>
         <Filters filterData={filterData} handleChange={handleChange}/>
+        <h2 className="heading">Books that the club has finished</h2>
       <div className="bookContainer">
         {booksToDisplay.map((book)=>(
           <div className="bookPreview" key={book.title}>

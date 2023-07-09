@@ -23,7 +23,7 @@ function Members(){
                 {users.map((user)=>(
                     <div className="Review" key={user.name}>
                     <div className="User">
-                        <img src={user.image_url} className="UserPicture"></img>
+                        <img src={user.profile_image} alt={user.profile_image} className="UserPicture"></img>
                         <h3>{user.name}</h3>
                     </div>
                     <div className="ReviewBody">

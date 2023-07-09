@@ -57,7 +57,7 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
     function bookForVote(){
     setIsLoading(true)
     setShowBook(!showBook)
-    if (userBook>0){
+    if (userBook){
       fetch(`/books/${userBook}`,{
         method:"PATCH",
         headers:{
@@ -138,6 +138,7 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
         {showBook ?
             <div>
                     <h1>Vote for the next book!</h1>
+                    <h3 className="heading">Scroll down to nominate a book</h3>
                     <div className="bookContainer">
                             {voteBooks.map((book)=>(
                                 <div className="bookPreview">

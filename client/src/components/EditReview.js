@@ -42,10 +42,10 @@ function EditReview({review,onEditReview}){
     return <div>
          <div className="Review">
                     <div className="User">
-                        <img src={review.user.image_url} className="UserPicture"></img>
+                        <img src={review.user.profile_image} alt={review.user.profile_image} className="UserPicture"></img>
                         <h3>{review.user.name}</h3>
                     </div>
-                    <div className="ReviewBody">
+                    <div className="smallerReviewBody">
                         <form onSubmit={onFormSubmit}>
                             <input 
                             name="rating"

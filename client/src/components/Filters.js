@@ -23,7 +23,7 @@ function Filters({filterData,handleChange}){
             className="filterInput"
             value={filterData.filter}
             onChange={handleChange}>
-                <option>Choose Option</option>
+                <option defaultValue disabled>Sort By</option>
                 <option>Title</option>
                 <option>Author</option>
                 <option>Rating</option>

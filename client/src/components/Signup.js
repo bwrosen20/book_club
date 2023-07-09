@@ -4,30 +4,30 @@ function Signup({ onLogin }) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
   const [favoriteBook,setFavoriteBook]=useState("")
   const [bio, setBio] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log()
+
   function handleSubmit(e) {
     e.preventDefault();
+    console.log(profileImage)
     setErrors([]);
+    const formData= new FormData()
+    formData.append('name',name)
+    formData.append('password',password)
+    formData.append('password_confirmation',passwordConfirmation)
+    formData.append('profile_image',profileImage)
+    formData.append('favorite_book',favoriteBook)
+    formData.append('bio',bio)
+    formData.append('current_vote',0)
     setIsLoading(true);
     fetch("/signup", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        password,
-        password_confirmation: passwordConfirmation,
-        image_url: imageUrl,
-        favorite_book:favoriteBook,
-        bio,
-        current_vote:0
-      }),
+      body: formData,
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
@@ -71,14 +71,6 @@ function Signup({ onLogin }) {
         />
         <input
           type="text"
-          id="imageUrl"
-          placeholder="Profile Image"
-          className="signupOption"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
-        <input
-          type="text"
           id="favoriteBook"
           placeholder="FavoriteBook"
           className="signupOption"
@@ -93,6 +85,17 @@ function Signup({ onLogin }) {
           value={bio}
           onChange={(e) => setBio(e.target.value)}
         />
+        <br/>
+        <h4 className="profileImage">Profile Image</h4>
+        <input
+          type="file"
+          id="profileImage"
+          accept="image/*"
+          className="signupOption"
+          onChange={(e) => setProfileImage(e.target.files[0])}
+        />
+        <br/>
+        <br/>
         <button type="submit" className="signupButton">{isLoading ? "Loading..." : "Sign Up"}</button>
         {errors.map((err) => (
           <h4 key={err}>{err}</h4>

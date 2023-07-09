@@ -31,7 +31,7 @@ function DisplayBook({books, returnToVoting, bookForVote, user, handleReview, ha
     return <div>
                 <div className="BookDisplay">
                     <div className="BookPicture">
-                        <img src={book.thumbnail} className="PictureDisplay"></img>
+                        <img src={book.thumbnail} alt={book.thumbnail }className="PictureDisplay"></img>
                     </div>
                     <div className="BookInfo">
                         <h1>{book.title}</h1>
