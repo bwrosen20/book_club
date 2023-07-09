@@ -34,6 +34,7 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
     }
 
     function onVoteButton(event){
+      if (!isLoading){
         setIsLoading(true)
           fetch('/books/vote',{
             method:"PATCH",
@@ -52,6 +53,7 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
               setIsLoading(false)
               
             })
+          }
     }
 
     function bookForVote(){
