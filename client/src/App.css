@@ -256,7 +256,7 @@
   #togglePassword{
     position:absolute;
     right:0px;
-    top:44px;
+    top:12px;
   }
 
   .loginForm{
@@ -513,7 +513,7 @@
     #togglePassword{
       position:absolute;
       right:0px;
-      top:42px;
+      top:12px;
     }
 
     .loginForm{

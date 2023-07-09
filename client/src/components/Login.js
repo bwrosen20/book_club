@@ -41,7 +41,7 @@ function Login({onLogin}){
         <div><h1>Welcome To Brian's Book Club!</h1></div>
     {showSignup ?
     <Signup onLogin={onLogin}/>:
-    <form onSubmit={handleSubmit} className="loginForm">
+    <form onSubmit={handleSubmit}>
         <input
           type="text"
           id="username"
@@ -51,6 +51,7 @@ function Login({onLogin}){
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        <div className="loginForm">
         <input
           type="password"
           id="id_password"
@@ -66,6 +67,7 @@ function Login({onLogin}){
           id="togglePassword"
           onClick={togglePassword}
         />
+        </div>
             <button className="loginButton">
           {isLoading ? "Loading..." : "Login"}
         </button>
