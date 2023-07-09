@@ -122,6 +122,10 @@
     word-wrap: break-word;
   }
 
+  .reviewParagraph{
+    text-align:left;
+  }
+
   .smallerReviewBody{
     width:70%;
     margin-left:10%;

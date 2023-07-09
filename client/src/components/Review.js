@@ -39,7 +39,7 @@ function Review({review, handleDeleteReview, user, book, handleEditReview}){
                     </div>
                     <div className="ReviewBody">
                         <font size="7">{review.rating.toFixed(1)}</font>
-                        <p>{review.body}</p>
+                        <p className="reviewParagraph">{review.body}</p>
                     </div>
                     {user===review.user.id ? <button className="delete" onClick={onDeleteReview} value={book.id} id={review.id}>X</button> : null}
                     
