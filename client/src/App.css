@@ -374,9 +374,11 @@
     }
 
     .User{
-      margin-left:25px;
-      margin-top:20px;
+      margin-left:auto;
+      margin-top:auto;
       text-align:center;
+      padding-top:20px;
+      padding-left:20px;
     }
 
     .UserPicture{
