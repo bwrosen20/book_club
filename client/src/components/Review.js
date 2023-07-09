@@ -34,7 +34,7 @@ function Review({review, handleDeleteReview, user, book, handleEditReview}){
                 <div>
                 <div className="Review">
                     <div className="User">
-                        <img src={review.user.profile_image} alt={review.user.profile_image} className="UserPicture"></img>
+                        <img src={review.user.profile_image} alt={review.user.name} className="UserPicture"></img>
                         <h3>{review.user.name}</h3>
                     </div>
                     <div className="ReviewBody">
