@@ -145,7 +145,7 @@ function Voting({books, handleClick, handlePutBookForVote, handleVoteButton}){
                     <h3 className="heading">Scroll down to nominate a book</h3>
                     <div className="bookContainer">
                             {voteBooks.map((book)=>(
-                                <div className="bookPreview">
+                                <div className="bookPreview" key={book.title}>
                                     <img src={book.thumbnail} className="homeImg" onClick={handleClick} alt={book.title}></img>
                                     <h3>Votes:{book.votes}</h3>
                                     {((user.current_vote===book.id)||(user.book_for_vote===book.id)) ? null : <button onClick={onVoteButton} value={book.id}>Vote</button>

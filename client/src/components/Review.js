@@ -7,9 +7,15 @@ function Review({review, handleDeleteReview, book, handleEditReview}){
     const user = useContext(UserContext)
     const [showEditReview, setShowEditReview]=useState(false)
 
+    const myStyle={
+        textAlign:"left"
+    }
+
     function onEditReviewClick(){
         setShowEditReview(!showEditReview)
     }
+
+    
 
     function onDeleteReview(event){
         fetch(`/reviews/${review.id}`,{
@@ -41,7 +47,7 @@ function Review({review, handleDeleteReview, book, handleEditReview}){
                     </div>
                     <div className="ReviewBody">
                         <font size="7">{review.rating.toFixed(1)}</font>
-                        <p className="reviewParagraph">{review.body}</p>
+                        <p style={myStyle}>{review.body}</p>
                     </div>
                     {user.id===review.user.id ? <button className="delete" onClick={onDeleteReview} value={book.id} id={review.id}>X</button> : null}
                     

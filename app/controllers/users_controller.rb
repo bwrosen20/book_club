@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :index]
+    skip_before_action :authorized, only: :create
     def index
         users = User.all
         render json: users
@@ -24,9 +24,7 @@ class UsersController < ApplicationController
    
     def show
         current_user = User.find(session[:user_id])
-        render json: current_user, status: :ok
-    rescue ActiveRecord::RecordNotFound
-        render json: {error: "Please signup or login"}, status: :unauthorized
+        render json: current_user
     end
 
     

@@ -148,7 +148,7 @@ function App() {
             <Voting isLoading={isLoading} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} handleVoteButton={handleVoteButton}/>
           </Route>
           <Route exact path="/members">
-            <Members/>
+            <Members handleClick={handleClick}/>
           </Route>
           <Route exact path="/login">
             <Login onLogin={handleLogin}/>
