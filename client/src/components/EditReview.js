@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import {UserContext} from "./App"
 
 function EditReview({review,onEditReview}){
 
+    const user = useContext(UserContext)
     const [formData,setFormData]=useState({
         body:review.body,
         rating:review.rating
@@ -17,13 +19,13 @@ function EditReview({review,onEditReview}){
         setIsLoading(true)
         event.preventDefault()
 
-        fetch('/books/editReview',{
+        fetch(`/reviews/${review.id}`,{
             method:"PATCH",
             headers:{
                 "Content-type":"application/json"
             },
             body:JSON.stringify({...formData,
-            review_id:review.id})
+            user_id:user.id})
         })
         .then(r=>{
             

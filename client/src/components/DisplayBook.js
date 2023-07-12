@@ -14,7 +14,6 @@ function DisplayBook({books, returnToVoting, bookForVote, handleReview, handleDe
 
 
     useEffect(()=>{
-        document.getElementById('BookDisplay').scrollIntoView();
        setWriteReviewButton(true)
         if (book.reviews){
              book.reviews.forEach((review)=>{

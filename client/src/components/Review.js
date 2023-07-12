@@ -12,14 +12,14 @@ function Review({review, handleDeleteReview, book, handleEditReview}){
     }
 
     function onDeleteReview(event){
-        fetch('/books/deleteReview',{
+        fetch(`/reviews/${review.id}`,{
             method:"DELETE",
             headers:{
               "Content-type":"application/json"
             },
             body:JSON.stringify({
               book_id:parseInt(event.target.value),
-              review_id:parseInt(event.target.id)
+              user_id:user.id
             })
           
           })

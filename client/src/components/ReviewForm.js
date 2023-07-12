@@ -12,7 +12,7 @@ function ReviewForm({book, writeReview}){
 
     function onReviewSubmit(event){
         event.preventDefault()
-        fetch(`/books/review`,{
+        fetch(`/reviews`,{
             method:"POST",
             headers:{
                 "Content-type":"application/json"
