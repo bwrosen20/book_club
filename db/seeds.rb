@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# puts"Seeding Books and such"
+puts"Seeding Books and such"
 
 
-# User.destroy_all
-# Book.destroy_all
+User.destroy_all
+Book.destroy_all
 
 
 
@@ -52,7 +52,7 @@
 # Review.create(user_id:User.third.id,book_id:Book.second.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
 # Review.create(user_id:User.third.id,book_id:Book.third.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
 
-# puts"Done Seeding. Thanks for listening"
+puts"Done Seeding. Thanks for listening"
 
 #models I need
     #users
