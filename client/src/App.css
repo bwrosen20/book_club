@@ -119,6 +119,7 @@
     width:100px;
     height:100px;
     cursor:default;
+    border-radius:10px;
   }
   
   .ReviewBody{
@@ -394,6 +395,7 @@
       width:100px;
       height:100px;
       cursor:default;
+      border-radius:10px;
     }
 
     .ReviewBody{

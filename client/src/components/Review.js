@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import {UserContext} from './App'
 import EditReview from './EditReview'
 
-function Review({review, handleDeleteReview, user, book, handleEditReview}){
+function Review({review, handleDeleteReview, book, handleEditReview}){
 
+    const user = useContext(UserContext)
     const [showEditReview, setShowEditReview]=useState(false)
 
     function onEditReviewClick(){
@@ -41,10 +43,10 @@ function Review({review, handleDeleteReview, user, book, handleEditReview}){
                         <font size="7">{review.rating.toFixed(1)}</font>
                         <p className="reviewParagraph">{review.body}</p>
                     </div>
-                    {user===review.user.id ? <button className="delete" onClick={onDeleteReview} value={book.id} id={review.id}>X</button> : null}
+                    {user.id===review.user.id ? <button className="delete" onClick={onDeleteReview} value={book.id} id={review.id}>X</button> : null}
                     
                 </div>
-                {user===review.user.id ? <button className="EditReview" onClick={onEditReviewClick}>Edit Review</button> : null}
+                {user.id===review.user.id ? <button className="EditReview" onClick={onEditReviewClick}>Edit Review</button> : null}
                 </div>}
                 </div>
     

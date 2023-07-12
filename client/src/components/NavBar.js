@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {UserContext} from './App'
 
-function NavBar({name, onNavClick}){
+function NavBar({onNavClick}){
+
+    const user = useContext(UserContext)
 
     return <div className="Navbar">
             <select className="login" onChange={onNavClick}>
@@ -24,7 +27,7 @@ function NavBar({name, onNavClick}){
                 value="logout"
                 >Logout</option>
             </select>
-        <p className="welcome">Welcome {name}!</p>
+        <p className="welcome">Welcome {user.name}!</p>
     </div>
 }
 

@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import {UserContext} from './App'
 import ReviewContainer from './ReviewContainer'
 import ReviewForm from './ReviewForm'
 import {useParams} from 'react-router-dom'
 
-function DisplayBook({books, returnToVoting, bookForVote, user, handleReview, handleDeleteReview, handleEditReview}){
+function DisplayBook({books, returnToVoting, bookForVote, handleReview, handleDeleteReview, handleEditReview}){
 
+    const user = useContext(UserContext)
     const {title}=useParams()
     const [review,setReview]=useState(false)
     const book = (books.length ? books.find((e)=>title===e.title) : books)
@@ -12,10 +14,11 @@ function DisplayBook({books, returnToVoting, bookForVote, user, handleReview, ha
 
 
     useEffect(()=>{
+        document.getElementById('BookDisplay').scrollIntoView();
        setWriteReviewButton(true)
         if (book.reviews){
              book.reviews.forEach((review)=>{
-            if (user===review.user.id){
+            if (user.id===review.user.id){
                 setWriteReviewButton(false)
             }
 
@@ -29,7 +32,7 @@ function DisplayBook({books, returnToVoting, bookForVote, user, handleReview, ha
     }
 
     return <div>
-                <div className="BookDisplay">
+                <div className="BookDisplay" id="BookDisplay">
                     <div className="BookPicture">
                         <img src={book.thumbnail} alt={book.thumbnail }className="PictureDisplay"></img>
                     </div>
@@ -39,7 +42,7 @@ function DisplayBook({books, returnToVoting, bookForVote, user, handleReview, ha
                         <font size="4" className="description">{book.description}</font>
                     </div>
                     
-                        {book.reviews ? <ReviewContainer book={book} user={user} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
+                        {book.reviews ? <ReviewContainer book={book} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
                 </div>
                 <div className="ReturnButton">
                     {book.votes >=0 ? 
@@ -51,7 +54,7 @@ function DisplayBook({books, returnToVoting, bookForVote, user, handleReview, ha
                                 {book.id && book.finished?
                             <div>
                                 {review?
-                                <ReviewForm book={book} user={user} writeReview={writeReview}/> :
+                                <ReviewForm book={book} writeReview={writeReview}/> :
                                
                                <div>
                                 {writeReviewButton ?

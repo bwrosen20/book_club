@@ -65,14 +65,14 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
                         <font size="4" className="description">{currentBook.description}</font>
                     </div>
                     
-                        {currentBook.reviews ? <ReviewContainer book={currentBook} user={user} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
+                        {currentBook.reviews ? <ReviewContainer book={currentBook} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
                 </div>
                 <div className="CurrentBookButtons">
                     
                                 
                             <div>
                                 {review?
-                                <ReviewForm book={currentBook} user={user} writeReview={writeReview}/> :
+                                <ReviewForm book={currentBook} writeReview={writeReview}/> :
                                 <div>
                                     {writeReviewButton ? <button onClick={writeReview} className="currentBookOption">Write a review</button> : null}
                                 </div>

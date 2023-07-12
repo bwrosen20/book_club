@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import {UserContext} from './App'
 
-function ReviewForm({book, user, writeReview}){
+function ReviewForm({book, writeReview}){
 
+    const user = useContext(UserContext)
     const [formData,setFormData]=useState({
         rating:"",
         body:""
@@ -18,7 +20,7 @@ function ReviewForm({book, user, writeReview}){
             body:JSON.stringify({
                 ...formData,
                 book_id:book.id,
-                user_id:user
+                user_id:user.id
             })
         })
         .then(r=> {

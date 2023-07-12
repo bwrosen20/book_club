@@ -9,6 +9,8 @@ import CurrentBook from './CurrentBook'
 import Login from './Login'
 import {Route,Switch, useHistory} from 'react-router-dom'
 
+export const UserContext = React.createContext()
+
 function App() {
 
   const [books,setBooks]=useState([])
@@ -35,7 +37,7 @@ function App() {
         setIsLoading(false)
       },[])
 
-  if (!user) return <Login onLogin={handleLogin}/>
+
 
     function handleLogin(user){
       setUser(user)
@@ -134,15 +136,16 @@ function App() {
     
   }
       
-    
+  if (!user) return <Login onLogin={handleLogin}/>
     
   return <div>
     {isLoading? <h3>Loading...</h3>:
       <div>
-        <NavBar name={user.name} onNavClick={onNavClick}/>
+        <UserContext.Provider value={user}>
+        <NavBar onNavClick={onNavClick}/>
         <Switch>
           <Route exact path="/voting">
-            <Voting user={user.current_vote} userId={user.id} isLoading={isLoading} userBook={user.book_for_vote} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} handleVoteButton={handleVoteButton}/>
+            <Voting isLoading={isLoading} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} handleVoteButton={handleVoteButton}/>
           </Route>
           <Route exact path="/members">
             <Members/>
@@ -151,7 +154,7 @@ function App() {
             <Login onLogin={handleLogin}/>
           </Route>
           <Route exact path="/books/:title">
-            <DisplayBook books={books} handleDeleteReview={handleDeleteReview} handleEditReview={handleEditReview} user={user.id} handleReview={handleReview}/>
+            <DisplayBook books={books} handleDeleteReview={handleDeleteReview} handleEditReview={handleEditReview} handleReview={handleReview}/>
           </Route>
           <Route exact path="/current-book">
             <CurrentBook books={books} handleFinishBook={handleFinishBook} user={user.id} handleReview={handleReview} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/>
@@ -160,7 +163,7 @@ function App() {
             <Home books={books} handleClick={handleClick}/>
           </Route>
         </Switch>
-        
+        </UserContext.Provider>
       </div>
     }
   </div>

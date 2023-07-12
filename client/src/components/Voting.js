@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import {UserContext} from './App'
 import DisplayBook from './DisplayBook'
 
-function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote, handleVoteButton}){
+function Voting({books, handleClick, handlePutBookForVote, handleVoteButton}){
     
     const voteBooks=(books.filter((book)=>(!book.finished && !book.current_book)))
 
+    const user = useContext(UserContext)
     const [searchValue,setSearchValue]=useState("")
     const [isLoading,setIsLoading]=useState(false)
     const [newBooks,setNewBooks]=useState([])
@@ -43,8 +45,8 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
             },
             body:JSON.stringify({
               voteBook:parseInt(event.target.value),
-              currentBook:user,
-              user_id:userId
+              currentBook:user.current_vote,
+              user_id:user.id
             })
           })
             .then(r=>r.json())
@@ -59,8 +61,8 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
     function bookForVote(){
     setIsLoading(true)
     setShowBook(!showBook)
-    if (userBook){
-      fetch(`/books/${userBook}`,{
+    if (user.book_for_vote){
+      fetch(`/books/${user.book_for_vote}`,{
         method:"PATCH",
         headers:{
           "Content-type":"application/json"
@@ -88,7 +90,7 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
         votes:0,
         current_book:false,
         finished:false,
-        user_id:userId
+        user_id:user.id
       })
     })
     .then(r=>r.json())
@@ -146,7 +148,7 @@ function Voting({user,userBook, userId, books, handleClick, handlePutBookForVote
                                 <div className="bookPreview">
                                     <img src={book.thumbnail} className="homeImg" onClick={handleClick} alt={book.title}></img>
                                     <h3>Votes:{book.votes}</h3>
-                                    {((user===book.id)||(userBook===book.id)) ? null : <button onClick={onVoteButton} value={book.id}>Vote</button>
+                                    {((user.current_vote===book.id)||(user.book_for_vote===book.id)) ? null : <button onClick={onVoteButton} value={book.id}>Vote</button>
                                     }
                                 </div>
                             ))}

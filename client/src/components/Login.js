@@ -72,7 +72,7 @@ function Login({onLogin}){
           {isLoading ? "Loading..." : "Login"}
         </button>
         {errors.map((err) => (
-          <h4 key={err}>{err}</h4>
+          <h4 className="error" key={err}>{err}</h4>
         ))}
     </form>}
     <button className="loginButton" onClick={()=>setShowSignup(!showSignup)}>{showSignup ? "Back to Login" : "Signup"}</button>
