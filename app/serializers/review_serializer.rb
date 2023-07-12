@@ -1,6 +1,10 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :body, :rating
+  include Rails.application.routes.url_helpers
+  attributes :id, :body, :rating, :user
 
-  belongs_to :user
+  def user
+      {"profile_image" => (rails_blob_path(object.user.profile_image, only_path: true) if object.user.profile_image.attached?),
+        "name" => object.user.name}
+  end
 
 end

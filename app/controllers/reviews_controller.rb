@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
     def create
         book = Book.find(params[:book_id])
         book.reviews.create!(review_params)
-        render json: book, include: ['reviews','reviews.user']
+        render json: book
     end
 
     def update

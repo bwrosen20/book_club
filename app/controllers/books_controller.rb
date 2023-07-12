@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
     def index
         books = Book.all.order(:created_at)
-        render json: books, include: ['reviews', 'reviews.user']
+        render json: books
     end
 
     def create
@@ -77,6 +77,4 @@ class BooksController < ApplicationController
     end
     
     
-
-   
 end
