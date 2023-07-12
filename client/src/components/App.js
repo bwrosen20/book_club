@@ -81,6 +81,7 @@ function App() {
 
     function handleFinishBook(data){
       setBooks(books.map((book)=>{
+        console.log(data)
         if (book.id===data[0].id){
           return data[0]
         }
@@ -88,11 +89,11 @@ function App() {
           return data[1]
         }
         else{
-          return book
+          return {...book,votes:0}
         }
         }))
         if (user.id===data[2].id){
-          setUser(data[2])
+          setUser({...data[2],current_vote:0})
         }
     }
 

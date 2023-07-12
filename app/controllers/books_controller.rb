@@ -53,13 +53,18 @@ class BooksController < ApplicationController
         if next_book
             if params[:finishedBook]>0
                 book=Book.find(params[:finishedBook])
-                book.update!({finished:true,current_book:false})
+                book.update!({finished:true,current_book:false,votes:0})
             end
         
-                user = User.find_by({book_for_vote:next_book.id})
-                user.update!({book_for_vote:0})
+                User.update_all current_vote:0
+                Book.update_all votes:0
 
-                next_book.update!({current_book:true})
+                user = User.find_by({book_for_vote:next_book.id})
+                user.update!({book_for_vote:0,current_vote:0})
+
+                next_book.update!({current_book:true,votes:0})
+
+                
 
                 render json: ([book,next_book,user])
         else
