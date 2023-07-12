@@ -99,6 +99,7 @@
     grid-template-columns: 1fr 5fr;
     grid-gap:10px;
     border:1px solid black;
+    border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     margin-top:50px;
@@ -224,9 +225,10 @@
   
   .delete{
     position:absolute;
-    top:0;
-    right:0;
+    top:5px;
+    right:5px;
     background-color:rgba(255, 0, 0, 0.301);
+    border-radius:10px;
     cursor:pointer;
   }
   
@@ -372,6 +374,9 @@
       grid-template-columns: 1fr 7fr;
       grid-gap:10px;
       border:1px solid black;
+      border-radius: 25px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
       margin-top:50px;
       width:100%;
       height:auto;
@@ -482,9 +487,10 @@
 
     .delete{
       position:absolute;
-      top:0;
-      right:0;
+      top:5px;
+      right:5px;
       background-color:rgba(255, 0, 0, 0.301);
+      border-radius:25px;
       cursor:pointer;
     }
 
