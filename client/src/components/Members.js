@@ -1,9 +1,7 @@
-import React, {useEffect, useState, useContext} from 'react'
-import {UserContext} from './App'
+import React, {useEffect, useState} from 'react'
 
 function Members({handleClick}){
 
-    const user = useContext(UserContext)
     const [users,setUsers]=useState([])
     const [isLoading,setIsLoading]=useState(false)
 
