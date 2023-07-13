@@ -2,7 +2,7 @@ class User < ApplicationRecord
      has_secure_password
      has_many :reviews, dependent: :destroy
      has_many :books, through: :reviews
-     has_one_attached :profile_image
+     has_one_attached :profile_image, dependend: :destroy
 
      validates :name, presence: :true
      validate :acceptable_image
