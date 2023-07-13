@@ -42,15 +42,15 @@ stephen.profile_image.attach(io: File.open(Rails.root.join('db/images/stephenKin
 
 
 
-Review.create(user_id:User.first.id,book_id:Book.first.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
-Review.create(user_id:User.first.id,book_id:Book.second.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
-Review.create(user_id:User.first.id,book_id:Book.third.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
-Review.create(user_id:User.second.id,book_id:Book.first.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
-Review.create(user_id:User.second.id,book_id:Book.second.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
-Review.create(user_id:User.second.id,book_id:Book.third.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
-Review.create(user_id:User.third.id,book_id:Book.first.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
-Review.create(user_id:User.third.id,book_id:Book.second.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
-Review.create(user_id:User.third.id,book_id:Book.third.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
+# Review.create(user_id:User.first.id,book_id:Book.first.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
+# Review.create(user_id:User.first.id,book_id:Book.second.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
+# Review.create(user_id:User.first.id,book_id:Book.third.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
+# Review.create(user_id:User.second.id,book_id:Book.first.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
+# Review.create(user_id:User.second.id,book_id:Book.second.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
+# Review.create(user_id:User.second.id,book_id:Book.third.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
+# Review.create(user_id:User.third.id,book_id:Book.first.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
+# Review.create(user_id:User.third.id,book_id:Book.second.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
+# Review.create(user_id:User.third.id,book_id:Book.third.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
 
 puts"Done Seeding. Thanks for listening"
 
