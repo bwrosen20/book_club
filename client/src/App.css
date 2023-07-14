@@ -411,7 +411,7 @@
     .Review{
       position:relative;
       display:grid;
-      grid-template-columns: 1fr 7fr;
+      grid-template-columns: 1fr 5fr;
       grid-gap:10px;
       border:1px solid black;
       border-radius: 25px;
@@ -455,7 +455,9 @@
     }
 
     .ReviewBody{
+      width:80%;
       word-wrap: break-word;
+      margin:auto;
     }
 
     .smallerReviewBody{
