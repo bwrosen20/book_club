@@ -10,8 +10,8 @@ Upon signup or login, the user will be directed to the home page.
 The home page lists all books the club has already read and options to filter and sort through them.
 The user can also click on a book's thumbnail to see its information and reviews
 
-Inside the book's display page (using The Martian as an example) the user is able to write, delete or edit only their own review.
-<img width="944" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/1bb148e7-c1f5-40d0-b41b-536357bda274">
+Inside the book's display page (using Ready Player One as an example) the user is able to write, delete or edit only their own review.
+<img width="932" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/77a56a97-62b1-4a7d-9cfe-fdf64397d149">
 
 The voting screen has 2 features.
  1. The user can vote on books that other club members have nominated (if there is no vote button below a book it is either the user's own  nomination or the user has already used his vote on the book)
