@@ -34,11 +34,11 @@ class BooksController < ApplicationController
         book.update!({votes:higherVotes})
 
         if params[:currentBook]>0
-        currentBook = Book.find(params[:currentBook])
-        if currentBook.votes>0
-        lowerVotes=currentBook.votes-1
-        currentBook.update!({votes:lowerVotes})
-        end
+            currentBook = Book.find(params[:currentBook])
+            if currentBook.votes>0
+                lowerVotes=currentBook.votes-1
+                currentBook.update!({votes:lowerVotes})
+            end
         end
 
         user = User.find(params[:user_id])

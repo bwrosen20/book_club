@@ -9,6 +9,10 @@
     object-fit: cover;
     object-position:center;
   }
+
+  button, option{
+    cursor:pointer;
+  }
   
   h1{
     text-align:center;
@@ -29,6 +33,7 @@
     height:30px;
     width:50%;
     margin-bottom:40px;
+    cursor:pointer;
   }
   
   .navOption{
@@ -290,19 +295,16 @@
 
   .MemberBooksContainer{
     width:100%;
-    display: grid;
-    grid-gap: 5px;
-    overflow-x: auto;
-    grid-auto-flow: column;
-    margin-bottom:10px;
-    margin-left:10px;
-    margin:auto;
+    display:inline-block;
+    overflow-x:auto;
+    white-space:nowrap;
     
   }
 
   .MemberBook{
     width:80px;
     height:120px;
+    padding:10px;
     border-radius:20px;
     margin-bottom:10px;
   }
@@ -321,6 +323,10 @@
       cursor:pointer;
       object-fit: cover;
       object-position:center;
+    }
+
+    button, option{
+      cursor:pointer;
     }
 
     h1{
@@ -594,17 +600,16 @@
 
     .MemberBooksContainer{
       width:95%;
-      display: grid;
-      grid-gap: 5px;
-      overflow-x: auto;
-      grid-auto-flow: column;
-      margin-bottom:20px;
+      display:inline-block;
+      overflow-x:auto;
+      white-space:nowrap;
       
     }
 
     .MemberBook{
       width:80px;
       height:120px;
+      padding:10px;
       border-radius:20px;
     }
 
