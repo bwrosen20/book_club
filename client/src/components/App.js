@@ -158,7 +158,7 @@ function App() {
             <DisplayBook books={books} handleDeleteReview={handleDeleteReview} handleEditReview={handleEditReview} handleReview={handleReview}/>
           </Route>
           <Route exact path="/current-book">
-            <CurrentBook books={books} handleFinishBook={handleFinishBook} user={user.id} handleReview={handleReview} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/>
+            <CurrentBook books={books} handleFinishBook={handleFinishBook} handleReview={handleReview} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/>
           </Route>
           <Route path="/">
             <Home books={books} handleClick={handleClick}/>

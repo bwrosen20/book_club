@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   patch '/books/vote', to: 'books#vote'
   patch '/books/finish',to: 'books#finish'
   resources :reviews, only: [:create,:update,:destroy]
-  resources :books, only: [:index,:update,:create, :destroy]
+  resources :books, only: [:index, :create]
   
   
   # Routing logic: fallback requests for React Router.

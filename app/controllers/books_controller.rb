@@ -16,18 +16,6 @@ class BooksController < ApplicationController
         render json: ([book,user]), status: :created
     end
 
-    def destroy
-        book = Book.find(params[:id])
-        book.destroy
-        head :no_content
-    end
-
-    def update
-        book = Book.find(params[:id])
-        book.update!(book_params)
-        render json: book, status: :created
-    end
-
     def vote
         book = Book.find(params[:voteBook])
         higherVotes=book.votes+1
