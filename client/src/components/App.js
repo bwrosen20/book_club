@@ -58,13 +58,6 @@ function App() {
     }
 
     function handleVoteButton(data,event){
-
-      //if user.current_vote==event.target.value
-        //=====> do nothing
-      //if user.current_vote doesn't exist
-        //add vote and change user vote to event.target.value
-      //else (user already has vote for something else)
-        //patch new vote, patch old vote away, change user.current_vote
         setBooks(books.map((book)=>{
           if (book.id===user.current_vote){
             return data[1]
