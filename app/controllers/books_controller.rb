@@ -33,7 +33,7 @@ class BooksController < ApplicationController
         user.update!({current_vote:params[:voteBook]})
         
         
-        render json: ([book,currentBook,user])
+        render json: ([book,currentBook])
     end
 
     def finish

@@ -1,5 +1,5 @@
 class BookSerializer < ActiveModel::Serializer
-  attributes :id, :title, :author, :description, :votes, :genres, :thumbnail, :finished, :updated_at, :current_book
+  attributes :id, :title, :author, :description, :votes, :thumbnail, :finished, :updated_at, :current_book
 
   has_many :reviews, order: :created_at
 end

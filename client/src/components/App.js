@@ -69,7 +69,7 @@ function App() {
             return book
           }
           }))
-          setUser(data[2])
+          setUser({...user,current_vote:data[0].id})
       }
 
     function handleFinishBook(data){
@@ -116,7 +116,7 @@ function App() {
     history.push(`/books/${event.target.alt}`)
   }
 
-  const onNavClick=(event)=>{
+  function onNavClick(event){
     if (event.target.value==="logout"){
       fetch('/logout',{method:"DELETE"}).then((r)=>{
         if (r.ok){

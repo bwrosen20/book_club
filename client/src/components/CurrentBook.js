@@ -32,7 +32,7 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
             "Content-type":"application/json"
           },
           body:JSON.stringify({
-            finishedBook:parseInt(event.target.value),
+            finishedBook:parseInt(event.target.value)
           })
         })
         .then(r=>{
