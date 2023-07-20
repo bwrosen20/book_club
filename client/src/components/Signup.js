@@ -20,10 +20,10 @@ function Signup({ onLogin }) {
     formData.append('name',name)
     formData.append('password',password)
     formData.append('password_confirmation',passwordConfirmation)
-    formData.append('profile_image',profileImage)
     formData.append('favorite_book',favoriteBook)
     formData.append('bio',bio)
     formData.append('current_vote',0)
+    if (profileImage){formData.append('profile_image',profileImage)}
     setIsLoading(true);
     fetch("/signup", {
       method: "POST",
@@ -98,7 +98,7 @@ function Signup({ onLogin }) {
         <br/>
         <button type="submit" className="signupButton">{isLoading ? "Loading..." : "Sign Up"}</button>
         {errors.map((err) => (
-          <h4 key={err}>{err}</h4>
+          <h4 className="error" key={err}>{err}</h4>
         ))}
     </form>
   );

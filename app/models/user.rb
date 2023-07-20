@@ -6,12 +6,14 @@ class User < ApplicationRecord
 
      validates :name, presence: :true
      validate :acceptable_image
+     validates :bio, presence: :true
+     validates :favorite_book, presence: :true
      validates :name, uniqueness: :true
      validates :password, presence: :true, confirmation: true, on: :create
      validates :password, length: {minimum: 8}, confirmation: true, on: :create
 
      def acceptable_image
-          return unless profile_image.attached?
+               errors.add(:profile_image, "can't be blank") unless profile_image.attached?
      end
 
 end

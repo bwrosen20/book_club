@@ -112,23 +112,23 @@ function App() {
     }
 
     
-  function handleClick(event){
-    history.push(`/books/${event.target.alt}`)
-  }
+    function handleClick(event){
+      history.push(`/books/${event.target.alt}`)
+    }
 
-  function onNavClick(event){
-    if (event.target.value==="logout"){
-      fetch('/logout',{method:"DELETE"}).then((r)=>{
-        if (r.ok){
-          setUser(null)
-        }
-      })
+    function onNavClick(event){
+      if (event.target.value==="logout"){
+        fetch('/logout',{method:"DELETE"}).then((r)=>{
+          if (r.ok){
+            setUser(null)
+          }
+        })
+      }
+      else{
+        history.push(`/${event.target.value}`)
+      }
+      
     }
-    else{
-      history.push(`/${event.target.value}`)
-    }
-    
-  }
       
   if (!user) return <Login onLogin={handleLogin}/>
     

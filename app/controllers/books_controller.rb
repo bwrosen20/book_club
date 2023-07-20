@@ -13,7 +13,7 @@ class BooksController < ApplicationController
         user=User.find(params[:user_id])
         user.update!({book_for_vote:book.id})
 
-        render json: ([book,user]), status: :created
+        render json: ([book,user]), status: :create
     end
 
     def vote
