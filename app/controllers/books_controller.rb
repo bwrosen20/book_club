@@ -1,19 +1,25 @@
 class BooksController < ApplicationController
 
-    skip_before_action :authorized, only: :index
+    skip_before_action :authorized, only: [:index, :favorite]
 
     def index
         books = Book.all.order(:created_at)
         render json: books
     end
 
+    def update
+        book = Book.find(params[:id])
+        book.update!(book_params)
+        render json: book
+    end
+
     def create
         book = Book.create!(book_params)
 
-        user=User.find(params[:user_id])
+        user=User.find(session[:user_id])
         user.update!({book_for_vote:book.id})
 
-        render json: ([book,user]), status: :create
+        render json: ([book,user]), status: :created
     end
 
     def vote
@@ -29,7 +35,7 @@ class BooksController < ApplicationController
             end
         end
 
-        user = User.find(params[:user_id])
+        user = User.find(session[:user_id])
         user.update!({current_vote:params[:voteBook]})
         
         

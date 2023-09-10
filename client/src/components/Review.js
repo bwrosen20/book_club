@@ -24,8 +24,7 @@ function Review({review, handleDeleteReview, book, handleEditReview}){
               "Content-type":"application/json"
             },
             body:JSON.stringify({
-              book_id:parseInt(event.target.value),
-              user_id:user.id
+              book_id:parseInt(event.target.value)
             })
           
           })

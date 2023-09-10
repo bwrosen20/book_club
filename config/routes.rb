@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   patch '/books/vote', to: 'books#vote'
   patch '/books/finish',to: 'books#finish'
+  get '/books/favorite', to: 'books#favorite'
   resources :reviews, only: [:create,:update,:destroy]
-  resources :books, only: [:index, :create]
+  resources :books, only: [:index, :update, :create]
   
   
   # Routing logic: fallback requests for React Router.

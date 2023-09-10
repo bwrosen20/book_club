@@ -46,14 +46,16 @@ function App() {
       
     function handlePutBookForVote(data){
       console.log(data)
-      if (data.length>1){
-        setBooks([...books,data[0]])
-        console.log(data[1])
-        setUser(data[1])
+      const idArray=books.map((book)=>book.id)
+
+        if (idArray.includes(data.id)){
+          setBooks(books.map((book)=>(book.id===data.id ? data : book))) 
         }
-      else{
-        setBooks(books.map((book)=>(book.id===data.id ? data : book)))
-      }
+        else {
+          setBooks([...books,data[0]])
+        }
+      
+
       
     }
 
@@ -104,7 +106,7 @@ function App() {
     function handleEditReview(reviewedBook){
       setBooks(books.map((book)=>{
           return {...book,reviews:book.reviews.map((review)=>(review.id===reviewedBook.id ? reviewedBook : review))}
-      }))
+        }))
     }
 
     function handleReview(update){

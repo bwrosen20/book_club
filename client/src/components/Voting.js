@@ -45,8 +45,7 @@ function Voting({books, handleClick, handlePutBookForVote, handleVoteButton}){
             },
             body:JSON.stringify({
               voteBook:parseInt(event.target.value),
-              currentBook:user.current_vote,
-              user_id:user.id
+              currentBook:user.current_vote
             })
           })
             .then(r=>r.json())
@@ -61,6 +60,7 @@ function Voting({books, handleClick, handlePutBookForVote, handleVoteButton}){
     function bookForVote(){
     setIsLoading(true)
     setShowBook(!showBook)
+    setNewBooks([])
     if (user.book_for_vote){
       fetch(`/books/${user.book_for_vote}`,{
         method:"PATCH",
@@ -89,8 +89,7 @@ function Voting({books, handleClick, handlePutBookForVote, handleVoteButton}){
         ...searchBook,
         votes:0,
         current_book:false,
-        finished:false,
-        user_id:user.id
+        finished:false
       })
     })
     .then(r=>r.json())

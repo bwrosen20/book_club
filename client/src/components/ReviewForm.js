@@ -19,8 +19,7 @@ function ReviewForm({book, writeReview}){
             },
             body:JSON.stringify({
                 ...formData,
-                book_id:book.id,
-                user_id:user.id
+                book_id:book.id
             })
         })
         .then(r=> {

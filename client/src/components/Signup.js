@@ -10,11 +10,8 @@ function Signup({ onLogin }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log()
-
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(profileImage)
     setErrors([]);
     const formData= new FormData()
     formData.append('name',name)
@@ -74,6 +71,7 @@ function Signup({ onLogin }) {
           id="favoriteBook"
           placeholder="FavoriteBook"
           className="signupOption"
+          autoComplete="off"
           value={favoriteBook}
           onChange={(e) => setFavoriteBook(e.target.value)}
         />

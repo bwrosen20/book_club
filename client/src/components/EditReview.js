@@ -24,8 +24,7 @@ function EditReview({review,onEditReview}){
             headers:{
                 "Content-type":"application/json"
             },
-            body:JSON.stringify({...formData,
-            user_id:user.id})
+            body:JSON.stringify({...formData})
         })
         .then(r=>{
             

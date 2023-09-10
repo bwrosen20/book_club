@@ -6,13 +6,9 @@ class UsersController < ApplicationController
     end
 
     def create
-        new_user = User.create(user_params)
-        if new_user.valid?
+        new_user = User.create!(user_params)
             session[:user_id] = new_user.id
             render json: new_user, status: :created
-        else
-            render json: {errors: new_user.errors.full_messages}, status: :unprocessable_entity
-        end
     end
 
    
@@ -20,8 +16,6 @@ class UsersController < ApplicationController
         current_user = User.find(session[:user_id])
         render json: current_user
     end
-
-    
 
 
     private
