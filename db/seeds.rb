@@ -27,9 +27,16 @@ pablo.profile_image.attach(io: File.open(Rails.root.join('db/images/pabloSanchez
 ron.profile_image.attach(io: File.open(Rails.root.join('db/images/ronSwanson.jpeg')),filename:'ronSwanson.jpeg')
 stephen.profile_image.attach(io: File.open(Rails.root.join('db/images/stephenKing.jpeg')),filename:'stephenKing.jpeg')
 
+puts"I added images to users"
+
+
 pablo.save!
+
+puts "I saved a user"
 ron.save!
 stephen.save!
+
+puts "I saved all the users"
 
 Review.create(user_id:User.first.id,book_id:Book.first.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
 Review.create(user_id:User.first.id,book_id:Book.second.id,body:Faker::Lorem.paragraph,rating: rand(1.0..10.0).round(1))
