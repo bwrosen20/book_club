@@ -37,7 +37,8 @@ class UsersController < ApplicationController
    
     def show
         current_user = User.find(session[:user_id])
-        render json: current_user
+        books = Book.where(group:current_user.group_name).order(:created_at)
+        render json: [current_user,*books],root: false
     end
 
 

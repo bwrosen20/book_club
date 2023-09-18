@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
         user = User.find_by(email: params[:email])
         if user&.authenticate(params[:password])
             session[:user_id] = user.id
-            render json: user, status: :created
+            books = Book.where(group:user.group_name).order(:created_at)
+            render json: [user,*books], root: false
         else
             render json: {errors: ["Invalid email or password"]}, status: :unauthorized
         end

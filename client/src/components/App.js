@@ -27,14 +27,10 @@ function App() {
         fetch(`/me`)
         .then(r=>{
           if (r.ok){
-            r.json().then((user)=>{
-            setUser(user)
-            fetch(`/books`)
-            .then(r=>r.json())
-            .then(data=>{
-            setBooks(data)
+            r.json().then((data)=>{
+            setUser(data[0])
+              setBooks(data.slice(1,data.length))
           })
-          }) 
           }
         })
         
@@ -43,8 +39,9 @@ function App() {
 
 
 
-    function handleLogin(user){
-      setUser(user)
+    function handleLogin(data){
+      setUser(data[0])
+      setBooks(data.slice(1,data.length))
       history.push(`/home`)
     }
       
