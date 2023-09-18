@@ -125,10 +125,6 @@ function CreateAccount({onLogin}){
         ))}
     </form>
         
-        <div className="errorContainer">
-                {errors.map((error)=>(<div className="error"><error key={error}>{error}</error><br/></div>))}
-        </div>
-      
     </div>
 }
 
