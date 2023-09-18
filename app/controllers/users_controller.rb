@@ -15,6 +15,7 @@ class UsersController < ApplicationController
         new_user.save!
             session[:user_id] = new_user.id
             render json: new_user, status: :created
+        end
     end
 
     def signup
