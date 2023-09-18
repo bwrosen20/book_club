@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import {UserContext} from './App'
 import ReviewContainer from './ReviewContainer'
 import ReviewForm from './ReviewForm'
 
-function CurrentBook({books,handleFinishBook, user, handleReview, handleEditReview, handleDeleteReview}){
+function CurrentBook({books,handleFinishBook, handleReview, handleEditReview, handleDeleteReview}){
 
+    const user = useContext(UserContext)
     const currentBook=(books.find((book)=>(book.current_book)))
     const [review,setReview]=useState(false)
     const [writeReviewButton, setWriteReviewButton]=useState(true)
@@ -15,7 +17,7 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
        setWriteReviewButton(true)
         if (currentBook.reviews.length>0){
              currentBook.reviews.forEach((review)=>{
-                if (user===review.user.id){
+                if (user.id===review.user.id){
                     setWriteReviewButton(false)
                 }
             })
@@ -77,7 +79,7 @@ function CurrentBook({books,handleFinishBook, user, handleReview, handleEditRevi
                                     {writeReviewButton ? <button onClick={writeReview} className="currentBookOption">Write a review</button> : null}
                                 </div>
                                 }
-                                <button onClick={onFinishBook} className="currentBookOption" value={currentBook?currentBook.id:"0"}>{isLoading ? "Loading..." : "Begin Next Book"}</button>                           
+                                {user.admin ? <button onClick={onFinishBook} className="currentBookOption" value={currentBook?currentBook.id:"0"}>{isLoading ? "Loading..." : "Begin Next Book"}</button> : null}                        
                             </div>
                             {errors.map((error=>(
                                     <error className="error" key={error}>{error}</error>

@@ -1,8 +1,19 @@
-@media (min-width:320px){
+select {
+  cursor: pointer;
+}
+
+@media(max-width:849px){
+
+
+  body{
+    height:100%;
+    width:100%;
+  }
 
   :root{
     background-color: rgba(255, 235, 182, 0.402)
   }
+  
   
   img{
     cursor:pointer;
@@ -22,24 +33,7 @@
   h4{
     text-align:center;
   }
-  
-  .Navbar {
-    
-    color:white;
-    font-size:20px;
-    margin:auto;
-    margin-top:20px;
-    text-align:center;
-    height:30px;
-    width:50%;
-    margin-bottom:40px;
-    cursor:pointer;
-  }
-  
-  .navOption{
-    padding:20px;
-  }
-  
+ 
   .bookContainer{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -168,12 +162,18 @@
     padding:8px;
     background-color:rgb(227, 235, 237);
   }
+
+  .mainHeading{
+    width:100%;
+    margin:2em auto;
+  }
   
   .welcome{
     position:absolute;
     color:black;
     top:0px;
     left:5%;
+    font-size:1.2em;
   }
   
   .loginScreen{
@@ -182,17 +182,71 @@
     width:80%;
     padding:20px;
   }
+
+  .openingBackground{
+    background-image:url("./bookBackground.png");
+    /* transform:rotate(90deg); */
+    background-position:center;
+    background-repeat:no-repeat;
+    height:max(25em,600px);
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+  }
+
+  .loginOption{
+    cursor:pointer;
+    width:fit-content;
+    margin:auto;
+    padding:.2em;
+    border:none;
+    background:none;
+    background-color:rgba(181, 185, 125, 0.721);
+    border-radius:1em;
+  }
+
+  .openingItems{
+    margin:2em auto;
+    width:max(10em,160px)
+
+  }
+
+  .rightSide{
+    width:max(4em,160px);
+    margin:0 auto;
+    align-items:center;
+    height:min-content;
+   
+  }
+
+  .loginOptionsList{
+    margin:2em;
+    text-align:center;
+  }
   
   .loginOption, .loginButton, .signupOption, .signupButton{
     width:100%;
     margin-top:10px;
   }
 
-  .passwordOption{
+  .wrongPassword{
     width:100%;
     margin-top:10px;
+    background-color:rgba(190, 11, 11, 0.338)
+  }
+
+  .confirmed{
+    width:100%;
+    margin-top:10px;
+    background-color:rgba(11, 190, 53, 0.338)
+  }
+
+  .passwordOption{
+    width:fit-content;
+    margin:10px auto;
     position:relative;
   }
+
 
   .currentBookOption{
     width:60%;
@@ -264,7 +318,7 @@
   
   .error{
     color:red;
-    margin-top:5px;
+    margin:.5em auto;
   }
   
   .MemberContainer{
@@ -285,8 +339,9 @@
 
   #togglePassword{
     position:absolute;
-    right:0px;
-    top:12px;
+    right:.1em;
+    top:.7em;
+    cursor:pointer;
   }
 
   .loginForm{
@@ -313,7 +368,7 @@
   
 }
 
-    @media (min-width:801px){
+    @media (min-width:850px){
 
     :root{
       background-color: rgba(255, 235, 182, 0.402)
@@ -338,21 +393,6 @@
       text-align:center;
     }
 
-    .Navbar {
-      
-      color:white;
-      font-size:20px;
-      margin:auto;
-      margin-top:20px;
-      text-align:center;
-      height:30px;
-      width:50%;
-      margin-bottom:40px;
-    }
-
-    .navOption{
-      padding:20px;
-    }
 
     .bookContainer{
       display:grid;
@@ -484,23 +524,86 @@
       color:black;
       top:0px;
       left:5%;
+      font-size:1.2em;
     }
 
     .loginScreen{
-      margin:auto;
+      margin:1em auto;
       text-align:center;
-      width:40%;
+      width:80%;
     }
 
-    .loginOption, .loginButton, .signupOption, .signupButton{
+    
+    .openingBackground{
+      background-image:url("./bookBackground.png");
+      background-position:center;
+      margin:4em auto;
+      height:575px;
+      width:810px;
+      display:flex;
+      flex-direction:row;
+    }
+  
+
+    .openingItems{
+      width:49%;
+  
+    }
+
+    .rightSide{
+      width:49%;
+      margin:0 auto;
+      align-items:center;
+      height:min-content;
+     
+    }
+
+    .loginOptionsList{
+      margin:2em;
+      text-align:center;
+    }
+
+    .loginButton, .signupOption, .signupButton{
       width:100%;
       margin-top:10px;
+    }
+
+    .wrongPassword{
+      width:100%;
+      margin-top:10px;
+      background-color:rgba(190, 11, 11, 0.338)
+    }
+
+    .confirmed{
+      width:100%;
+      margin-top:10px;
+      background-color:rgba(11, 190, 53, 0.338)
     }
 
     .passwordOption{
-      width:100%;
-      margin-top:10px;
+      width:fit-content;
+      margin:10px auto;
       position:relative;
+    }
+
+    .loginForm{
+      width:60%;
+      margin:auto;
+    }
+
+    .loginOption{
+      cursor:pointer;
+      width:fit-content;
+      margin:auto;
+      padding:.5em;
+      border:none;
+      background:none;
+      background-color:rgba(181, 185, 125, 0.721);
+      border-radius:1em;
+    }
+
+    .loginOption:hover{
+      transform:scale(1.1)
     }
 
     .ReviewOption{
@@ -536,6 +639,10 @@
     text-align:center;
     }
 
+    .currentBookOption{
+      margin-top:.5em;
+    }
+
     .description{
       text-align:left;
     }
@@ -549,6 +656,10 @@
     .reviewButton, .reviewOption{
       width:100%;
       margin-top:10px;
+    }
+
+    .reviewForm{
+      width:100%;
     }
 
     .delete{
@@ -568,7 +679,8 @@
 
     .error{
       color:red;
-      margin-top:5px;
+      margin:.5em auto;
+
     }
 
     .MemberContainer{
@@ -590,8 +702,9 @@
 
     #togglePassword{
       position:absolute;
-      right:0px;
-      top:12px;
+      right:.1em;
+      top:.7em;
+      cursor:pointer;
     }
 
     .loginForm{
@@ -614,3 +727,213 @@
     }
 
     }
+
+ /*NavBars*/
+
+header{
+  width:98%;
+  margin:0 auto;
+  display:flex;
+}
+
+
+.nameContainer{
+  height:100%;
+  width:max(4em,500px);
+}
+
+.name{
+  padding:.3em 0;
+  margin:0;
+  letter-spacing:.2em;
+  color:#003459;
+  min-width:250px;
+  /* font-size:min(1em,45px); */
+  cursor:pointer;
+}
+
+    .name:hover{
+      transform:scale(1.05);
+      color:black;
+      transition:.2s
+    }
+    
+
+    .logoutButton{
+      background-color:lightblue;
+      padding:0.3rem .75rem;
+      border:none;
+      outline:none;
+      border-radius:20px;
+      font-size:1.2rem;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    
+        .logoutButton:hover{
+          scale:1.05;
+        }
+
+    .socialLink:hover{
+      transform:scale(1.1);
+    }
+
+.navBar{
+  width:100%;
+  padding:0;
+  margin:auto;
+  text-align:center;
+  align-items:right;
+  justify-content:right;
+  display:flex;
+  column-gap:1.5em;
+}
+
+.navBar .navLinks{
+  display:flex;
+  margin:.3em 5px;
+  padding:0;
+  gap:1.5em;
+  list-style:none;
+  text-align:right;
+}
+
+.navOption{
+  padding:0;
+  color:black;
+  text-decoration: none;
+  list-style-type:none;
+  font-size:max(.8em,20px);
+}
+
+.navBars{
+  color:black;
+  font-size:1.65em;
+  padding:.15em 0;
+  cursor:pointer;
+  display:none;
+
+}
+
+    .navBars:hover{
+      transform:scale(1.05)
+    }
+    .navOption.active{
+      scale:1.05;
+      color:#003459;
+      font-weight:bold;
+    }
+
+    .navOption:hover{
+      color:#003459;
+      transform:scale(1.05);
+    }
+
+
+
+
+
+
+
+
+
+/*DropDown Menu*/
+
+.dropdownMenu{
+  position:absolute;
+  font-size:17px;
+  right:0.5rem;
+  top:40px;
+  width:150px;
+  height:0;
+  background:rgba(41, 42, 47, 0.76);
+  box-shadow:1px 3px 3px rgba(0, 0, 0, 0.15);
+  backdrop-filter:blur(10em);
+  border-radius:15px;
+  overflow:hidden;
+  display:none;
+  transition:height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-bottom:1px;
+  z-index:3;
+}
+
+
+ 
+
+.dropdownMenuOpen{
+  position:absolute;
+  font-size:17px;
+  right:0.5rem;
+  top:40px;
+  width:150px;
+  height:0;
+  background:rgb(239, 240, 241);
+  box-shadow:1px 3px 3px rgba(0, 0, 0, 0.15);
+  backdrop-filter:blur(10em);
+  border-radius:15px;
+  overflow:hidden;
+  height:250px;
+  transition:height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-bottom:1px;
+  z-index:3;
+}
+
+   .dropdownMenuOpen:NavLink{
+    text-decoration:none
+  }
+
+  .dropdownMenu:NavLink{
+    text-decoration:none
+  }
+
+  .dropdownMenuOpen .LogoutButton{
+    width:100%;
+    display:flex;
+    justify-content:center;
+  }
+
+.dropdownMenuOpen li{
+  padding:0.7rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.dropdownMenu li{
+  padding:0.7rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+
+
+
+
+
+
+/*Responsive NavBar*/
+
+@media(max-width:750px) {
+  .navBar .navLinks,
+  .navBar .logoutButton{
+    display:none;
+  }
+
+  .navBar .navBars{
+    display:block;
+  }
+
+  .dropdownMenu{
+    display:block;
+  }
+
+  
+}
+
+@media(max-width:376px){
+  .dropdownMenu{
+    left:0.5rem;
+    width:unset;
+  }
+}

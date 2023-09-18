@@ -9,6 +9,7 @@ function Voting({books, handleClick, handlePutBookForVote, handleVoteButton}){
     const user = useContext(UserContext)
     const [searchValue,setSearchValue]=useState("")
     const [isLoading,setIsLoading]=useState(false)
+    const [errors,setErrors]=useState([])
     const [newBooks,setNewBooks]=useState([])
     const [showBook, setShowBook]=useState(true)
     const [searchBook,setSearchBook]=useState({
@@ -74,10 +75,16 @@ function Voting({books, handleClick, handlePutBookForVote, handleVoteButton}){
         finished:false
         })
       })
-      .then(r=>r.json())
-      .then(data=>{
-        handlePutBookForVote(data)
-        setIsLoading(false)})
+      .then(r=>{
+        if (r.ok){
+          r.json().then(data=>{
+            handlePutBookForVote(data)
+            setIsLoading(false)})
+      }
+        else{
+          r.json().then(err=>setErrors(err.errors))
+          setIsLoading(false)
+        }})
     }
     else{
     fetch('/books',{
@@ -147,12 +154,13 @@ function Voting({books, handleClick, handlePutBookForVote, handleVoteButton}){
                                 <div className="bookPreview" key={book.title}>
                                     <img src={book.thumbnail} className="homeImg" onClick={handleClick} alt={book.title}></img>
                                     <h3>Votes:{book.votes}</h3>
-                                    {((user.current_vote===book.id)||(user.book_for_vote===book.id)) ? null : <button onClick={onVoteButton} value={book.id}>Vote</button>
+                                    {((user.current_vote===book.id)||(((user.book_for_vote).toString())===((book.id).toString()))) ? null : <button onClick={onVoteButton} value={book.id}>Vote</button>
                                     }
                                 </div>
                             ))}
                            
                     </div>
+                  
                     {isLoading ? <h3 className="ReturnButton">Loading...</h3> : null}
                     <div className="searchContainer" id="searchContainer">
                         <h2>Search for the club's next book</h2>
@@ -166,10 +174,11 @@ function Voting({books, handleClick, handlePutBookForVote, handleVoteButton}){
                         />
                         <button>{onLoading ? "Loading..." : "Search"}</button>
                         </form>
+                        {errors.map((error)=>(<p key={error} className="error">{error}</p>))}
                     </div>
                     <div className="bookContainer" id="bookContainer">
                             {newBooks.map((book)=>(
-                                <div className="bookPreview">
+                                <div className="bookPreview" key={book.id}>
                                     <img src={book.volumeInfo.imageLinks.thumbnail} onClick={setCurrentBook} alt={book.id} className="homeImg"></img>
                                     
                                 </div>

@@ -1,9 +1,9 @@
-import React, {useState, useContext} from 'react'
-import {UserContext} from "./App"
+import React, {useState} from 'react'
+// import {UserContext} from "./App"
 
 function EditReview({review,onEditReview}){
 
-    const user = useContext(UserContext)
+    // const user = useContext(UserContext)
     const [formData,setFormData]=useState({
         body:review.body,
         rating:review.rating

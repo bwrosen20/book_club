@@ -1,9 +1,9 @@
-import React, {useState, useContext} from 'react'
-import {UserContext} from './App'
+import React, {useState} from 'react'
+// import {UserContext} from './App'
 
 function ReviewForm({book, writeReview}){
 
-    const user = useContext(UserContext)
+    // const user = useContext(UserContext)
     const [formData,setFormData]=useState({
         rating:"",
         body:""
@@ -34,7 +34,7 @@ function ReviewForm({book, writeReview}){
         setFormData({...formData,[event.target.name]:event.target.value})
     }
 
-    return <div>
+    return <div className="reviewForm">
 
         <form onSubmit={onReviewSubmit}>
             <input

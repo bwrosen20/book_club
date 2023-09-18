@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  post '/signup', to: 'users#create'
+  post '/signup', to: 'users#signup'
+  post '/create', to: 'users#create'
   get '/users', to: 'users#index'
   patch '/users/finish',to: 'users#finish'
   patch '/users/:id', to: 'users#update'

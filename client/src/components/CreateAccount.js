@@ -1,50 +1,52 @@
-import React, { useState } from "react";
+import React, {useState} from 'react'
 
-function Signup({ onLogin}) {
-  const [name, setName] = useState("");
-  const [email,setEmail] = useState("")
-  const [groupName,setGroupName] = useState("")
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [profileImage, setProfileImage] = useState(null);
-  const [favoriteBook,setFavoriteBook]=useState("")
-  const [bio, setBio] = useState("");
-  const [errors, setErrors] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+function CreateAccount({onLogin}){
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setErrors([]);
-    const formData= new FormData()
-    formData.append('name',name)
-    formData.append('email',email)
-    formData.append('password',password)
-    formData.append('password_confirmation',passwordConfirmation)
-    formData.append('favorite_book',favoriteBook)
-    formData.append('bio',bio)
-    formData.append('current_vote',0)
-    formData.append('group_name',groupName)
-    if (profileImage){formData.append('profile_image',profileImage)}
-    setIsLoading(true);
-    fetch("/signup", {
-      method: "POST",
-      body: formData,
-    }).then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        r.json().then((user) => onLogin(user));
-      } else {
-        r.json().then((err) => setErrors(err.errors));
+    const [name, setName] = useState("")
+    const [groupName,setGroupName] = useState("")
+    const [email,setEmail]=useState("")
+    const [password, setPassword] = useState("");
+    const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [profileImage, setProfileImage] = useState(null);
+    const [favoriteBook,setFavoriteBook]=useState("")
+    const [bio, setBio] = useState("");
+    const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
+
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setErrors([]);
+        const formData= new FormData()
+        formData.append('name',name)
+        formData.append('email',email)
+        formData.append('password',password)
+        formData.append('password_confirmation',passwordConfirmation)
+        formData.append('favorite_book',favoriteBook)
+        formData.append('bio',bio)
+        formData.append('current_vote',0)
+        formData.append('group_name',groupName)
+        if (profileImage){formData.append('profile_image',profileImage)}
+        setIsLoading(true);
+        fetch("/create", {
+          method: "POST",
+          body: formData,
+        }).then((r) => {
+          setIsLoading(false);
+          if (r.ok) {
+            r.json().then((user) => onLogin(user));
+          } else {
+            r.json().then((err) => setErrors(err.errors));
+          }
+        });
       }
-    });
-  }
 
-  return (<div className="loginScreen">
-    <h1>Signup</h1>
-    <form onSubmit={handleSubmit} className="loginForm">
-    <input
+    return <div className="loginScreen">
+        <h1>Create Club</h1>
+        <form onSubmit={handleSubmit} className="loginForm">
+        <input
           type="text"
-          id="name"
+          id="group_name"
           autoComplete="off"
           placeholder="Club Name"
           className="signupOption"
@@ -60,7 +62,7 @@ function Signup({ onLogin}) {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-           <input
+        <input
           type="text"
           id="email"
           autoComplete="off"
@@ -69,6 +71,7 @@ function Signup({ onLogin}) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <br></br>
         <input
           type="password"
           id="password"
@@ -83,7 +86,7 @@ function Signup({ onLogin}) {
           type="password"
           id="password_confirmation"
           placeholder="Confirm Password"
-          className="signupOption"
+          className={ passwordConfirmation.length>0 ? passwordConfirmation===password ? "confirmed" :"wrongPassword" : "signupOption"  }
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           autoComplete="current-password"
@@ -121,8 +124,12 @@ function Signup({ onLogin}) {
           <h4 className="error" key={err}>{err}</h4>
         ))}
     </form>
+        
+        <div className="errorContainer">
+                {errors.map((error)=>(<div className="error"><error key={error}>{error}</error><br/></div>))}
+        </div>
+      
     </div>
-  )
 }
 
-export default Signup;
+export default CreateAccount

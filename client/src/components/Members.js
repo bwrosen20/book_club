@@ -12,7 +12,8 @@ function Members({handleClick}){
     .then(r=>r.json())
     .then(data=>{
         setUsers(data)
-        setIsLoading(false)})}
+        setIsLoading(false)
+    })}
     },[])
 
 
@@ -25,7 +26,7 @@ function Members({handleClick}){
                     <div className="MemberInfo" key={user.name}>
                     <div className="User">
                         <img src={user.profile_image} alt={user.name} className="UserPicture"></img>
-                        <h3>{user.name}</h3>
+                        <h3>{user.name}{user.admin ? ": Admin" : null}</h3>
                     </div>
                     <div className="ReviewBody">
                         <h4>Favorite Book: {user.favorite_book}</h4>

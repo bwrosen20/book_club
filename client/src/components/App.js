@@ -6,8 +6,13 @@ import NavBar from './NavBar'
 import DisplayBook from './DisplayBook'
 import Members from './Members'
 import CurrentBook from './CurrentBook'
+import OpeningPage from './OpeningPage';
 import Login from './Login'
 import {Route,Switch, useHistory} from 'react-router-dom'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
 
 export const UserContext = React.createContext()
 
@@ -45,17 +50,16 @@ function App() {
     }
       
     function handlePutBookForVote(data){
-      console.log(data)
       const idArray=books.map((book)=>book.id)
 
-        if (idArray.includes(data.id)){
+        if (idArray.includes(data[0].id)){
           setBooks(books.map((book)=>(book.id===data.id ? data : book))) 
         }
         else {
           setBooks([...books,data[0]])
         }
       
-
+        setUser(data[1])
       
     }
 
@@ -118,27 +122,21 @@ function App() {
       history.push(`/books/${event.target.alt}`)
     }
 
-    function onNavClick(event){
-      if (event.target.value==="logout"){
+    function handleLogout(){
         fetch('/logout',{method:"DELETE"}).then((r)=>{
           if (r.ok){
             setUser(null)
           }
         })
-      }
-      else{
-        history.push(`/${event.target.value}`)
-      }
-      
     }
       
-  if (!user) return <Login onLogin={handleLogin}/>
+  if (!user) return <OpeningPage onLogin={handleLogin}/>
     
   return <div>
     {isLoading? <h3>Loading...</h3>:
       <div>
         <UserContext.Provider value={user}>
-        <NavBar onNavClick={onNavClick}/>
+        <NavBar handleLogout={handleLogout}/>
         <Switch>
           <Route exact path="/voting">
             <Voting isLoading={isLoading} books={books} handleClick={handleClick} handlePutBookForVote={handlePutBookForVote} handleVoteButton={handleVoteButton}/>
@@ -147,7 +145,7 @@ function App() {
             <Members handleClick={handleClick}/>
           </Route>
           <Route exact path="/login">
-            <Login onLogin={handleLogin}/>
+            <OpeningPage onLogin={handleLogin}/>
           </Route>
           <Route exact path="/books/:title">
             <DisplayBook books={books} handleDeleteReview={handleDeleteReview} handleEditReview={handleEditReview} handleReview={handleReview}/>
@@ -168,7 +166,7 @@ function App() {
 }
 
 export default App;
-
+library.add(fab,fas,far)
 
 
 //pages I need

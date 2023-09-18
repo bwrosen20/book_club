@@ -1,13 +1,11 @@
 import React, {useState} from 'react'
-import Signup from './Signup'
 
 function Login({onLogin}){
 
-    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [showSignup, setShowSignup]=useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,7 +15,7 @@ function Login({onLogin}){
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, password }),
+      body: JSON.stringify({ email, password }),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
@@ -38,27 +36,25 @@ function Login({onLogin}){
   }
 
   return (<div className="loginScreen">
-        <div><h1>Welcome To Brian's Book Club!</h1></div>
-    {showSignup ?
-    <Signup onLogin={onLogin}/>:
-    <form onSubmit={handleSubmit}>
+        <h1>Login</h1>
+    <form onSubmit={handleSubmit} className="loginForm">
         <input
           type="text"
-          id="username"
-          placeholder="Name"
+          id="email"
+          placeholder="Email"
           autoComplete="off"
-          className="loginOption"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          className="signupOption"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <div className="loginForm">
+        <div className="passwordOption">
         <input
           type="password"
           id="id_password"
           name="password"
           placeholder="Password"
+          className="signupOption"
           autoComplete="current-password"
-          className="passwordOption"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -74,8 +70,7 @@ function Login({onLogin}){
         {errors.map((err) => (
           <h4 className="error" key={err}>{err}</h4>
         ))}
-    </form>}
-    <button className="loginButton" onClick={()=>setShowSignup(!showSignup)}>{showSignup ? "Back to Login" : "Signup"}</button>
+    </form>
     </div>
   );
 }
