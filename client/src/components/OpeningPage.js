@@ -36,11 +36,12 @@ function OpeningPage({onLogin}){
         <div className="openingItems">
             
             <div className="loginOptionsList">
+
                 <h1 className="loginOption" onClick={onCreateClick}>Create A Club</h1>
-                <h4 className="smallerHeading">Here to join a club?</h4>
-                <button className="loginOption" onClick={onSignupClick}>Sign up</button>
-                <h4 className="smallerHeading">Already part of a club?</h4>
-                <button className="loginOption" onClick={onLoginClick}>Login</button>
+                <br/>
+                <h4 className="smallerHeading">Here to join a club? <span className="loginOption" onClick={onSignupClick}>Sign up</span></h4>
+                <br/>
+                <h4 className="smallerHeading">Already part of a club? <span className="loginOption" onClick={onLoginClick}>Login</span></h4>
             </div>
         </div>
         <div className="rightSide">

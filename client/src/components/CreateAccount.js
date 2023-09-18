@@ -26,6 +26,7 @@ function CreateAccount({onLogin}){
         formData.append('bio',bio)
         formData.append('current_vote',0)
         formData.append('group_name',groupName)
+        formData.append('admin',true)
         if (profileImage){formData.append('profile_image',profileImage)}
         setIsLoading(true);
         fetch("/create", {

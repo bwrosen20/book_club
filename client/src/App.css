@@ -2,6 +2,20 @@ select {
   cursor: pointer;
 }
 
+input[type=file]::-webkit-file-upload-button {
+  cursor:pointer;
+}
+
+.firstBookStart{
+  margin:auto;
+  width:fit-content;
+  padding:.2em .5em;
+  border-radius:1em;
+  text-align:center;
+  background-color:rgba(104, 103, 55, 0.178);
+  cursor:pointer;
+}
+
 @media(max-width:849px){
 
 
@@ -168,13 +182,7 @@ select {
     margin:2em auto;
   }
   
-  .welcome{
-    position:absolute;
-    color:black;
-    top:0px;
-    left:5%;
-    font-size:1.2em;
-  }
+ 
   
   .loginScreen{
     margin:auto;
@@ -201,7 +209,7 @@ select {
     padding:.2em;
     border:none;
     background:none;
-    background-color:rgba(181, 185, 125, 0.721);
+    background-color:rgba(104, 103, 55, 0.178);
     border-radius:1em;
   }
 
@@ -319,6 +327,8 @@ select {
   .error{
     color:red;
     margin:.5em auto;
+    width:fit-content;
+    text-align:center;
   }
   
   .MemberContainer{
@@ -519,14 +529,6 @@ select {
       padding:8px;
     }
 
-    .welcome{
-      position:absolute;
-      color:black;
-      top:0px;
-      left:5%;
-      font-size:1.2em;
-    }
-
     .loginScreen{
       margin:1em auto;
       text-align:center;
@@ -598,7 +600,7 @@ select {
       padding:.5em;
       border:none;
       background:none;
-      background-color:rgba(181, 185, 125, 0.721);
+      background-color:rgba(104, 103, 55, 0.178);
       border-radius:1em;
     }
 
@@ -679,8 +681,11 @@ select {
 
     .error{
       color:red;
-      margin:.5em auto;
-
+      margin:auto;
+      justify-content:center;
+      padding:.5em;
+      width:fit-content;
+      text-align:center;
     }
 
     .MemberContainer{
@@ -760,13 +765,14 @@ header{
     
 
     .logoutButton{
-      background-color:lightblue;
+      background-color:rgba(104, 103, 55, 0.178);
       padding:0.3rem .75rem;
       border:none;
       outline:none;
       border-radius:20px;
-      font-size:1.2rem;
+      font-size:1.1rem;
       font-weight:bold;
+      height:fit-content;
       cursor:pointer;
     }
     
@@ -783,10 +789,18 @@ header{
   padding:0;
   margin:auto;
   text-align:center;
-  align-items:right;
+  align-items:center;
   justify-content:right;
   display:flex;
   column-gap:1.5em;
+}
+
+.welcome{
+  color:black;
+  font-size:1.1em;
+  justify-content:left;
+  margin:auto;
+  margin-left:1em;
 }
 
 .navBar .navLinks{
@@ -796,6 +810,7 @@ header{
   gap:1.5em;
   list-style:none;
   text-align:right;
+  font-size:0.8em;
 }
 
 .navOption{
@@ -804,6 +819,7 @@ header{
   text-decoration: none;
   list-style-type:none;
   font-size:max(.8em,20px);
+  font-size:1.2em;
 }
 
 .navBars{
@@ -820,12 +836,12 @@ header{
     }
     .navOption.active{
       scale:1.05;
-      color:#003459;
+      color:#959717;
       font-weight:bold;
     }
 
     .navOption:hover{
-      color:#003459;
+      color:#959717;
       transform:scale(1.05);
     }
 

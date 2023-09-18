@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState,useContext} from 'react'
+import {UserContext} from './App'
 import Filters from './Filters'
 
 function Home({books, handleClick}){
 
-
+  const user = useContext(UserContext)
   const [filterData,setFilterData]=useState({
     input:"",
     filter:"Sort By"
@@ -58,7 +59,7 @@ function Home({books, handleClick}){
     return (
       <div>
         <Filters filterData={filterData} handleChange={handleChange}/>
-        <h2 className="heading">Books that the club has finished</h2>
+        <h2 className="heading">Books that {user.group_name} has finished</h2>
       <div className="bookContainer">
         {booksToDisplay.map((book)=>(
           <div className="bookPreview" key={book.title}>

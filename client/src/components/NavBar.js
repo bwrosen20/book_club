@@ -14,10 +14,10 @@ function NavBar({handleLogout}) {
 
     return <header>
 
-            <p className="welcome">Welcome {user.name}</p>
+           
           
       <div className="navBar">
-
+      <p className="welcome">Welcome {user.name}</p>
      
 
       <div className="navigation" >
@@ -43,7 +43,7 @@ function NavBar({handleLogout}) {
             className="navOption"
             to="/current-book"
             exact>
-              CurrentBook
+              Current Book
             </NavLink>
           </li>
           <li>

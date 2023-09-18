@@ -15,16 +15,20 @@ function CurrentBook({books,handleFinishBook, handleReview, handleEditReview, ha
 
     useEffect(()=>{
        setWriteReviewButton(true)
-        if (currentBook.reviews.length>0){
+       if (currentBook){
+        if ((currentBook.reviews)&&(currentBook.reviews.length>0)){
              currentBook.reviews.forEach((review)=>{
                 if (user.id===review.user.id){
                     setWriteReviewButton(false)
                 }
             })
         }
+    }
     },[currentBook])
 
     function onFinishBook(event){
+
+    
         setIsLoading(true)
         
 
@@ -57,6 +61,8 @@ function CurrentBook({books,handleFinishBook, handleReview, handleEditReview, ha
     }
 
     return <div>
+        {currentBook ? 
+        <div>
                 <div className="BookDisplay">
                     <div className="BookPicture">
                         <img src={currentBook.thumbnail} alt={currentBook.thumbnail} className="PictureDisplay"></img>
@@ -81,10 +87,18 @@ function CurrentBook({books,handleFinishBook, handleReview, handleEditReview, ha
                                 }
                                 {user.admin ? <button onClick={onFinishBook} className="currentBookOption" value={currentBook?currentBook.id:"0"}>{isLoading ? "Loading..." : "Begin Next Book"}</button> : null}                        
                             </div>
-                            {errors.map((error=>(
-                                    <error className="error" key={error}>{error}</error>
-                            )))}
+                            
                 </div>
+                </div>: 
+                <div>
+                    <h1>No books yet! Please go nominate a book at the voting page</h1>
+                        <h2 className="firstBookStart" onClick={onFinishBook} value="0">Begin first book!</h2>
+                        </div>}
+                        <div style={{margin:"auto"}}>
+                        {errors.map((error=>(
+                                    <p className="error" key={error}>{error}</p>
+                            )))}
+                        </div>
             </div>
 }
 

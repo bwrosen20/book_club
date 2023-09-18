@@ -7,7 +7,6 @@ import DisplayBook from './DisplayBook'
 import Members from './Members'
 import CurrentBook from './CurrentBook'
 import OpeningPage from './OpeningPage';
-import Login from './Login'
 import {Route,Switch, useHistory} from 'react-router-dom'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -25,17 +24,17 @@ function App() {
 
   useEffect(()=>{
     setIsLoading(true)
-        fetch(`/books`)
-        .then(r=>r.json())
-        .then(data=>{
-          setBooks(data)
-        })
-
-       
         fetch(`/me`)
         .then(r=>{
           if (r.ok){
-            r.json().then((user)=>setUser(user))
+            r.json().then((user)=>{
+            setUser(user)
+            fetch(`/books`)
+            .then(r=>r.json())
+            .then(data=>{
+            setBooks(data)
+          })
+          }) 
           }
         })
         
@@ -81,7 +80,7 @@ function App() {
     function handleFinishBook(data){
       setBooks(books.map((book)=>{
         console.log(data)
-        if (book.id===data[0].id){
+        if ((data[0])&&(book.id===data[0].id)){
           return data[0]
         }
         else if (book.id===data[1].id){
