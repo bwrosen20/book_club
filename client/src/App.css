@@ -198,7 +198,7 @@ input[type=file]::-webkit-file-upload-button {
     background-repeat:no-repeat;
     height:max(25em,600px);
     display:flex;
-    flex-wrap:wrap;
+    width:100%;
     flex-direction:row;
   }
 
@@ -206,7 +206,7 @@ input[type=file]::-webkit-file-upload-button {
     cursor:pointer;
     width:fit-content;
     margin:auto;
-    padding:.2em;
+    padding:.5em;
     border:none;
     background:none;
     background-color:rgba(104, 103, 55, 0.178);
@@ -214,9 +214,8 @@ input[type=file]::-webkit-file-upload-button {
   }
 
   .openingItems{
-    margin:2em auto;
-    width:max(10em,160px)
-
+    width:50%;
+    font-size:1em
   }
 
   .rightSide{
@@ -232,7 +231,7 @@ input[type=file]::-webkit-file-upload-button {
     text-align:center;
   }
   
-  .loginOption, .loginButton, .signupOption, .signupButton{
+.loginButton, .signupOption, .signupButton{
     width:100%;
     margin-top:10px;
   }
