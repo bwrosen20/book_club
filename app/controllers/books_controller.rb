@@ -40,7 +40,8 @@ class BooksController < ApplicationController
             end
         end
         
-        user.update!({current_vote:params[:voteBook]})
+        user.current_vote=params[:voteBook]
+        user.save(validate:false)
         
         
         render json: ([book,currentBook])
