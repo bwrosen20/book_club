@@ -39,19 +39,19 @@ function Review({review, handleDeleteReview, book, handleEditReview}){
     return <div> {showEditReview ? 
                 <EditReview review={review} onEditReview={onEditReview}/> :
                 <div>
-                <div className="Review">
-                    <div className="User">
-                        <img src={review.user.profile_image} alt={review.user.name} className="UserPicture"></img>
+                <div className="review">
+                    <div className="user">
+                        <img src={review.user.profile_image} alt={review.user.name} className="userPicture"></img>
                         <h3>{review.user.name}</h3>
                     </div>
-                    <div className="ReviewBody">
+                    <div className="reviewBody">
                         <font size="7">{review.rating.toFixed(1)}</font>
                         <p style={myStyle}>{review.body}</p>
                     </div>
                     {user.id===review.user.id ? <button className="delete" onClick={onDeleteReview} value={book.id} id={review.id}>X</button> : null}
                     
                 </div>
-                {user.id===review.user.id ? <button className="EditReview" onClick={onEditReviewClick}>Edit Review</button> : null}
+                {user.id===review.user.id ? <button className="editReview" onClick={onEditReviewClick}>Edit Review</button> : null}
                 </div>}
                 </div>
     

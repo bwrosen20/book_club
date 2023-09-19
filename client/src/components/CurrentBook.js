@@ -63,11 +63,11 @@ function CurrentBook({books,handleFinishBook, handleReview, handleEditReview, ha
     return <div>
         {currentBook ? 
         <div>
-                <div className="BookDisplay">
-                    <div className="BookPicture">
-                        <img src={currentBook.thumbnail} alt={currentBook.thumbnail} className="PictureDisplay"></img>
+                <div className="bookDisplay">
+                    <div className="bookPicture">
+                        <img src={currentBook.thumbnail} alt={currentBook.thumbnail} className="pictureDisplay"></img>
                     </div>
-                    <div className="BookInfo">
+                    <div className="bookInfo">
                         <h1>{currentBook.title}</h1>
                         <h4>By {currentBook.author}</h4>
                         <font size="4" className="description">{currentBook.description}</font>
@@ -75,7 +75,7 @@ function CurrentBook({books,handleFinishBook, handleReview, handleEditReview, ha
                     
                         {currentBook.reviews ? <ReviewContainer book={currentBook} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
                 </div>
-                <div className="CurrentBookButtons">
+                <div className="currentBookButtons">
                     
                                 
                             <div>

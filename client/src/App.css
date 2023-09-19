@@ -18,6 +18,8 @@ input[type=file]::-webkit-file-upload-button {
 
 @media(max-width:849px){
 
+/*HTML*/
+
 
   body{
     height:100%;
@@ -47,7 +49,18 @@ input[type=file]::-webkit-file-upload-button {
   h4{
     text-align:center;
   }
- 
+
+  .error{
+    color:red;
+    margin:.5em auto;
+    width:fit-content;
+    text-align:center;
+  }
+
+
+
+/*Home Page/Vote Book*/
+
   .bookContainer{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -68,32 +81,90 @@ input[type=file]::-webkit-file-upload-button {
     object-position:top;
     border-radius:10px;
   }
+
+  .heading{
+    text-align:center;
+    margin:auto;
+    margin-bottom:50px;
+  }
   
+  .searchContainer{
+    margin-top:100px;
+    margin-bottom:25px;
+    text-align:center;
+  }
+
+
+  /*Display Book*/
   
-  .BookDisplay{
+  .bookDisplay{
     margin:auto;
     margin-top:10px;
     width: 100%; 
    
   }
   
-  .BookInfo{
+  .bookInfo{
     margin:auto;
     height:auto;
   }
   
-  .BookPicture{
+  .bookPicture{
     margin:auto;
     text-align:center;
     width:90%;
     padding:20px;
   }
   
-  .PictureDisplay{
+  .pictureDisplay{
     margin:auto;
     cursor:default;
   }
   
+  .descriptionContainer{
+    width:95%;
+    margin:auto;
+  }
+
+  .description{
+    text-align:left;
+    padding:1em;
+  }
+
+  .returnButton{
+    width:80%;
+    margin:auto;
+    margin-top:30px;
+    margin-bottom:20px;
+    text-align:center;
+   }
+
+    /*CurrentBook*/
+
+      .currentBookOption{
+        width:60%;
+        margin-top:10px;
+      }
+
+      .currentBookButtons{
+        width:100%;
+        margin:auto;
+        margin-top:30px;
+        margin-bottom:20px;
+        text-align:center;
+        }
+      
+        .finishButton{
+          width:30%;
+          text-align:center;
+        }
+        
+
+
+
+/*Filters*/
+
+
   .filterContainer{
     text-align:center;
   }
@@ -102,12 +173,18 @@ input[type=file]::-webkit-file-upload-button {
     padding:10px;
     margin:20px;
   }
+
+
+
+
+  /*Reviews*/
   
-  .ReviewContainer{
+  .reviewContainer{
     text-align:center;
+    margin:1em .5em;
   }
   
-  .Review{
+  .review{
     position:relative;
     display:grid;
     grid-template-columns: 1fr 7fr;
@@ -121,39 +198,7 @@ input[type=file]::-webkit-file-upload-button {
     height:auto;
   }
 
-  .MemberCard{
-    border:1px solid black;
-    border-radius: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    margin-top:50px;
-  }
-
-  .MemberInfo{
-    position:relative;
-    display:grid;
-    grid-template-columns: 1fr 7fr;
-    grid-gap:10px;
-    width:100%;
-    height:auto;
-  }
-  
-  .User{
-    margin-left:auto;
-    margin-top:auto;
-    text-align:center;
-    padding-top:10px;
-    padding-left:20px;
-  }
-  
-  .UserPicture{
-    width:100px;
-    height:100px;
-    cursor:default;
-    border-radius:10px;
-  }
-  
-  .ReviewBody{
+  .reviewBody{
     margin-top:5%;
     width:90%;
     word-wrap: break-word;
@@ -167,6 +212,109 @@ input[type=file]::-webkit-file-upload-button {
     width:70%;
     margin-left:10%;
   }
+
+  .reviewOption{
+    width:100%;
+    margin-top:10px;
+    margin:auto;
+  }
+  
+  .reviewButton{
+    width:80%;
+    margin:auto;
+  }
+
+  .reviewButton, .reviewOption{
+    width:100%;
+    margin-top:10px;
+  }
+  
+  .delete{
+    position:absolute;
+    top:5px;
+    right:5px;
+    background-color:rgba(255, 0, 0, 0.301);
+    border-radius:10px;
+    cursor:pointer;
+  }
+  
+  .editReview{
+    margin:center;
+    margin-top:10px;
+    width:40%;
+  }
+
+
+
+
+
+
+  /*Members*/
+
+
+  .memberCard{
+    border:1px solid black;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin-top:1.2em;
+    margin-right:.5em;
+  }
+
+  .memberInfo{
+    position:relative;
+    display:grid;
+    grid-template-columns: 1fr 7fr;
+    grid-gap:10px;
+    width:100%;
+    height:auto;
+  }
+  
+  .user{
+    margin-left:auto;
+    margin-top:auto;
+    text-align:center;
+    padding-top:10px;
+    padding-left:20px;
+  }
+  
+  .userPicture{
+    width:100px;
+    height:100px;
+    cursor:default;
+    border-radius:10px;
+  }
+
+  .memberBooksContainer{
+    width:100%;
+    display:inline-block;
+    overflow-x:auto;
+    white-space:nowrap;
+    
+  }
+
+  .memberBook{
+    width:80px;
+    height:120px;
+    padding:10px;
+    border-radius:20px;
+    margin-bottom:10px;
+  }
+
+  .memberContainer{
+    text-align:center;
+    width:100%;
+    margin:auto;
+  }
+
+  .profileImage{
+    text-align:left;
+  }
+
+
+
+ 
+  /*Login*/
   
   .login{
     position:absolute;
@@ -206,7 +354,7 @@ input[type=file]::-webkit-file-upload-button {
     cursor:pointer;
     width:fit-content;
     margin:auto;
-    padding:.5em;
+    padding:.1em .5em;
     border:none;
     background:none;
     background-color:rgba(104, 103, 55, 0.178);
@@ -254,98 +402,6 @@ input[type=file]::-webkit-file-upload-button {
     position:relative;
   }
 
-
-  .currentBookOption{
-    width:60%;
-    margin-top:10px;
-  }
-  
-  .ReviewOption{
-    width:100%;
-    margin-top:10px;
-    margin:auto;
-  }
-  
-  .ReviewButton{
-    width:80%;
-    margin:auto;
-  }
-  
-  .searchContainer{
-    margin-top:100px;
-    margin-bottom:25px;
-    text-align:center;
-  }
-  
-  .ReturnButton{
-   width:80%;
-   margin:auto;
-   margin-top:30px;
-   margin-bottom:20px;
-   text-align:center;
-  }
-
-  .CurrentBookButtons{
-    width:100%;
-    margin:auto;
-    margin-top:30px;
-    margin-bottom:20px;
-    text-align:center;
-    }
-  
-  .description{
-    text-align:left;
-  }
-  
-  .FinishButton{
-    width:30%;
-    text-align:center;
-  }
-  
-  
-  .reviewButton, .reviewOption{
-    width:100%;
-    margin-top:10px;
-  }
-  
-  .delete{
-    position:absolute;
-    top:5px;
-    right:5px;
-    background-color:rgba(255, 0, 0, 0.301);
-    border-radius:10px;
-    cursor:pointer;
-  }
-  
-  .EditReview{
-    margin:center;
-    margin-top:10px;
-    width:40%;
-  }
-  
-  .error{
-    color:red;
-    margin:.5em auto;
-    width:fit-content;
-    text-align:center;
-  }
-  
-  .MemberContainer{
-    text-align:center;
-    width:100%;
-    margin:auto;
-  }
-
-  .profileImage{
-    text-align:left;
-  }
-
-  .heading{
-    text-align:center;
-    margin:auto;
-    margin-bottom:50px;
-  }
-
   #togglePassword{
     position:absolute;
     right:.1em;
@@ -356,28 +412,23 @@ input[type=file]::-webkit-file-upload-button {
   .loginForm{
     position:relative;
   }
-
-  .MemberBooksContainer{
-    width:100%;
-    display:inline-block;
-    overflow-x:auto;
-    white-space:nowrap;
-    
-  }
-
-  .MemberBook{
-    width:80px;
-    height:120px;
-    padding:10px;
-    border-radius:20px;
-    margin-bottom:10px;
-  }
-
-  
-  
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
     @media (min-width:850px){
+
+    /*HTML*/
 
     :root{
       background-color: rgba(255, 235, 182, 0.402)
@@ -402,6 +453,20 @@ input[type=file]::-webkit-file-upload-button {
       text-align:center;
     }
 
+    .error{
+      color:red;
+      margin:auto;
+      justify-content:center;
+      padding:.5em;
+      width:fit-content;
+      text-align:center;
+    }
+
+
+
+
+
+    /*Home Page/Voting*/
 
     .bookContainer{
       display:grid;
@@ -424,30 +489,86 @@ input[type=file]::-webkit-file-upload-button {
       border-radius:20px;
     }
 
+    .searchContainer{
+      margin-top:100px;
+      margin-bottom:25px;
+      text-align:center;
+    }
 
-    .BookDisplay{
+    .heading{
+      text-align:center;
+      margin:auto;
+      margin-bottom:50px;
+    }
+
+
+
+
+
+
+    /*Display Book*/
+
+    .bookDisplay{
       margin:auto;
       margin-top:20px;
       width: 50%; 
     
     }
 
-    .BookInfo{
+    .bookInfo{
       margin:auto;
       height:auto;
     }
 
-    .BookPicture{
+    .bookPicture{
       margin:auto;
       text-align:center;
       width:90%;
       padding:20px;
     }
 
-    .PictureDisplay{
+    .pictureDisplay{
       margin:auto;
       cursor:default;
     }
+
+    .returnButton{
+      width:50%;
+      margin:auto;
+      margin-top:30px;
+      margin-bottom:20px;
+      text-align:center;
+      }
+
+      .description{
+        text-align:left;
+      }
+
+      /*CurrentBook*/
+
+      .currentBookButtons{
+        width:20%;
+        margin:auto;
+        margin-top:30px;
+        margin-bottom:20px;
+        text-align:center;
+        }
+    
+        .currentBookOption{
+          margin-top:.5em;
+        }
+
+        .FinishButton{
+          width:30%;
+          text-align:center;
+        }
+
+
+
+
+
+    /*Filters*/
+
 
     .filterContainer{
       text-align:center;
@@ -459,11 +580,17 @@ input[type=file]::-webkit-file-upload-button {
       margin:20px;
     }
 
-    .ReviewContainer{
+
+
+
+
+    /*Reviews*/
+
+    .reviewContainer{
       text-align:center;
     }
 
-    .Review{
+    .review{
       position:relative;
       display:grid;
       grid-template-columns: 1fr 5fr;
@@ -477,39 +604,7 @@ input[type=file]::-webkit-file-upload-button {
       height:auto;
     }
 
-    .MemberCard{
-      border:1px solid black;
-      border-radius: 25px;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      transition: 0.3s;
-      margin-top:50px;
-    }
-
-    .MemberInfo{
-      position:relative;
-      display:grid;
-      grid-template-columns: 1fr 7fr;
-      grid-gap:10px;
-      width:100%;
-      height:auto;
-    }
-
-    .User{
-      margin-left:auto;
-      margin-top:auto;
-      text-align:center;
-      padding-top:20px;
-      padding-left:20px;
-    }
-
-    .UserPicture{
-      width:100px;
-      height:100px;
-      cursor:default;
-      border-radius:10px;
-    }
-
-    .ReviewBody{
+    .reviewBody{
       width:80%;
       word-wrap: break-word;
       margin:auto;
@@ -519,6 +614,112 @@ input[type=file]::-webkit-file-upload-button {
       width:70%;
       margin-left:10%;
     }
+
+    .reviewOption{
+      width:100%;
+      margin-top:10px;
+      margin:auto;
+    }
+
+    .reviewButton{
+      width:100%;
+      margin:auto;
+    }
+
+    .reviewButton, .reviewOption{
+      width:100%;
+      margin-top:10px;
+    }
+
+    .reviewForm{
+      width:100%;
+    }
+
+    .delete{
+      position:absolute;
+      top:5px;
+      right:5px;
+      background-color:rgba(255, 0, 0, 0.301);
+      border-radius:25px;
+      cursor:pointer;
+    }
+
+    .editReview{
+      margin:center;
+      margin-top:10px;
+      width:40%;
+    }
+
+
+
+
+
+
+    /*Members*/
+
+    .memberCard{
+      border:1px solid black;
+      border-radius: 25px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      margin-top:50px;
+    }
+
+    .memberInfo{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1fr 7fr;
+      grid-gap:10px;
+      width:100%;
+      height:auto;
+    }
+
+    .user{
+      margin-left:auto;
+      margin-top:auto;
+      text-align:center;
+      padding-top:20px;
+      padding-left:20px;
+    }
+
+    .userPicture{
+      width:100px;
+      height:100px;
+      cursor:default;
+      border-radius:10px;
+    }
+
+    .memberContainer{
+      text-align:center;
+      width:60%;
+      margin:auto;
+    }
+
+    .profileImage{
+      width:60%;
+      text-align:left;
+    }
+
+    .memberBooksContainer{
+      width:95%;
+      display:inline-block;
+      overflow-x:auto;
+      white-space:nowrap;
+      
+    }
+
+    .memberBook{
+      width:80px;
+      height:120px;
+      padding:10px;
+      border-radius:20px;
+    }
+
+
+
+
+
+    /*Login*/
 
     .login{
       position:absolute;
@@ -607,103 +808,6 @@ input[type=file]::-webkit-file-upload-button {
       transform:scale(1.1)
     }
 
-    .ReviewOption{
-      width:100%;
-      margin-top:10px;
-      margin:auto;
-    }
-
-    .ReviewButton{
-      width:100%;
-      margin:auto;
-    }
-
-    .searchContainer{
-      margin-top:100px;
-      margin-bottom:25px;
-      text-align:center;
-    }
-
-    .ReturnButton{
-    width:50%;
-    margin:auto;
-    margin-top:30px;
-    margin-bottom:20px;
-    text-align:center;
-    }
-
-  .CurrentBookButtons{
-    width:20%;
-    margin:auto;
-    margin-top:30px;
-    margin-bottom:20px;
-    text-align:center;
-    }
-
-    .currentBookOption{
-      margin-top:.5em;
-    }
-
-    .description{
-      text-align:left;
-    }
-
-    .FinishButton{
-      width:30%;
-      text-align:center;
-    }
-
-
-    .reviewButton, .reviewOption{
-      width:100%;
-      margin-top:10px;
-    }
-
-    .reviewForm{
-      width:100%;
-    }
-
-    .delete{
-      position:absolute;
-      top:5px;
-      right:5px;
-      background-color:rgba(255, 0, 0, 0.301);
-      border-radius:25px;
-      cursor:pointer;
-    }
-
-    .EditReview{
-      margin:center;
-      margin-top:10px;
-      width:40%;
-    }
-
-    .error{
-      color:red;
-      margin:auto;
-      justify-content:center;
-      padding:.5em;
-      width:fit-content;
-      text-align:center;
-    }
-
-    .MemberContainer{
-      text-align:center;
-      width:60%;
-      margin:auto;
-    }
-
-    .profileImage{
-      width:60%;
-      text-align:left;
-    }
-
-    .heading{
-      text-align:center;
-      margin:auto;
-      margin-bottom:50px;
-    }
-
     #togglePassword{
       position:absolute;
       right:.1em;
@@ -714,23 +818,7 @@ input[type=file]::-webkit-file-upload-button {
     .loginForm{
       position:relative;
     }
-
-    .MemberBooksContainer{
-      width:95%;
-      display:inline-block;
-      overflow-x:auto;
-      white-space:nowrap;
-      
-    }
-
-    .MemberBook{
-      width:80px;
-      height:120px;
-      padding:10px;
-      border-radius:20px;
-    }
-
-    }
+}
 
  /*NavBars*/
 
@@ -786,6 +874,7 @@ header{
 .navBar{
   width:100%;
   padding:0;
+  padding-right:1em;
   margin:auto;
   text-align:center;
   align-items:center;

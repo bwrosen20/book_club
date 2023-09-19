@@ -12,7 +12,7 @@ function ReviewContainer({book, handleDeleteReview, handleEditReview}){
         {book.reviews.length>0 ? <h1>Club Reviews</h1> :null}
         {book.finished ? <h4>The club finished {book.title} on {finishedDate}</h4> : null}
 
-            <div className="ReviewContainer">
+            <div className="reviewContainer">
                 {book.reviews.map((review)=>(
                    <Review key={review.body} review={review} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview} book={book}/>
                 ))}

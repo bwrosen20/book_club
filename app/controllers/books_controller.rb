@@ -12,7 +12,7 @@ class BooksController < ApplicationController
         user = User.find(session[:user_id])
         book = Book.find(params[:id])
         book.update!(book_params)
-        render json: [book,user]
+        render json: [book,user],root: false
     end
 
     def create
@@ -23,7 +23,7 @@ class BooksController < ApplicationController
         user.book_for_vote=book.id
         user.save(validate: false)
 
-        render json: ([book,user]), status: :created
+        render json: ([book,user]), status: :created, root: false
     end
 
     def vote

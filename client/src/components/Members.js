@@ -19,16 +19,16 @@ function Members({handleClick}){
 
     return <div>
             <h1>Club Members</h1>
-            {isLoading? <h3 className="bookPreview">Loading... </h3> : <div className="MemberContainer">
+            {isLoading? <h3 className="bookPreview">Loading... </h3> : <div className="memberContainer">
                 
-                {users.map((user)=>(<div className="MemberCard" key={user.name}>
+                {users.map((user)=>(<div className="memberCard" key={user.name}>
 
-                    <div className="MemberInfo" key={user.name}>
-                    <div className="User">
-                        <img src={user.profile_image} alt={user.name} className="UserPicture"></img>
+                    <div className="memberInfo" key={user.name}>
+                    <div className="user">
+                        <img src={user.profile_image} alt={user.name} className="userPicture"></img>
                         <h3>{user.name}{user.admin ? ": Admin" : null}</h3>
                     </div>
-                    <div className="ReviewBody">
+                    <div className="reviewBody">
                         <h4>Favorite Book: {user.favorite_book}</h4>
                         <p>{user.bio}</p>
                     </div>
@@ -36,9 +36,9 @@ function Members({handleClick}){
                     
                 </div>
                     <h3>Books that {user.name} has read</h3>
-                <div className="MemberBooksContainer">
+                <div className="memberBooksContainer">
                         {user.books.map((book)=>(
-                            <img className="MemberBook" onClick={handleClick} src={book.thumbnail} key={book.title} alt={book.title} />
+                            <img className="memberBook" onClick={handleClick} src={book.thumbnail} key={book.title} alt={book.title} />
                         ))}
                         </div>
                 </div>

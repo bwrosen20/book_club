@@ -46,16 +46,16 @@ function App() {
     }
       
     function handlePutBookForVote(data){
+      console.log(data)
       const idArray=books.map((book)=>book.id)
+      console.log(idArray.includes(data[0].id))
 
         if (idArray.includes(data[0].id)){
-          setBooks(books.map((book)=>(book.id===data.id ? data : book))) 
+          setBooks(books.map((book)=>(book.id===data[0].id ? data[0] : book))) 
         }
         else {
           setBooks([...books,data[0]])
         }
-      
-        setUser(data[1])
       
     }
 

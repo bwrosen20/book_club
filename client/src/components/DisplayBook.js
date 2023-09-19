@@ -31,19 +31,21 @@ function DisplayBook({books, returnToVoting, bookForVote, handleReview, handleDe
     }
 
     return <div>
-                <div className="BookDisplay" id="BookDisplay">
-                    <div className="BookPicture">
-                        <img src={book.thumbnail} alt={book.thumbnail }className="PictureDisplay"></img>
+                <div className="bookDisplay" id="bookDisplay">
+                    <div className="bookPicture">
+                        <img src={book.thumbnail} alt={book.thumbnail }className="pictureDisplay"></img>
                     </div>
-                    <div className="BookInfo">
+                    <div className="bookInfo">
                         <h1>{book.title}</h1>
                         <h4>By {book.author}</h4>
-                        <font size="4" className="description">{book.description}</font>
+                        <div className="descriptionContainer">
+                            <font size="4" className="description">{book.description}</font>
+                        </div>
                     </div>
                     
                         {book.reviews ? <ReviewContainer book={book} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
                 </div>
-                <div className="ReturnButton">
+                <div className="returnButton">
                     {book.votes >=0 ? 
                         null:
                             <div className="loginScreen">

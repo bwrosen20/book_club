@@ -41,9 +41,9 @@ function EditReview({review,onEditReview}){
     }
 
     return <div>
-         <div className="Review">
-                    <div className="User">
-                        <img src={review.user.profile_image} alt={review.user.profile_image} className="UserPicture"></img>
+         <div className="review">
+                    <div className="user">
+                        <img src={review.user.profile_image} alt={review.user.profile_image} className="userPicture"></img>
                         <h3>{review.user.name}</h3>
                     </div>
                     <div className="smallerReviewBody">
@@ -65,7 +65,7 @@ function EditReview({review,onEditReview}){
                             onChange={onUpdateForm}
                             />
 
-                            <button className="ReviewButton">{isLoading ? "Loading..." : "Submit"}</button>
+                            <button className="reviewButton">{isLoading ? "Loading..." : "Submit"}</button>
                             {errors.map((error)=>(
                                 <h4 className="error" key={error}>{error}</h4>
                             ))}

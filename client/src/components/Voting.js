@@ -161,7 +161,7 @@ function Voting({books, handleClick, handlePutBookForVote, handleVoteButton}){
                            
                     </div>
                   
-                    {isLoading ? <h3 className="ReturnButton">Loading...</h3> : null}
+                    {isLoading ? <h3 className="returnButton">Loading...</h3> : null}
                     <div className="searchContainer" id="searchContainer">
                         <h2>Search for the club's next book</h2>
                         <form onSubmit={handleSearch}>
