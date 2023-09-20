@@ -1,12 +1,14 @@
 Welcome to Brian's Book Club App!
 The app is designed to handle a book club of any size, allowing members to search through the google book API and nominate a book for the club to read. The members will then all have the option to leave a review and vote for the next book.
 
-The user is first directed to the login screen, where they have the option to log in or signup.
-<img width="563" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/ba68b2ab-982e-4e3d-81c0-cd59db426e82">
-<img width="557" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/9df07c3c-393b-4a77-82d3-9dd7a4b5bb3d">
+The user is first directed to the login screen, where they have the option to login, signup or create a new club.
+![image](https://github.com/bwrosen20/book_club/assets/114421657/781a1c21-6e72-4727-ac8f-a69ca937527f)
+![image](https://github.com/bwrosen20/book_club/assets/114421657/a3382146-7547-48b4-b2f0-0c8ee78b8cb1)
 
-Upon signup or login, the user will be directed to the home page.
-<img width="960" alt="image" src="https://github.com/bwrosen20/book_club/assets/114421657/55773594-2d08-4af8-962a-621cc4cf978f">
+
+Upon signup or login, the user will be directed to the home page. This account already has data attached to it.
+![image](https://github.com/bwrosen20/book_club/assets/114421657/9ac1fa6b-daf8-4b0e-b533-263a715dc442)
+
 The home page lists all books the club has already read and options to filter and sort through them.
 The user can also click on a book's thumbnail to see its information and reviews
 
