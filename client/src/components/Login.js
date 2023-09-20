@@ -45,7 +45,7 @@ function Login({onLogin}){
           autoComplete="off"
           className="signupOption"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setEmail((e.target.value).toLowerCase())}
         />
         <div className="passwordOption">
         <input

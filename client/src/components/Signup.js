@@ -68,7 +68,7 @@ function Signup({ onLogin}) {
           placeholder="Email"
           className="signupOption"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setEmail((e.target.value).toLowerCase())}
         />
         <input
           type="password"
