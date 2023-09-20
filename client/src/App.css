@@ -16,6 +16,44 @@ input[type=file]::-webkit-file-upload-button {
   cursor:pointer;
 }
 
+.openingContainer{
+  width:fit-content;
+  margin:auto;
+  padding-bottom:0;
+}
+
+/* @media(min-width:1050px){
+  .openingInfo{
+    margin:.5em auto 0 0;
+  }
+
+  .sometimesOpening{
+    display:none
+  }
+}
+
+@media(max-width:1049px){
+  .openingInfo{
+    display:none;
+  }
+
+  .sometimesOpening{
+    padding:0;
+  }
+} */
+.openingRight{
+  margin:auto;
+}
+
+.openingImage{
+  width:min(20vw,250px);
+  min-width:200px;
+  margin:.5em auto;
+  padding-bottom:0;
+  margin-bottom:0;
+  cursor:default;
+}
+
 @media(max-width:849px){
 
 /*HTML*/
@@ -414,18 +452,6 @@ input[type=file]::-webkit-file-upload-button {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
     @media (min-width:850px){
 
     /*HTML*/
@@ -804,9 +830,9 @@ input[type=file]::-webkit-file-upload-button {
       border-radius:1em;
     }
 
-    .loginOption:hover{
-      transform:scale(1.1)
-    }
+      .loginOption:hover{
+        transform:scale(1.1)
+      }
 
     #togglePassword{
       position:absolute;
@@ -889,6 +915,8 @@ header{
   justify-content:left;
   margin:auto;
   margin-left:1em;
+  width:120px;
+  height:100px;
 }
 
 .navBar .navLinks{
@@ -913,7 +941,7 @@ header{
 .navBars{
   color:black;
   font-size:1.65em;
-  padding:.15em 0;
+  padding:.15em .5em;
   cursor:pointer;
   display:none;
 
@@ -968,7 +996,7 @@ header{
   position:absolute;
   font-size:17px;
   right:0.5rem;
-  top:40px;
+  top:80px;
   width:150px;
   height:0;
   background:rgb(239, 240, 241);
@@ -976,7 +1004,7 @@ header{
   backdrop-filter:blur(10em);
   border-radius:15px;
   overflow:hidden;
-  height:250px;
+  height:200px;
   transition:height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   margin-bottom:1px;
   z-index:3;

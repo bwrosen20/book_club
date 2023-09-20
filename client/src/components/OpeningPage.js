@@ -31,7 +31,12 @@ function OpeningPage({onLogin}){
 
 
     return <div>
-        <h1 className="mainHeading">Welcome to the Book Club!</h1>
+        <div className="openingContainer">
+            <div className="openingRight">
+                <img src={require('../MUSTACHE.png')} alt="logo" className="openingImage"/>
+                <h3 style={{margin:"auto",textAlign:"center"}}>We'll host your book club</h3>
+            </div>
+        </div>
     <div className="openingBackground">
         <div className="openingItems">
             

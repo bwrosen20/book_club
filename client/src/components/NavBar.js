@@ -1,15 +1,19 @@
-import React, {useState, useContext} from 'react'
-import {UserContext} from './App'
-import {NavLink} from 'react-router-dom'
+import React, {useState} from 'react'
+// import {UserContext} from './App'
+import {NavLink,useHistory} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function NavBar({handleLogout}) {
 
     const [isOpen,setIsOpen] = useState(false)
-    const user = useContext(UserContext)
+    const history = useHistory()
 
     function toggleClass(){
       setIsOpen(!isOpen)
+    }
+
+    function goHome(){
+      history.push("/")
     }
 
     return <header>
@@ -17,19 +21,12 @@ function NavBar({handleLogout}) {
            
           
       <div className="navBar">
-      <p className="welcome">Welcome {user.name}</p>
+        <img src = {require("../MUSTACHE.png")} alt="logo" className="welcome" onClick={goHome}/>
+      {/* <p className="welcome">Welcome {user.name}</p> */}
      
 
       <div className="navigation" >
         <ul className="navLinks" >
-          <li>
-            <NavLink
-            className="navOption"
-            to="/"
-            exact>
-              Home
-            </NavLink>
-          </li>
           <li>
             <NavLink
             className="navOption"
@@ -64,14 +61,6 @@ function NavBar({handleLogout}) {
       </div>
       </div>
       <div className={isOpen ? "dropdownMenuOpen" : "dropdownMenu"} onClick={toggleClass}>
-      <li>
-            <NavLink
-            className="navOption"
-            to="/"
-            exact>
-              Home
-            </NavLink>
-          </li>
           <li>
             <NavLink
             className="navOption"
