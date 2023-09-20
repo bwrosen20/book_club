@@ -50,7 +50,7 @@ function EditReview({review,onEditReview}){
                         <form onSubmit={onFormSubmit}>
                             <input 
                             name="rating"
-                            className="loginOption"
+                            className="signupOption"
                             value={formData.rating}
                             type="text"
                             onChange={onUpdateForm}
@@ -58,7 +58,7 @@ function EditReview({review,onEditReview}){
 
                             <textarea 
                             name="body"
-                            className="loginOption"
+                            className="signupOption"
                             value={formData.body}
                             type="text"
                             rows="5"
