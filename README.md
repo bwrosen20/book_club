@@ -1,4 +1,4 @@
-Welcome to Brian's Book Club App!
+Welcome to Mustache Books!
 The app is designed to handle a book club of any size, allowing members to search through the google book API and nominate a book for the club to read. The members will then all have the option to leave a review and vote for the next book.
 
 The user is first directed to the login screen, where they have the option to login, signup or create a new club.
