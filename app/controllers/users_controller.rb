@@ -25,11 +25,12 @@ class UsersController < ApplicationController
             render json: {errors: ["Group name already exists"]}, status: :unprocessable_entity
         else
             new_user = User.new(user_params)
-            new_user.book_for_vote = 0;
+            new_user.book_for_vote = 0
+            new_user.admin=1
             new_user.save!
             books=[]
             session[:user_id] = new_user.id
-            render json: [user,*books], root: false
+            render json: [new_user,*books], root: false
         end
     end
 
@@ -52,11 +53,12 @@ class UsersController < ApplicationController
         group_array = User.all.pluck(:group_name)
         if group_array.include?(params[:group_name])
             new_user = User.new(user_params)
-            new_user.book_for_vote = 0;
+            new_user.book_for_vote = 0
+            new_user.admin = 0
             new_user.save!
             session[:user_id]=new_user.id
-            books = Book.where(group:user.group_name).order(:created_at)
-            render json: [user,*books], root: false
+            books = Book.where(group:new_user.group_name).order(:created_at)
+            render json: [new_user,*books], root: false
 
         else
             render json: {errors: ["Group does not exist"]}, status: :unprocessable_entity
