@@ -2,10 +2,13 @@ Rails.application.routes.draw do
 
   post '/signup', to: 'users#signup'
   post '/create', to: 'users#create'
+  post '/google-create', to: 'users#google_create'
+  post '/google-signup', to: 'users#google_signup'
   get '/users', to: 'users#index'
   patch '/users/finish',to: 'users#finish'
   patch '/users/:id', to: 'users#update'
   get '/me', to: 'users#show'
+  post '/google', to: 'sessions#google'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   patch '/books/vote', to: 'books#vote'

@@ -1,5 +1,6 @@
 import '../App.css';
 import React, {useEffect, useState}  from 'react'
+import {gapi} from 'gapi-script'
 import Home from './Home'
 import Voting from './Voting'
 import NavBar from './NavBar'
@@ -13,6 +14,8 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
+
+const clientId = "213321703015-mrd4guaeltrl0iq0chmk79iec74ld518.apps.googleusercontent.com"
 export const UserContext = React.createContext()
 
 function App() {
@@ -24,6 +27,14 @@ function App() {
 
   useEffect(()=>{
     setIsLoading(true)
+    function start(){
+      gapi.client.init({
+        clientId:clientId,
+        scope:""
+      })
+    }
+      gapi.load('client:auth2', start)
+      
         fetch(`/me`)
         .then(r=>{
           if (r.ok){

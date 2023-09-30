@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
+import {GoogleLogin} from 'react-google-login'
 
 function CreateAccount({onLogin}){
 
+    const clientId = "213321703015-mrd4guaeltrl0iq0chmk79iec74ld518.apps.googleusercontent.com"
     const [name, setName] = useState("")
     const [groupName,setGroupName] = useState("")
     const [email,setEmail]=useState("")
@@ -12,6 +14,45 @@ function CreateAccount({onLogin}){
     const [bio, setBio] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
+    const [googleSignIn,setGoogleSignIn] = useState(true)
+    const [googleWasUsed,setGoogleWasUsed] = useState(false)
+
+
+
+      function onSuccess(res){
+        console.log(res)
+        setGoogleWasUsed(true)
+        setGoogleSignIn(false)
+        setEmail(res.profileObj.email)
+        setName(res.profileObj.givenName)
+      }
+
+
+      function handleGoogleSubmit(e){
+        e.preventDefault();
+        setErrors([]);
+        const formData= new FormData()
+        formData.append('name',name)
+        formData.append('email',email)
+        formData.append('favorite_book',favoriteBook)
+        formData.append('bio',bio)
+        formData.append('current_vote',0)
+        formData.append('group_name',groupName)
+        formData.append('admin',true)
+        if (profileImage){formData.append('profile_image',profileImage)}
+        setIsLoading(true);
+        fetch("/google-create", {
+          method: "POST",
+          body: formData,
+        }).then((r) => {
+          setIsLoading(false);
+          if (r.ok) {
+            r.json().then((res) => onLogin(res));
+          } else {
+            r.json().then((err) => setErrors(err.errors));
+          }
+        });
+      }
 
 
     function handleSubmit(e) {
@@ -35,7 +76,7 @@ function CreateAccount({onLogin}){
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            r.json().then((user) => onLogin(user));
+            r.json().then((res) => onLogin(res));
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
@@ -44,7 +85,16 @@ function CreateAccount({onLogin}){
 
     return <div className="loginScreen">
         <h1>Create Club</h1>
-        <form onSubmit={handleSubmit} className="loginForm">
+        {googleSignIn? 
+
+          <GoogleLogin
+          clientId = {clientId}
+          buttonText = "Signup with Google"
+          cookiePolicy = {"single_host_origin"}
+          onSuccess = {onSuccess}
+          />:
+
+        <form onSubmit={googleWasUsed ? handleGoogleSubmit : handleSubmit} className="loginForm">
         <input
           type="text"
           id="group_name"
@@ -70,28 +120,32 @@ function CreateAccount({onLogin}){
           placeholder="Email"
           className="signupOption"
           value={email}
-          onChange={(e) => setEmail((e.target.value).toLowerCase())}
+          disabled = {googleWasUsed ? true : false}
+          onChange={googleWasUsed ? null : (e) => setEmail((e.target.value).toLowerCase())}
         />
-        <br></br>
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          className="signupOption"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
-        />
-        
-        <input
-          type="password"
-          id="password_confirmation"
-          placeholder="Confirm Password"
-          className={ passwordConfirmation.length>0 ? passwordConfirmation===password ? "confirmed" :"wrongPassword" : "signupOption"  }
-          value={passwordConfirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
-          autoComplete="current-password"
-        />
+          {googleWasUsed ? null:
+          <div>
+          <br></br>
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            className="signupOption"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+          />
+          
+          <input
+            type="password"
+            id="password_confirmation"
+            placeholder="Confirm Password"
+            className={ passwordConfirmation.length>0 ? passwordConfirmation===password ? "confirmed" :"wrongPassword" : "signupOption"  }
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            autoComplete="current-password"
+          />
+          </div>}
         <input
           type="text"
           id="favoriteBook"
@@ -124,7 +178,7 @@ function CreateAccount({onLogin}){
         {errors.map((err) => (
           <h4 className="error" key={err}>{err}</h4>
         ))}
-    </form>
+    </form>}
         
     </div>
 }
