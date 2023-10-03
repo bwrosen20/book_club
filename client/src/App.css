@@ -54,6 +54,25 @@ input[type=file]::-webkit-file-upload-button {
   cursor:default;
 }
 
+.labelForLoadedFile{
+  background:rgba(97, 172, 87, 0.849); 
+  border:green solid 1.5px;
+  padding:5px 10px; 
+  cursor:pointer;
+  border-radius:5px;
+}
+
+.labelForFile{
+  background:lightgrey; 
+  padding:5px 10px; 
+  cursor:pointer;
+  border-radius:5px;
+}
+
+  .labelForFile:hover{
+    transform:scale(1.1)
+  }
+
 @media(max-width:849px){
 
 /*HTML*/

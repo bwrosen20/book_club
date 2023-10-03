@@ -14,16 +14,20 @@ function Signup({ onLogin}) {
   const [bio, setBio] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [googleSignIn,setGoogleSignIn] = useState(true)
   const [googleWasUsed,setGoogleWasUsed] = useState(false)
+  const [fileLoaded,setFileLoaded] = useState(false)
 
 
   function onSuccess(res){
     console.log(res)
     setGoogleWasUsed(true)
-    setGoogleSignIn(false)
     setEmail(res.profileObj.email)
     setName(res.profileObj.givenName)
+  }
+
+  function loadedFile(e){
+    setProfileImage(e.target.files[0])
+    setFileLoaded(true)
   }
 
 
@@ -85,14 +89,7 @@ function Signup({ onLogin}) {
 
   return (<div className="loginScreen">
     <h1>Signup</h1>
-    {googleSignIn? 
 
-      <GoogleLogin
-      clientId = {clientId}
-      buttonText = "Signup with Google"
-      cookiePolicy = {"single_host_origin"}
-      onSuccess = {onSuccess}
-      />:
     <form onSubmit={googleWasUsed ? handleGoogleSubmit : handleSubmit} className="loginForm">
     <input
           type="text"
@@ -162,21 +159,34 @@ function Signup({ onLogin}) {
           onChange={(e) => setBio(e.target.value)}
         />
         <br/>
-        <h4 className="profileImage">Profile Image</h4>
+        <br/>
+        <label htmlFor="profileImage" className={fileLoaded ? "labelForLoadedFile" :"labelForFile"}>
+          Profile Image
+        </label>
         <input
           type="file"
+          title=" "
           id="profileImage"
           accept="image/*"
-          className="signupOption"
-          onChange={(e) => setProfileImage(e.target.files[0])}
+          style={{visibility:"hidden"}} 
+          className="custom-file-input"
+          onChange={loadedFile}
         />
-        <br/>
         <br/>
         <button type="submit" className="signupButton">{isLoading ? "Loading..." : "Sign Up"}</button>
         {errors.map((err) => (
           <h4 className="error" key={err}>{err}</h4>
         ))}
-    </form>}
+    </form>
+          <br/>
+    {googleWasUsed ? null :
+      <GoogleLogin
+        clientId = {clientId}
+        buttonText = "Signup with Google"
+        cookiePolicy = {"single_host_origin"}
+        onSuccess = {onSuccess}
+        />
+    }
     </div>
   )
 }

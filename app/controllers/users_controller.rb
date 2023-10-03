@@ -6,18 +6,18 @@ class UsersController < ApplicationController
         render json: users
     end
 
-    # def create
-    #     group_array = User.all.pluck(:group_name)
-    #     if group_array.include?(params[:group_name])
-    #         render json: {errors: ["Group name already exists"]}, status: :unprocessable_entity
-    #     else
-    #     new_user = User.new(user_params)
-    #     new_user.book_for_vote = 0;
-    #     new_user.save!
-    #         session[:user_id] = new_user.id
-    #         render json: new_user, status: :created
-    #     end
-    # end
+    def create
+        group_array = User.all.pluck(:group_name)
+        if group_array.include?(params[:group_name])
+            render json: {errors: ["Group name already exists"]}, status: :unprocessable_entity
+        else
+        new_user = User.new(user_params)
+        new_user.book_for_vote = 0;
+        new_user.save!
+            session[:user_id] = new_user.id
+            render json: new_user, status: :created
+        end
+    end
 
     def google_create
         group_array = User.all.pluck(:group_name)
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
             new_user = User.new(user_params)
             new_user.book_for_vote = 0
             new_user.admin=1
+            new_user.password = SecureRandom.hex(10)
             new_user.save!
             books=[]
             session[:user_id] = new_user.id
@@ -34,20 +35,20 @@ class UsersController < ApplicationController
         end
     end
 
-    # def signup
-    #     group_array = User.all.pluck(:group_name)
-    #     if group_array.include?(params[:group_name])
-    #     new_user = User.new(user_params)
-    #     new_user.book_for_vote = 0;
-    #     new_user.save!
-    #         session[:user_id]=new_user.id
-    #         render json: new_user, status: :created
+    def signup
+        group_array = User.all.pluck(:group_name)
+        if group_array.include?(params[:group_name])
+        new_user = User.new(user_params)
+        new_user.book_for_vote = 0;
+        new_user.save!
+            session[:user_id]=new_user.id
+            render json: new_user, status: :created
 
-    #     else
-    #         render json: {errors: ["Group does not exist"]}, status: :unprocessable_entity
-    #     end
+        else
+            render json: {errors: ["Group does not exist"]}, status: :unprocessable_entity
+        end
 
-    # end
+    end
 
     def google_signup
         group_array = User.all.pluck(:group_name)
@@ -55,6 +56,7 @@ class UsersController < ApplicationController
             new_user = User.new(user_params)
             new_user.book_for_vote = 0
             new_user.admin = 0
+            new_user.password = SecureRandom.hex(10)
             new_user.save!
             session[:user_id]=new_user.id
             books = Book.where(group:new_user.group_name).order(:created_at)

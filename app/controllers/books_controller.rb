@@ -23,7 +23,7 @@ class BooksController < ApplicationController
         user.book_for_vote=book.id
         user.save(validate: false)
 
-        render json: ([book,user]), status: :created, root: false
+        render json: (book), status: :created, root: false
     end
 
     def vote
