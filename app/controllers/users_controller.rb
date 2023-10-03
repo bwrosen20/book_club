@@ -11,11 +11,13 @@ class UsersController < ApplicationController
         if group_array.include?(params[:group_name])
             render json: {errors: ["Group name already exists"]}, status: :unprocessable_entity
         else
-        new_user = User.new(user_params)
-        new_user.book_for_vote = 0;
-        new_user.save!
+            new_user = User.new(user_params)
+            new_user.book_for_vote = 0
+            new_user.admin = 1
+            new_user.save!
+            books=[]
             session[:user_id] = new_user.id
-            render json: new_user, status: :created
+            render json: [new_user,*books], status: :created
         end
     end
 
@@ -38,11 +40,13 @@ class UsersController < ApplicationController
     def signup
         group_array = User.all.pluck(:group_name)
         if group_array.include?(params[:group_name])
-        new_user = User.new(user_params)
-        new_user.book_for_vote = 0;
-        new_user.save!
+            new_user = User.new(user_params)
+            new_user.book_for_vote = 0
+            new_user.admin = 0
+            new_user.save!
             session[:user_id]=new_user.id
-            render json: new_user, status: :created
+            books = []
+            render json: [new_user,*books], status: :created
 
         else
             render json: {errors: ["Group does not exist"]}, status: :unprocessable_entity

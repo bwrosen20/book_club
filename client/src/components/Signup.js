@@ -135,7 +135,7 @@ function Signup({ onLogin}) {
             type="password"
             id="password_confirmation"
             placeholder="Confirm Password"
-            className="signupOption"
+            className={ passwordConfirmation.length>0 ? passwordConfirmation===password ? "confirmed" :"wrongPassword" : "signupOption"  }
             value={passwordConfirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
             autoComplete="current-password"
