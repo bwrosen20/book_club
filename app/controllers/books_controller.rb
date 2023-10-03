@@ -12,7 +12,7 @@ class BooksController < ApplicationController
         user = User.find(session[:user_id])
         book = Book.find(params[:id])
         book.update!(book_params)
-        render json: [book,user],root: false
+        render json: book,root: false
     end
 
     def create
