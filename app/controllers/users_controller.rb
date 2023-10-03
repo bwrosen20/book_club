@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:google_create,:google_signup]
+    skip_before_action :authorized, only: [:google_create,:google_signup,:create,:signup]
     def index
         current_user = User.find(session[:user_id])
         users = User.where(group_name:current_user.group_name)
