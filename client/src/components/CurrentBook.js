@@ -70,7 +70,9 @@ function CurrentBook({books,handleFinishBook, handleReview, handleEditReview, ha
                     <div className="bookInfo">
                         <h1>{currentBook.title}</h1>
                         <h4>By {currentBook.author}</h4>
-                        <font size="4" className="description">{currentBook.description}</font>
+                        <div className="descriptionContainer">
+                            <font size="4" className="description">{currentBook.description}</font>
+                        </div>
                     </div>
                     
                         {currentBook.reviews ? <ReviewContainer book={currentBook} handleEditReview={handleEditReview} handleDeleteReview={handleDeleteReview}/> : null}
