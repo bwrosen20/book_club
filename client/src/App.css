@@ -6,6 +6,8 @@ input[type=file]::-webkit-file-upload-button {
   cursor:pointer;
 }
 
+
+
 .firstBookStart{
   margin:auto;
   width:fit-content;
@@ -71,6 +73,10 @@ input[type=file]::-webkit-file-upload-button {
 
   .labelForFile:hover{
     transform:scale(1.1)
+  }
+
+  .homeImg:hover{
+    transform:scale(1.05)
   }
 
 @media(max-width:849px){
@@ -938,6 +944,10 @@ header{
   width:120px;
   height:100px;
 }
+
+  .welcome:hover{
+    transform:scale(1.05)
+  }
 
 .navBar .navLinks{
   display:flex;
