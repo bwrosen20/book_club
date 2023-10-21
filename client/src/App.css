@@ -162,7 +162,7 @@ input[type=file]::-webkit-file-upload-button {
   
   .bookDisplay{
     margin:auto;
-    margin-top:10px;
+    margin-top:7em;
     width: 100%; 
    
   }
@@ -230,6 +230,7 @@ input[type=file]::-webkit-file-upload-button {
 
   .filterContainer{
     text-align:center;
+    margin-top:6em;
   }
   
   .filterInput{
@@ -314,6 +315,10 @@ input[type=file]::-webkit-file-upload-button {
 
   /*Members*/
 
+
+  .memberHeading{
+    margin-top:4em;
+  }
 
   .memberCard{
     border:1px solid black;
