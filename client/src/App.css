@@ -520,6 +520,10 @@ input[type=file]::-webkit-file-upload-button {
 
     /*Home Page/Voting*/
 
+    .homeContainer{
+     
+    }
+
     .bookContainer{
       display:grid;
       grid-template-columns:1fr 1fr 1fr 1fr 1fr;
@@ -551,6 +555,7 @@ input[type=file]::-webkit-file-upload-button {
       text-align:center;
       margin:auto;
       margin-bottom:50px;
+
     }
 
 
@@ -562,7 +567,7 @@ input[type=file]::-webkit-file-upload-button {
 
     .bookDisplay{
       margin:auto;
-      margin-top:20px;
+      margin-top:7em;
       width: 50%; 
     
     }
@@ -625,6 +630,7 @@ input[type=file]::-webkit-file-upload-button {
     .filterContainer{
       text-align:center;
       margin-bottom:40px;
+      margin-top:5em;
     }
 
     .filterInput{
@@ -767,6 +773,10 @@ input[type=file]::-webkit-file-upload-button {
       border-radius:20px;
     }
 
+    .memberHeading{
+      margin-top:5em;
+    }
+
 
 
 
@@ -875,9 +885,13 @@ input[type=file]::-webkit-file-upload-button {
  /*NavBars*/
 
 header{
-  width:98%;
-  margin:0 auto;
+  width:100%;
+  left:0;
+  top:0;
   display:flex;
+  position:fixed;
+  z-index:10;
+  backdrop-filter:blur(1000px)
 }
 
 
@@ -956,7 +970,7 @@ header{
   gap:1.5em;
   list-style:none;
   text-align:right;
-  font-size:0.8em;
+  font-size:1em;
 }
 
 .navOption{

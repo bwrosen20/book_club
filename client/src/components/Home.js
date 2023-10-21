@@ -57,7 +57,7 @@ function Home({books, handleClick}){
       }
 
     return (
-      <div>
+      <div className="homeContainer">
         <Filters filterData={filterData} handleChange={handleChange}/>
         <h2 className="heading">Books that {user.group_name} has finished</h2>
       <div className="bookContainer">

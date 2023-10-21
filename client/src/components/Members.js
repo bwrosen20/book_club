@@ -18,7 +18,7 @@ function Members({handleClick}){
 
 
     return <div>
-            <h1>Club Members</h1>
+            <h1 className="memberHeading">Club Members</h1>
             {isLoading? <h3 className="bookPreview">Loading... </h3> : <div className="memberContainer">
                 
                 {users.map((user)=>(<div className="memberCard" key={user.name}>
